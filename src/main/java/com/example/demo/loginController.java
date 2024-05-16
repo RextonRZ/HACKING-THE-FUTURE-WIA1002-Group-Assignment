@@ -46,4 +46,10 @@ public class loginController {
         Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(signUpScene);
     }
+
+    @FXML
+    public void closeButton(ActionEvent event){
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 }

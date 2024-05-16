@@ -7,26 +7,25 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="569.0" prefWidth="621.0" style="-fx-background-color: #FFE5B6;" stylesheets="@../../../CssStyle/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.loginController">
+<VBox alignment="CENTER" prefHeight="704.0" prefWidth="1222.0" style="-fx-background-color: #FFE5B6;" stylesheets="@../../../CssStyle/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.loginController">
    <children>
-      <Text fx:id="loginText" fill="#c71fdd" stroke="#7d0c0c" strokeLineCap="BUTT" strokeWidth="0.0" text="Invalid Username/Email Address or Password" textAlignment="CENTER">
-         <effect>
-            <Glow />
-         </effect>
-      </Text>
-      <ImageView fitHeight="132.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+      <Button mnemonicParsing="false" onAction="#closeButton" text="x">
+         <VBox.margin>
+            <Insets left="1200.0" top="-100.0" />
+         </VBox.margin>
+      </Button>
+      <ImageView fitHeight="149.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../icon.png" />
          </image>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="60.0" />
          </VBox.margin>
       </ImageView>
       <Text fill="#8b623b" strokeType="OUTSIDE" strokeWidth="0.0" text="HTF">
@@ -39,16 +38,16 @@
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username/Email Address">
          <font>
-            <Font name="Arial Rounded MT Bold" size="12.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <VBox.margin>
-            <Insets right="195.0" top="40.0" />
+            <Insets right="195.0" top="50.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="useremailLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="350.0" promptText="admin1234/admin04@gmail.com" style="-fx-background-color: rgba(53,89,119,0); -fx-border-color: transparent transparent grey transparent;">
+      <TextField fx:id="useremailLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="378.0" promptText="admin1234/admin04@gmail.com" style="-fx-background-color: rgba(53,89,119,0); -fx-border-color: transparent transparent grey transparent;">
          <VBox.margin>
             <Insets left="150.0" right="150.0" top="10.0" />
          </VBox.margin>
@@ -58,18 +57,18 @@
       </TextField>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font name="Arial Rounded MT Bold" size="12.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="285.0" top="30.0" />
+            <Insets right="300.0" top="40.0" />
          </VBox.margin>
       </Text>
-      <Text fill="#433eac" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?">
+      <Text fill="#433eac" onMouseClicked="#forgotpassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?">
          <VBox.margin>
             <Insets left="250.0" top="-15.0" />
          </VBox.margin>
       </Text>
-      <PasswordField fx:id="passwordLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="350.0" promptText="123456" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: transparent transparent grey transparent;">
+      <PasswordField fx:id="passwordLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="377.0" promptText="123456" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: transparent transparent grey transparent;">
          <VBox.margin>
             <Insets left="150.0" right="150.0" top="10.0" />
          </VBox.margin>

@@ -13,10 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class signUpController {
     protected Stage stage;
@@ -47,9 +44,6 @@ public class signUpController {
     @FXML
     private ChoiceBox role;
     ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");
-
-    @FXML
-    private Text login;
 
     private boolean emailValid, usernameValid, passwordValid, passwordConfirmationValid;
     String usernameSU, emailSU, passwordSU, passwordConfirmationSU;

@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,11 +54,10 @@ public class signUpController {
     private Text roleErrorMessage;
 
     @FXML
-    private TextField longitude;
-
-    @FXML
     private TextField latitude;
-
+    
+    @FXML
+    private TextField longitude;
 
     ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");
 
@@ -69,6 +69,21 @@ public class signUpController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(signUpScene);
+        
+        // Find the TextTField named "latitude" in the loaded FXML file
+        latitude = (TextField) root2.lookup("#latitude");
+        if (latitude != null){
+            latitude.setText(generateCoordinates()[0]);
+        }else{
+            System.err.println("Error: TextField 'latitude' not found.");
+        }
+        
+        longitude = (TextField) root2.lookup("#longitude");
+        if (longitude != null){
+            longitude.setText(generateCoordinates()[1]);
+        }else{
+            System.err.println("Error: TextField 'longitude' not found.");
+        }
     }
 
     //Username Validation
@@ -206,6 +221,9 @@ public class signUpController {
     public void initialize() {
         role.setItems(roleList);
         role.setValue("");
+        
+        latitude.setEditable(false);
+        longitude.setEditable(false);
     }
 
     @FXML
@@ -226,7 +244,12 @@ public class signUpController {
             if(passwordConfirmationSU.isBlank())
                 passwordConfirmationErrorMessage.setText("Confirm password should not be empty");
         }
-
+        
+        if (role.getValue() == null || role.getValue().toString().isEmpty()) {
+            showError("Please select a role!");
+            return;
+        }
+        
         if (usernameValid && emailValid && passwordValid && passwordConfirmationValid) {
             storeUser(event);
         }
@@ -253,7 +276,8 @@ public class signUpController {
 
         try{
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue());
+                writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue() 
+                        + "," + latitude.getText() + "," + longitude.getText());
                 writer.flush();
                 showSignUpSuccess();
                 loginController loginController = new loginController();
@@ -284,5 +308,18 @@ public class signUpController {
         alertError.setContentText(errorMessage);
         
         alertError.showAndWait();
+    }
+    
+    public static String[] generateCoordinates(){
+        Random a = new Random();
+        
+        String[] coordination = new String[2];
+        
+        for (int i = 0; i < coordination.length; i++){
+            double coords = -500.0 + (1000.0 * a.nextDouble());
+            coordination[i] = String.format("%.2f", coords);
+        }
+        
+        return coordination;
     }
 }

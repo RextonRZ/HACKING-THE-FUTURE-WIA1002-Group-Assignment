@@ -41,14 +41,14 @@ public class loginController {
     @FXML
     public void loginButton(ActionEvent event) throws Exception{
         
-        if (authenticate()){
+//        if (authenticate()){
             Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setScene(homeScene);
-        }else{
-            displayLoginError();
-        }
+//        }else{
+//            displayLoginError();
+//        }
         
     }
     

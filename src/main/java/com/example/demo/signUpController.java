@@ -50,7 +50,7 @@ public class signUpController {
     private ChoiceBox role;
     ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");
 
-    private boolean emailValid, usernameValid, passwordValid, passwordConfirmationValid;
+    private boolean emailValid = false, usernameValid = false, passwordValid = false, passwordConfirmationValid = false;
     String usernameSU, emailSU, passwordSU, passwordConfirmationSU;
 
     //Username Validation
@@ -102,13 +102,11 @@ public class signUpController {
         //Check email format
         if (!emailSU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") )
             emailErrorMessage.setText("Invalid email address");
+        else if (duplicatedEmail(emailSU))
+            emailErrorMessage.setText("This email is already registered to another account!");
         else {
-            if (duplicatedEmail(emailSU))
-                emailErrorMessage.setText("This email is already registered to another account!");
-            else{
-                emailErrorMessage.setText("");
-                emailValid = true;
-            }
+            emailErrorMessage.setText("");
+            emailValid = true;
         }
     }
     
@@ -229,6 +227,20 @@ public class signUpController {
     public void storeUser(){
         String fileName = "src/main/java/Data/user.csv";
         
+        if (!usernameErrorMessage.getText().isEmpty()){
+            showError(usernameErrorMessage.getText());
+            return;
+        }else if(!emailErrorMessage.getText().isEmpty()){
+            showError(emailErrorMessage.getText());
+            return;
+        }else if(!passwordErrorMessage.getText().isEmpty()){
+            showError(passwordErrorMessage.getText());
+            return;
+        }else if(!passwordConfirmationErrorMessage.getText().isEmpty()){
+            showError(passwordConfirmationErrorMessage.getText());
+            return;
+        }
+
         try{
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
                 writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue());

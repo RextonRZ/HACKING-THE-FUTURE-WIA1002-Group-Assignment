@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1048.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.homeController">
    <top>
-      <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: #B2935B;" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: #B2935B;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="53.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
@@ -70,10 +70,13 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#logOutButton" style="-fx-background-radius: 80;" text="Log Out">
                <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
+                  <Insets left="10.0" right="10.0" top="25.0" />
                </HBox.margin>
             </Button>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </HBox>
    </top>
    <center>

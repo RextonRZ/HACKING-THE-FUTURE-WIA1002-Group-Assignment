@@ -48,6 +48,17 @@ public class signUpController {
 
     @FXML
     private ChoiceBox role;
+
+    @FXML
+    private Text roleErrorMessage;
+
+    @FXML
+    private Text longitude;
+
+    @FXML
+    private Text latitude;
+
+
     ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");
 
     private boolean emailValid = false, usernameValid = false, passwordValid = false, passwordConfirmationValid = false;
@@ -210,9 +221,7 @@ public class signUpController {
         }
 
         if (usernameValid && emailValid && passwordValid && passwordConfirmationValid) {
-            storeUser();
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
+            storeUser(event);
         }
     }
 
@@ -224,7 +233,7 @@ public class signUpController {
         stage.setScene(homeScene);
     }
 
-    public void storeUser(){
+    public void storeUser(ActionEvent event){
         String fileName = "src/main/java/Data/user.csv";
         
         if (!usernameErrorMessage.getText().isEmpty()){
@@ -240,6 +249,9 @@ public class signUpController {
                 writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue());
                 writer.flush();
                 showSignUpSuccess();
+                loginController loginController = new loginController();
+                loginController.loginStartUp(event);
+
             }catch (IOException e){
                 showError("Error appending user data to file: " + e.getMessage());
             }

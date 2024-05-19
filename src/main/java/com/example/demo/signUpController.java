@@ -1,6 +1,10 @@
 package com.example.demo;
 
-import javafx.application.Application;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -65,24 +70,63 @@ public class signUpController {
                 usernameErrorMessage.setText("Username should not contain SPACE");
             else if (!usernameSU.matches("[A-Za-z0-9]{8,}"))
                 usernameErrorMessage.setText("Username should not contain special characters");
+            else if (duplicatedUsername(usernameSU))
+                usernameErrorMessage.setText("Username already exists");
             else
                 usernameErrorMessage.setText("");
                 usernameValid = true;
         }
-
+    }
+    
+    private boolean duplicatedUsername(String username){
+        String fileName = "src/main/java/Data/user.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line;
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                String usernameExist = userData[0];
+                if(usernameExist.equals(username)){
+                    return true;
+                }
+            }
+        }catch (IOException e){
+            showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
     }
 
     //Email Validation
     public void emailValidation() throws Exception {
-        emailSU = emailSignUp.getText();
+        emailSU = emailSignUp.getText().trim();
 
         //Check email format
         if (!emailSU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") )
             emailErrorMessage.setText("Invalid email address");
         else {
-            emailErrorMessage.setText("");
-            emailValid = true;
+            if (duplicatedEmail(emailSU))
+                emailErrorMessage.setText("This email is already registered to another account!");
+            else{
+                emailErrorMessage.setText("");
+                emailValid = true;
+            }
         }
+    }
+    
+    private boolean duplicatedEmail(String email){
+        String fileName = "src/main/java/Data/user.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line;
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                String emailExist = userData[1].trim();
+                if(emailExist.equals(email)){
+                    return true;
+                }
+            }
+        }catch (IOException e){
+            showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
     }
 
     //Password Validation
@@ -167,7 +211,8 @@ public class signUpController {
                 passwordConfirmationErrorMessage.setText("Confirm password should not be empty");
         }
 
-        else {
+        if (usernameValid && emailValid && passwordValid && passwordConfirmationValid) {
+            storeUser();
             loginController loginController = new loginController();
             loginController.loginStartUp(event);
         }
@@ -181,5 +226,39 @@ public class signUpController {
         stage.setScene(homeScene);
     }
 
+    public void storeUser(){
+        String fileName = "src/main/java/Data/user.csv";
+        
+        try{
+            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
+                writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue());
+                writer.flush();
+                showSignUpSuccess();
+            }catch (IOException e){
+                showError("Error appending user data to file: " + e.getMessage());
+            }
+        }catch (Exception e){
+            showError("Error storing user data: " + e.getMessage());
+        }
+        
+    }
+    
+    private void showSignUpSuccess(){
+        Alert alertSU = new Alert(AlertType.INFORMATION);
+        alertSU.setTitle("Sign-Up Successful");
+        alertSU.setHeaderText(null);
+        alertSU.setContentText("Your account has been successfully created!");
+        
+        alertSU.showAndWait();
+    }
+    
+    private void showError(String errorMessage){
+        Alert alertError = new Alert(AlertType.ERROR);
+        alertError.setTitle("Error");
+        alertError.setHeaderText(null);
+        alertError.setContentText(errorMessage);
+        
+        alertError.showAndWait();
+    }
 
 }

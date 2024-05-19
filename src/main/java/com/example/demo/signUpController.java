@@ -233,12 +233,6 @@ public class signUpController {
         }else if(!emailErrorMessage.getText().isEmpty()){
             showError(emailErrorMessage.getText());
             return;
-        }else if(!passwordErrorMessage.getText().isEmpty()){
-            showError(passwordErrorMessage.getText());
-            return;
-        }else if(!passwordConfirmationErrorMessage.getText().isEmpty()){
-            showError(passwordConfirmationErrorMessage.getText());
-            return;
         }
 
         try{
@@ -264,7 +258,7 @@ public class signUpController {
         alertSU.showAndWait();
     }
     
-    private void showError(String errorMessage){
+    public void showError(String errorMessage){
         Alert alertError = new Alert(AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);
@@ -272,5 +266,4 @@ public class signUpController {
         
         alertError.showAndWait();
     }
-
 }

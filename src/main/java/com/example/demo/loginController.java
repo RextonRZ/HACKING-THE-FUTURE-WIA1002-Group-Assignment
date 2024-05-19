@@ -1,13 +1,8 @@
 package com.example.demo;
 
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -41,32 +36,39 @@ public class loginController {
     @FXML
     public void loginButton(ActionEvent event) throws Exception{
         
-//        if (authenticate()){
+        if (authenticate()){
             Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setScene(homeScene);
-//        }else{
-//            displayLoginError();
-//        }
+        }else{
+            displayLoginError();
+        }
         
     }
     
     private boolean authenticate(){
+        String fileName = "src/main/java/Data/user.csv";
         
-        try(Connection SQL = DriverManager.getConnection("**jdbc:mysql://**","**Username**", "**Password**")){
-            String query = "SELECT * FROM users WHERE username=? AND passwords=?";
-            try(PreparedStatement statement = SQL.prepareStatement(query)){
-                statement.setString(1, useremailLogin.getText());
-                statement.setString(2, passwordLogin.getText());
-                try (ResultSet result = statement.executeQuery()){
-                    return result.next();
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line, username, password;
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                if (useremailLogin.getText().endsWith(".com")){
+                    username = userData[1].trim();
+                }else{
+                    username = userData[0].trim();
+                }
+                password = userData[2].trim();
+                
+                if (username.equals(useremailLogin.getText().trim()) && password.equals(passwordLogin.getText().trim())) {
+                    return true; 
                 }
             }
-        }catch (SQLException e){
-            e.printStackTrace();
-            return false;
+        }catch (IOException e){
+            showError("Error reading user data from file: " + e.getMessage());
         }
+        return false;
     }
     
     private void displayLoginError(){
@@ -74,6 +76,8 @@ public class loginController {
         alertLogin.setTitle("Login Failed");
         alertLogin.setHeaderText(null);
         alertLogin.setContentText("Invalid username or password. Please try again later!");
+        
+        alertLogin.showAndWait();
     }
 
     @FXML
@@ -93,5 +97,14 @@ public class loginController {
     public void closeButton(ActionEvent event){
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
+    }
+    
+    public void showError(String errorMessage){
+        Alert alertError = new Alert(AlertType.ERROR);
+        alertError.setTitle("Error");
+        alertError.setHeaderText(null);
+        alertError.setContentText(errorMessage);
+        
+        alertError.showAndWait();
     }
 }

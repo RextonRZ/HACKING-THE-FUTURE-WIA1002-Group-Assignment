@@ -1,10 +1,13 @@
 package com.example.demo;
 
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -22,9 +25,9 @@ public class loginController {
     @FXML
     private Stage stage;
     @FXML
-    private TextField usernameTextField;
+    private TextField useremailLogin;
     @FXML
-    private TextField passwordField;
+    private TextField passwordLogin;
 
 
     @FXML
@@ -54,8 +57,8 @@ public class loginController {
         try(Connection SQL = DriverManager.getConnection("**jdbc:mysql://**","**Username**", "**Password**")){
             String query = "SELECT * FROM users WHERE username=? AND passwords=?";
             try(PreparedStatement statement = SQL.prepareStatement(query)){
-                statement.setString(1, usernameTextField.getText());
-                statement.setString(2, passwordField.getText());
+                statement.setString(1, useremailLogin.getText());
+                statement.setString(2, passwordLogin.getText());
                 try (ResultSet result = statement.executeQuery()){
                     return result.next();
                 }
@@ -75,7 +78,7 @@ public class loginController {
 
     @FXML
     public void forgotpassword(MouseEvent event) throws Exception{
-
+        
     }
 
     @FXML

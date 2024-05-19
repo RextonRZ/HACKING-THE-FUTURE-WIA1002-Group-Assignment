@@ -64,6 +64,13 @@ public class signUpController {
     private boolean emailValid = false, usernameValid = false, passwordValid = false, passwordConfirmationValid = false;
     String usernameSU, emailSU, passwordSU, passwordConfirmationSU;
 
+    public void signUP(ActionEvent event) throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(signUpScene);
+    }
+
     //Username Validation
     public void usernameValidation() throws Exception {
         usernameSU = usernameSignUp.getText();

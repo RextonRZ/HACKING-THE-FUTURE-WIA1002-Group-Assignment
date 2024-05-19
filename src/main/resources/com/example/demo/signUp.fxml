@@ -29,7 +29,7 @@
                   <Insets left="30.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="usernameSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#usernameValidation" prefHeight="0.0" prefWidth="350.0" promptText="admin04" style="-fx-background-color: rgba(222,222,222,0); -fx-border-color: transparent transparent grey transparent;">
+            <TextField fx:id="usernameSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onInputMethodTextChanged="#usernameValidation" onKeyTyped="#usernameValidation" prefHeight="0.0" prefWidth="350.0" promptText="admin04" style="-fx-background-color: rgba(222,222,222,0); -fx-border-color: transparent transparent grey transparent;">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="10.0" />
                </VBox.margin>
@@ -50,7 +50,7 @@
                   <Insets left="30.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="emailSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#emailValidation" prefHeight="0.0" prefWidth="350.0" promptText="admin04@gmail.com" style="-fx-background-color: rgba(255,255,255,0); -fx-border-color: transparent transparent grey transparent;">
+            <TextField fx:id="emailSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onInputMethodTextChanged="#emailValidation" onKeyTyped="#emailValidation" prefHeight="0.0" prefWidth="350.0" promptText="admin04@gmail.com" style="-fx-background-color: rgba(255,255,255,0); -fx-border-color: transparent transparent grey transparent;">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" />
                </VBox.margin>
@@ -68,7 +68,7 @@
                   <Insets left="30.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <PasswordField fx:id="passwordSignUp" maxWidth="-Infinity" onKeyTyped="#passwordValidation" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: transparent transparent grey transparent;">
+            <PasswordField fx:id="passwordSignUp" maxWidth="-Infinity" onInputMethodTextChanged="#passwordValidation" onKeyTyped="#passwordValidation" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: transparent transparent grey transparent;">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="10.0" />
                </VBox.margin>
@@ -86,7 +86,7 @@
                   <Insets left="30.0" right="30.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <PasswordField fx:id="passwordConfirmationSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#passwordConfirmationValidation" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: rgba(222,222,222,0); -fx-border-color: transparent transparent grey transparent;">
+            <PasswordField fx:id="passwordConfirmationSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onInputMethodTextChanged="#passwordConfirmationValidation" onKeyTyped="#passwordConfirmationValidation" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: rgba(222,222,222,0); -fx-border-color: transparent transparent grey transparent;">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="10.0" />
                </VBox.margin>

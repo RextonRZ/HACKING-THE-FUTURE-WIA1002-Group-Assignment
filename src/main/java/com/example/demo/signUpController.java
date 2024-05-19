@@ -53,10 +53,10 @@ public class signUpController {
     private Text roleErrorMessage;
 
     @FXML
-    private Text longitude;
+    private TextField longitude;
 
     @FXML
-    private Text latitude;
+    private TextField latitude;
 
 
     ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");

@@ -1,6 +1,12 @@
 package com.example.demo;
 
-import javafx.application.Application;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Random;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,14 +15,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class signUpController {
     protected Stage stage;
@@ -46,13 +53,42 @@ public class signUpController {
 
     @FXML
     private ChoiceBox role;
-    ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");
 
     @FXML
-    private Text login;
+    private Text roleErrorMessage;
 
-    private boolean emailValid, usernameValid, passwordValid, passwordConfirmationValid;
+    @FXML
+    private TextField latitude;
+    
+    @FXML
+    private TextField longitude;
+
+    ObservableList<String> roleList = FXCollections.observableArrayList("Young Student", "Educator", "Parent");
+
+    private boolean emailValid = false, usernameValid = false, passwordValid = false, passwordConfirmationValid = false;
     String usernameSU, emailSU, passwordSU, passwordConfirmationSU;
+
+    public void signUP(ActionEvent event) throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(signUpScene);
+        
+        // Find the TextTField named "latitude" in the loaded FXML file
+        latitude = (TextField) root2.lookup("#latitude");
+        if (latitude != null){
+            latitude.setText(generateCoordinates()[0]);
+        }else{
+            System.err.println("Error: TextField 'latitude' not found.");
+        }
+        
+        longitude = (TextField) root2.lookup("#longitude");
+        if (longitude != null){
+            longitude.setText(generateCoordinates()[1]);
+        }else{
+            System.err.println("Error: TextField 'longitude' not found.");
+        }
+    }
 
     //Username Validation
     public void usernameValidation() throws Exception {
@@ -71,24 +107,61 @@ public class signUpController {
                 usernameErrorMessage.setText("Username should not contain SPACE");
             else if (!usernameSU.matches("[A-Za-z0-9]{8,}"))
                 usernameErrorMessage.setText("Username should not contain special characters");
+            else if (duplicatedUsername(usernameSU))
+                usernameErrorMessage.setText("Username already exists");
             else
                 usernameErrorMessage.setText("");
                 usernameValid = true;
         }
-
+    }
+    
+    private boolean duplicatedUsername(String username){
+        String fileName = "src/main/java/Data/user.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line;
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                String usernameExist = userData[0];
+                if(usernameExist.equals(username)){
+                    return true;
+                }
+            }
+        }catch (IOException e){
+            showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
     }
 
     //Email Validation
     public void emailValidation() throws Exception {
-        emailSU = emailSignUp.getText();
+        emailSU = emailSignUp.getText().trim();
 
         //Check email format
         if (!emailSU.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") )
             emailErrorMessage.setText("Invalid email address");
+        else if (duplicatedEmail(emailSU))
+            emailErrorMessage.setText("This email is already registered to another account!");
         else {
             emailErrorMessage.setText("");
             emailValid = true;
         }
+    }
+    
+    private boolean duplicatedEmail(String email){
+        String fileName = "src/main/java/Data/user.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line;
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                String emailExist = userData[1].trim();
+                if(emailExist.equals(email)){
+                    return true;
+                }
+            }
+        }catch (IOException e){
+            showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
     }
 
     //Password Validation
@@ -152,6 +225,9 @@ public class signUpController {
     public void initialize() {
         role.setItems(roleList);
         role.setValue("");
+        
+        latitude.setEditable(false);
+        longitude.setEditable(false);
     }
 
     @FXML
@@ -172,10 +248,14 @@ public class signUpController {
             if(passwordConfirmationSU.isBlank())
                 passwordConfirmationErrorMessage.setText("Confirm password should not be empty");
         }
-
-        else {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
+        
+        if (role.getValue() == null || role.getValue().toString().isEmpty()) {
+            showError("Please select a role!");
+            return;
+        }
+        
+        if (usernameValid && emailValid && passwordValid && passwordConfirmationValid) {
+            storeUser(event);
         }
     }
 
@@ -187,5 +267,63 @@ public class signUpController {
         stage.setScene(homeScene);
     }
 
+    public void storeUser(ActionEvent event){
+        String fileName = "src/main/java/Data/user.csv";
+        
+        if (!usernameErrorMessage.getText().isEmpty()){
+            showError(usernameErrorMessage.getText());
+            return;
+        }else if(!emailErrorMessage.getText().isEmpty()){
+            showError(emailErrorMessage.getText());
+            return;
+        }
 
+        try{
+            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
+                writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue() 
+                        + "," + latitude.getText() + "," + longitude.getText());
+                writer.flush();
+                showSignUpSuccess();
+                loginController loginController = new loginController();
+                loginController.loginStartUp(event);
+
+            }catch (IOException e){
+                showError("Error appending user data to file: " + e.getMessage());
+            }
+        }catch (Exception e){
+            showError("Error storing user data: " + e.getMessage());
+        }
+        
+    }
+    
+    private void showSignUpSuccess(){
+        Alert alertSU = new Alert(AlertType.INFORMATION);
+        alertSU.setTitle("Sign-Up Successful");
+        alertSU.setHeaderText(null);
+        alertSU.setContentText("Your account has been successfully created!");
+        
+        alertSU.showAndWait();
+    }
+    
+    public void showError(String errorMessage){
+        Alert alertError = new Alert(AlertType.ERROR);
+        alertError.setTitle("Error");
+        alertError.setHeaderText(null);
+        alertError.setContentText(errorMessage);
+        
+        alertError.showAndWait();
+    }
+    
+    public static String[] generateCoordinates(){
+        Random a = new Random();
+        
+        String[] coordination = new String[2];
+        
+        for (int i = 0; i < coordination.length; i++){
+            double coords = -500.0 + (1000.0 * a.nextDouble());
+            coordination[i] = String.format("%.2f", coords);
+        }
+        
+        return coordination;
+    }
 }

@@ -35,7 +35,7 @@
                   <Insets left="10.0" top="25.0" />
                </HBox.margin>
             </Label>
-            <Pane prefHeight="73.0" prefWidth="593.0">
+            <Pane maxWidth="-Infinity" prefHeight="73.0" prefWidth="593.0">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>

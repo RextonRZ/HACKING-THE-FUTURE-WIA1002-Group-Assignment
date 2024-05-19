@@ -119,7 +119,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="475.0" top="30.0" />
+            <Insets right="465.0" top="30.0" />
          </VBox.margin>
       </Text>
       <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="Venue">
@@ -132,49 +132,23 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="488.0" top="30.0" />
+            <Insets right="485.0" top="30.0" />
          </VBox.margin>
       </Text>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="DD/MM/YYYY" >
-          <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </TextField>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time Start">
+      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="DD/MM/YYYY" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="450.0" top="30.0" />
+            <Insets right="490.0" top="30.0" />
          </VBox.margin>
       </Text>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="11:30 am" >
-          <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </TextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time End">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="15.0" />
-         </font>
+      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="1:30 pm" />
+      <Button mnemonicParsing="false" text="Create">
          <VBox.margin>
-            <Insets right="455.0" top="30.0" />
-         </VBox.margin>
-      </Text>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="1:30 pm" >
-          <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </TextField>
-      <Text fx:id="timeErrorMessage" fill="red" strokeType="OUTSIDE" strokeWidth="0.0" text="">
-        <VBox.margin>
-            <Insets top="5.0" />
-        </VBox.margin>
-      </Text>
-      <Button mnemonicParsing="false" onAction="#createEvent" text="Create">
-        <VBox.margin>
             <Insets bottom="15.0" top="40.0" />
-        </VBox.margin>
-</Button>
+         </VBox.margin>
+      </Button>
    </children>
 </VBox>

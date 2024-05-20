@@ -252,4 +252,22 @@ public class createEventController {
         
         alertError.showAndWait();
     }
+    
+    private void showCreateEventSuccess(){
+        Alert alertSU = new Alert(AlertType.INFORMATION);
+        alertSU.setTitle("Successful");
+        alertSU.setHeaderText(null);
+        alertSU.setContentText("Event "+ Title + " succesfully created.");
+        
+        alertSU.showAndWait();
+    }
+    
+    public void showError(String errorMessage){
+        Alert alertError = new Alert(AlertType.ERROR);
+        alertError.setTitle("Error");
+        alertError.setHeaderText(null);
+        alertError.setContentText(errorMessage);
+        
+        alertError.showAndWait();
+    }
 }

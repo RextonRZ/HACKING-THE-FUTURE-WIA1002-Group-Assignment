@@ -225,9 +225,6 @@ public class signUpController {
     public void initialize() {
         role.setItems(roleList);
         role.setValue("");
-        
-        latitude.setEditable(false);
-        longitude.setEditable(false);
     }
 
     @FXML

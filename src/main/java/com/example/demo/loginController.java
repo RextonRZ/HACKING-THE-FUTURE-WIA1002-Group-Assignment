@@ -91,7 +91,10 @@ public class loginController {
     }
 
     @FXML
-    public void forgotpassword(MouseEvent event) throws Exception{
+    public void forgotpassword(ActionEvent event) throws Exception{
+        forgotPasswordController forgotPasswordController = new forgotPasswordController();
+        forgotPasswordController.forgotPasswordStartUp(event);
+
         String email = forgetUsermailField.getText().trim();
         
         if (email.isEmpty()){

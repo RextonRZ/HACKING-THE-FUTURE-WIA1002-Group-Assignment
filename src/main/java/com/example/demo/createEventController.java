@@ -235,23 +235,6 @@ public class createEventController {
 
     }
 
-    @FXML
-    public void loginButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
-    }
-
-    @FXML
-    public void cAAButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(signUpScene);
-
-    }
-    
     private void showCreateEventSuccess(){
         Alert alertSU = new Alert(AlertType.INFORMATION);
         alertSU.setTitle("Successful");

@@ -63,11 +63,11 @@
             <Insets right="300.0" top="40.0" />
          </VBox.margin>
       </Text>
-      <Text fill="#433eac" onMouseClicked="#forgotpassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?">
+      <Hyperlink onAction="#forgotpassword" text="Forgot Password?" textFill="#433eac">
          <VBox.margin>
             <Insets left="250.0" top="-15.0" />
          </VBox.margin>
-      </Text>
+      </Hyperlink>
       <PasswordField fx:id="passwordLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="377.0" promptText="123456" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: transparent transparent grey transparent;">
          <VBox.margin>
             <Insets left="150.0" right="150.0" top="10.0" />

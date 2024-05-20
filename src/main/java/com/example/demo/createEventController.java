@@ -10,59 +10,57 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.Optional;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 public class createEventController {
     @FXML
     private Stage stage;
-    
+
     @FXML
     private TextField eventTitle;
-    
+
     @FXML
     private Text eventTitleErrorMessage;
 
     @FXML
     private TextField eventDescription;
-    
+
     @FXML
     private Text eventDescriptionErrorMessage;
 
     @FXML
     private TextField eventVenue;
-    
+
     @FXML
     private Text eventVenueErrorMessage;
 
     @FXML
     private DatePicker eventDate;
-    
+
     @FXML
     private Text eventDateErrorMessage;
 
     @FXML
     private TextField eventStartTime;
-    
+
     @FXML
     private Text eventStartTimeErrorMessage;
 
     @FXML
     private TextField eventEndTime;
-    
+
     @FXML
     private Text eventEndTimeErrorMessage;
-    
-    private boolean titleValid = false, descriptionValid = false, venueValid = false, dateValid = false, 
+
+    private boolean titleValid = false, descriptionValid = false, venueValid = false, dateValid = false,
             timeStartValid = false, timeEndValid = false;
-    
+
     String Title, Description, Venue, Date, StartTime, EndTime;
 
     @FXML
@@ -72,119 +70,144 @@ public class createEventController {
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
     }
-    
+
     public void eventDescriptionValidation() throws Exception {
         Description = eventDescription.getText();
 
-        if (Title.length() > 100) {
-            eventTitleErrorMessage.setText("Event description should not contain more than 100 characters");
+        if (Description.length() > 300) {
+            eventDescriptionErrorMessage.setText("Event description should not contain more than 300 characters");
         } else {
-            eventTitleErrorMessage.setText(""); 
-            titleValid = true;
+            eventDescriptionErrorMessage.setText("");
+            descriptionValid = true;
         }
     }
-    
-    
+
+
     public void eventDateValidation() {
-        LocalDate date = eventDate.getValue();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = null;
+        String dateString = eventDate.getEditor().getText();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-            LocalDate currentDate = LocalDate.now();//today's date
-
-            if (date.isBefore(currentDate)) {
+        try {
+            date = LocalDate.parse(dateString, dateFormatter);
+            if (date.isBefore(LocalDate.now())) {
                 eventDateErrorMessage.setText("The selected date has already passed.");
                 dateValid = false;
-                return;
-            }
-            try {
-                // Format the selected date to check for correct format
-                String formattedDate = date.format(formatter);
+            } else {
                 eventDateErrorMessage.setText("");
                 dateValid = true;
-            } catch (Exception e) {
-                eventDateErrorMessage.setText("Incorrect format of date DD/MM/YYYY");
-                dateValid = false;
             }
+        } catch (DateTimeParseException e) {
+            eventDateErrorMessage.setText("Please enter the date in the format DD/MM/YYYY");
+            dateValid = false;
+        }
     }
-    
-    
+
+    public void setupDatePicker() {
+        LocalDate currentDate = LocalDate.now();
+        eventDate.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            public DateCell call(DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        // Disable all dates before the current month
+                        if (item.isBefore(currentDate.withDayOfMonth(1))) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;"); // Optional: style for disabled dates
+                        }
+                    }
+                };
+            }
+        });
+    }
+
+
     public void eventStartTimeValidation() throws Exception {
         String startTimeText = eventStartTime.getText();
-
-        // Define the expected format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            // Parse the input time
-            LocalTime startTime = LocalTime.parse(startTimeText, formatter);
-
-        } catch (Exception e) {
+            LocalTime.parse(startTimeText, formatter);
+            eventStartTimeErrorMessage.setText("");
+            timeStartValid = true;
+        } catch (DateTimeParseException e) {
             eventStartTimeErrorMessage.setText("Incorrect format of time (Exp: 8:00 am)");
             timeStartValid = false;
         }
     }
-    
-    public void eventEndTimeValidation() throws Exception {
-        String endTimeText = eventStartTime.getText();
 
-        // Define the expected format
+    public void eventEndTimeValidation() throws Exception {
+        String endTimeText = eventEndTime.getText(); // corrected to eventEndTime.getText()
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            // Parse the input time
-            LocalTime endTime = LocalTime.parse(endTimeText, formatter);
-
-        } catch (Exception e) {
+            LocalTime.parse(endTimeText, formatter);
+            eventEndTimeErrorMessage.setText("");
+            timeEndValid = true;
+        } catch (DateTimeParseException e) {
             eventEndTimeErrorMessage.setText("Incorrect format of time (Exp: 8:00 am)");
             timeEndValid = false;
         }
     }
-    
-    
+
+    public void eventTitleValidation() throws Exception{
+        Title = eventTitle.getText();
+        String[] words = Title.split("\\s+");
+        if (words.length > 20) {
+            eventTitleErrorMessage.setText("Event Title should not have more than 20 words");
+        } else {
+            eventTitleErrorMessage.setText("");
+            titleValid = true;
+        }
+    }
+
+    public void eventVenueValidation() throws Exception{
+        Venue = eventVenue.getText();
+
+        if (Venue.isBlank()) {
+            eventVenueErrorMessage.setText("Event venue should not be empty");
+            venueValid = false;
+        } else {
+            eventVenueErrorMessage.setText("");
+            venueValid = true;
+        }
+    }
+
     @FXML
-    public void createEvent(ActionEvent event) throws Exception{
-        // Collect input data
-        String title = eventTitle.getText();
-        String description = eventDescription.getText();
-        String venue = eventVenue.getText();
-        String date = eventDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String startTime = eventStartTime.getText();
-        String endTime = eventEndTime.getText();
-
-       
-        if(!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
-            if(title.isBlank())
-                eventTitleErrorMessage.setText("Event Title should not be empty");
-            if(description.isBlank())
-                eventDescriptionErrorMessage.setText("Event Description should not be empty");
-            if(venue.isBlank())
-                eventVenueErrorMessage.setText("Event venue should not be empty");
-            if(date.isBlank())
-                eventDateErrorMessage.setText("Event date should not be empty");
-            if(startTime.isBlank())
-                eventStartTimeErrorMessage.setText("Event start time should not be empty");
-            if(endTime.isBlank())
-                eventEndTimeErrorMessage.setText("Event end time should not be empty");
+    public void createEvent(ActionEvent event) throws Exception {
+        Title = eventTitle.getText();
+        Description = eventDescription.getText();
+        Venue = eventVenue.getText();
+        if (eventDate.getValue() != null) {
+            Date = eventDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
-        if (titleValid && descriptionValid && venueValid && dateValid && timeStartValid && timeEndValid) {
-            //store
+        StartTime = eventStartTime.getText();
+        EndTime = eventEndTime.getText();
+
+        eventTitleValidation();
+        eventDescriptionValidation();
+        eventVenueValidation();
+        eventDateValidation();
+        eventStartTimeValidation();
+        eventEndTimeValidation();
+
+
+        if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
+            if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");
+            if (Description.isBlank()) eventDescriptionErrorMessage.setText("Event Description should not be empty");
+            if (Venue.isBlank()) eventVenueErrorMessage.setText("Event venue should not be empty");
+            if (eventDate.getValue() == null) eventDateErrorMessage.setText("Event date should not be empty");
+            if (StartTime.isBlank()) eventStartTimeErrorMessage.setText("Event start time should not be empty");
+            if (EndTime.isBlank()) eventEndTimeErrorMessage.setText("Event end time should not be empty");
+        } else {
+            // store event or proceed further
+            showCreateEventSuccess();
         }
     }
-    
-    
-    
 
-    private boolean isTimeValid(String time) {
-    String pattern = "hh:mm a";
-    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(pattern);
-    try {
-        timeFormatter.parse(time);
-        return true;
-    } catch (DateTimeParseException e) {
-        return false;
-    }
-    }
-    
+
     @FXML
     public void homeButton(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
@@ -243,31 +266,13 @@ public class createEventController {
         
         alertSU.showAndWait();
     }
-    
+
     public void showError(String errorMessage){
         Alert alertError = new Alert(AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);
         alertError.setContentText(errorMessage);
-        
-        alertError.showAndWait();
-    }
-    
-    private void showCreateEventSuccess(){
-        Alert alertSU = new Alert(AlertType.INFORMATION);
-        alertSU.setTitle("Successful");
-        alertSU.setHeaderText(null);
-        alertSU.setContentText("Event "+ Title + " succesfully created.");
-        
-        alertSU.showAndWait();
-    }
-    
-    public void showError(String errorMessage){
-        Alert alertError = new Alert(AlertType.ERROR);
-        alertError.setTitle("Error");
-        alertError.setHeaderText(null);
-        alertError.setContentText(errorMessage);
-        
+
         alertError.showAndWait();
     }
 }

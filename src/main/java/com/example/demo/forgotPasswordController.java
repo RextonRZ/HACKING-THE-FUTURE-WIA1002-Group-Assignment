@@ -327,8 +327,8 @@ public class forgotPasswordController {
     }
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
-        loginController loginController = new loginController();
-        loginController.loginStartUp(event);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
 }

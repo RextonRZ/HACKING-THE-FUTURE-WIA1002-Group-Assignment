@@ -145,6 +145,8 @@ public class forgotPasswordController {
             message.setText("Your temporary password is: " + password);
 
             Transport.send(message);
+
+            showNotification();
         } catch (MessagingException e) {
             System.out.println("Failed to send temporary password. Error: " + e.getMessage());
         }
@@ -248,14 +250,14 @@ public class forgotPasswordController {
             }
         }
 
-        if (emailExists(email)){
+        if (!email.isEmpty() && emailExists(email)){
             String tempPassword = generateTemporaryPassword();
 
             updatePassword(email, tempPassword);
 
             sendTemporaryPassword(email, tempPassword);
 
-            showNotification();
+
         }else{
             showError("The username or email entered is not registered!");
         }
@@ -327,8 +329,8 @@ public class forgotPasswordController {
     }
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
-        loginController loginController = new loginController();
-        loginController.loginStartUp(event);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
 }

@@ -62,8 +62,6 @@ public class createEventController {
 
 
 
-
-
     private boolean titleValid = false, descriptionValid = false, venueValid = false, dateValid = false,
             timeStartValid = false, timeEndValid = false;
 
@@ -130,17 +128,28 @@ public class createEventController {
         }
     }
 
-    public void eventEndTimeValidation() throws Exception {
-        String endTimeText = eventEndTime.getText(); // corrected to eventEndTime.getText()
+    public void eventEndTimeValidation() {
+        String endTimeText = eventEndTime.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            LocalTime.parse(endTimeText, formatter);
-            eventEndTimeErrorMessage.setText("");
-            timeEndValid = true;
+            LocalTime startTime = LocalTime.parse(eventStartTime.getText(), formatter);
+            LocalTime endTime = LocalTime.parse(endTimeText, formatter);
+            System.out.println("Start Time: " + startTime);
+            System.out.println("End Time: " + endTime);
+
+            if (endTime.isAfter(startTime.plusHours(1))) {
+                eventEndTimeErrorMessage.setText("");
+                timeEndValid = true;
+            } else {
+                eventEndTimeErrorMessage.setText("End time must be at least one hour after start time");
+                timeEndValid = false;
+            }
         } catch (DateTimeParseException e) {
             eventEndTimeErrorMessage.setText("Incorrect format of time (Exp: 8:00 am)");
-            if (endTimeText.isBlank()) eventEndTimeErrorMessage.setText("Event end time should not be empty");
+            if (endTimeText.isBlank()) {
+                eventEndTimeErrorMessage.setText("Event end time should not be empty");
+            }
             timeEndValid = false;
         }
     }

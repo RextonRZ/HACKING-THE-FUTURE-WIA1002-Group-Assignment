@@ -80,8 +80,8 @@ public class createEventController {
     public void eventDescriptionValidation() throws Exception {
         Description = eventDescription.getText();
 
-        if (Description.length() > 300) {
-            eventDescriptionErrorMessage.setText("Event description should not contain more than 300 characters");
+        if (Description.length() > 100) {
+            eventDescriptionErrorMessage.setText("Event description should not contain more than 100 characters");
             descriptionValid = false;
         }else if(Description.isEmpty()){
             eventDescriptionErrorMessage.setText("Event description should not be empty");

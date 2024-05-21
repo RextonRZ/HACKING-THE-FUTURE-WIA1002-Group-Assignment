@@ -107,7 +107,7 @@
             <Insets />
          </VBox.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 300 characters)">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 100 characters)">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>

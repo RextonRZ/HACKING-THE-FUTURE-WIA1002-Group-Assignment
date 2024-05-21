@@ -283,6 +283,7 @@ public class forgotPasswordController {
         if (passwordValid){
             boolean passwordCValid = passwordConfirmationValidation();
             if (passwordCValid) {
+                showError("User" + forgetUsermailField.getText() + "New Password " + newPass.getText());
                 updatePassword(forgetUsermailField.getText(), newPass.getText());
                 showUpdateSuccessful();
             }
@@ -290,8 +291,13 @@ public class forgotPasswordController {
     }
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.close();
+        if (passwordValidation() && passwordConfirmationValidation()){
+            showError("User" + this.user + "New Password " + newPass.getText());
+            updatePassword(this.user, newPass.getText());
+            showUpdateSuccessful();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
 
     public void showUpdateSuccessful(){

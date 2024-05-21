@@ -282,7 +282,7 @@ public class forgotPasswordController {
         boolean passwordValid = passwordValidation();
         if (passwordValid){
             boolean passwordCValid = passwordConfirmationValidation();
-            if (passwordValid && passwordCValid) {
+            if (passwordCValid) {
                 updatePassword(forgetUsermailField.getText(), newPass.getText());
                 showUpdateSuccessful();
             }
@@ -290,16 +290,8 @@ public class forgotPasswordController {
     }
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
-        boolean passwordValid = passwordValidation();
-        if (passwordValid){
-            boolean passwordCValid = passwordConfirmationValidation();
-            if (passwordValid && passwordCValid) {
-                updatePassword(forgetUsermailField.getText(), newPass.getText());
-                showUpdateSuccessful();
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.close();
-            }
-        }
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     public void showUpdateSuccessful(){
@@ -353,16 +345,18 @@ public class forgotPasswordController {
         return newPassValid;
     }
 
-    public boolean passwordConfirmationValidation(){
+    public boolean passwordConfirmationValidation() {
         String passwordFP = newPass.getText();
         String passwordConfirmationFP = newConPass.getText();
 
         //Check whether both password match
-        if (!passwordFP.equals(passwordConfirmationFP))
-            confirmPasswordErrorMessage.setText("Password does not match");
-        else {
-            confirmPasswordErrorMessage.setText("");
-            newConPassValid = true;
+        if (newPassValid) {
+            if (!passwordFP.equals(passwordConfirmationFP) && !passwordConfirmationFP.isEmpty())
+                confirmPasswordErrorMessage.setText("Password does not match");
+            else {
+                confirmPasswordErrorMessage.setText("");
+                newConPassValid = true;
+            }
         }
         return newConPassValid;
     }

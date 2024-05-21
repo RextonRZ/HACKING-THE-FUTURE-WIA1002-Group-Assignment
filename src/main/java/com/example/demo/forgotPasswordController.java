@@ -41,7 +41,8 @@ public class forgotPasswordController {
 
     @FXML
     private Text confirmPasswordErrorMessage;
-
+    @FXML
+    private TextField user;
     protected boolean newPassValid = false;
     protected boolean newConPassValid = false;
 
@@ -70,8 +71,16 @@ public class forgotPasswordController {
         if (authenticate()){
             Parent root2 = FXMLLoader.load(getClass().getResource("updatePassword.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-            stage.setScene(homeScene);
+            Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+            stage.setScene(scene);
+
+            user = (TextField) root2.lookup("#user");
+            if (user != null){
+                user.setText(forgetUsermailField.getText());
+            }else{
+                System.err.println("Error: TextField 'forgetUsermailField' not found.");
+            }
+
         }else{
             showError("The username and temporary password does not match!");
         }
@@ -161,6 +170,15 @@ public class forgotPasswordController {
         alertNoti.showAndWait();
     }
 
+    public void showNotification2(){
+        Alert alertNoti = new Alert(Alert.AlertType.INFORMATION);
+        alertNoti.setTitle("Update Successful");
+        alertNoti.setHeaderText(null);
+        alertNoti.setContentText("New password update successful!");
+
+        alertNoti.showAndWait();
+    }
+
     private boolean emailExists(String usermail){
         String fileName = "src/main/java/Data/user.csv";
 
@@ -200,18 +218,19 @@ public class forgotPasswordController {
                 if (username.equals(usermail) || userEmail.equals(usermail)) {
                     password = tempPassword;
                     userFound = true; // User found
+                    // Append user data to fileContent
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
                 }
 
-                // Append user data to fileContent
-                fileContent.append(username).append(",").append(userEmail).append(",").append(password)
-                        .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
+                if(!userFound){
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append("role").append(",").append("latitude").append(",").append("longitude").append("\n");
+                }
+
+
             }
 
-            // If user not found, add new entry
-            if (!userFound) {
-                fileContent.append(usermail).append(",").append(usermail).append(",").append(tempPassword)
-                        .append(",").append("role").append(",").append("latitude").append(",").append("longitude").append("\n");
-            }
         } catch (IOException e) {
             showError("Error reading user data from file: " + e.getMessage());
             return;
@@ -272,7 +291,7 @@ public class forgotPasswordController {
         alertError.showAndWait();
     }
 
-    public void confirmUpdatePassword(ActionEvent event){
+    public void confirmUpdatePassword(){
         String passwordFP = newPass.getText();
         String passwordConfirmationFP = newConPass.getText();
         boolean lowerCase = false, upperCase = false, specialChar = false, numericalChar = false;
@@ -320,17 +339,17 @@ public class forgotPasswordController {
                 newConPassValid = true;
             }
 
-            if (newPassValid && newConPassValid){
-                updatePassword(forgetUsermailField.getText(), newPass.getText());
-            }else{
-                showError("Password does not match");
-            }
         }
     }
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.close();
+        if (newPassValid && newConPassValid){
+            updatePassword(user.getText(),newPass.getText());
+            showNotification2();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.close();
+        }
+
     }
 
 }

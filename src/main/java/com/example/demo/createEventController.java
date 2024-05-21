@@ -12,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import java.time.LocalTime;
 
 import java.util.Optional;
 import javafx.scene.control.Alert.AlertType;
@@ -58,6 +60,8 @@ public class createEventController {
     @FXML
     private Text eventEndTimeErrorMessage;
 
+
+
     private boolean titleValid = false, descriptionValid = false, venueValid = false, dateValid = false,
             timeStartValid = false, timeEndValid = false;
 
@@ -74,8 +78,12 @@ public class createEventController {
     public void eventDescriptionValidation() throws Exception {
         Description = eventDescription.getText();
 
-        if (Description.length() > 300) {
-            eventDescriptionErrorMessage.setText("Event description should not contain more than 300 characters");
+        if (Description.length() > 100) {
+            eventDescriptionErrorMessage.setText("Event description should not contain more than 100 characters");
+            descriptionValid = false;
+        }else if(Description.isEmpty()){
+            eventDescriptionErrorMessage.setText("Event description should not be empty");
+            descriptionValid = false;
         } else {
             eventDescriptionErrorMessage.setText("");
             descriptionValid = true;
@@ -98,34 +106,15 @@ public class createEventController {
                 dateValid = true;
             }
         } catch (DateTimeParseException e) {
-            eventDateErrorMessage.setText("Please enter the date in the format DD/MM/YYYY");
+            eventDateErrorMessage.setText("Event date should not be empty");
             dateValid = false;
         }
     }
 
-    public void setupDatePicker() {
-        LocalDate currentDate = LocalDate.now();
-        eventDate.setDayCellFactory(new Callback<DatePicker, DateCell>() {
-            public DateCell call(DatePicker datePicker) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-
-                        // Disable all dates before the current month
-                        if (item.isBefore(currentDate.withDayOfMonth(1))) {
-                            setDisable(true);
-                            setStyle("-fx-background-color: #ffc0cb;"); // Optional: style for disabled dates
-                        }
-                    }
-                };
-            }
-        });
-    }
 
 
-    public void eventStartTimeValidation() throws Exception {
-        String startTimeText = eventStartTime.getText();
+    public void eventStartTimeValidation() {
+        String startTimeText = eventStartTime.getText(); // corrected to eventEndTime.getText()
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
@@ -133,21 +122,34 @@ public class createEventController {
             eventStartTimeErrorMessage.setText("");
             timeStartValid = true;
         } catch (DateTimeParseException e) {
-            eventStartTimeErrorMessage.setText("Incorrect format of time (Exp: 8:00 am)");
+            eventStartTimeErrorMessage.setText("Incorrect format of time (Exp: 11:00 pm)");
+            if (startTimeText.isBlank()) eventStartTimeErrorMessage.setText("Event start time should not be empty");
             timeStartValid = false;
         }
     }
 
-    public void eventEndTimeValidation() throws Exception {
-        String endTimeText = eventEndTime.getText(); // corrected to eventEndTime.getText()
+    public void eventEndTimeValidation() {
+        String endTimeText = eventEndTime.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            LocalTime.parse(endTimeText, formatter);
-            eventEndTimeErrorMessage.setText("");
-            timeEndValid = true;
+            LocalTime startTime = LocalTime.parse(eventStartTime.getText(), formatter);
+            LocalTime endTime = LocalTime.parse(endTimeText, formatter);
+            System.out.println("Start Time: " + startTime);
+            System.out.println("End Time: " + endTime);
+
+            if (endTime.isAfter(startTime.plusHours(1))) {
+                eventEndTimeErrorMessage.setText("");
+                timeEndValid = true;
+            } else {
+                eventEndTimeErrorMessage.setText("End time must be at least one hour after start time");
+                timeEndValid = false;
+            }
         } catch (DateTimeParseException e) {
             eventEndTimeErrorMessage.setText("Incorrect format of time (Exp: 8:00 am)");
+            if (endTimeText.isBlank()) {
+                eventEndTimeErrorMessage.setText("Event end time should not be empty");
+            }
             timeEndValid = false;
         }
     }
@@ -157,7 +159,12 @@ public class createEventController {
         String[] words = Title.split("\\s+");
         if (words.length > 20) {
             eventTitleErrorMessage.setText("Event Title should not have more than 20 words");
-        } else {
+            venueValid = false;
+        }
+        if (Title.isBlank()) {
+            eventTitleErrorMessage.setText("Event Title should not be empty");
+            titleValid = false;
+        }else {
             eventTitleErrorMessage.setText("");
             titleValid = true;
         }
@@ -177,14 +184,6 @@ public class createEventController {
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
-        Title = eventTitle.getText();
-        Description = eventDescription.getText();
-        Venue = eventVenue.getText();
-        if (eventDate.getValue() != null) {
-            Date = eventDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        }
-        StartTime = eventStartTime.getText();
-        EndTime = eventEndTime.getText();
 
         eventTitleValidation();
         eventDescriptionValidation();
@@ -195,6 +194,7 @@ public class createEventController {
 
 
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
+            showError("Please make sure you correct all the fields stated.");
             if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");
             if (Description.isBlank()) eventDescriptionErrorMessage.setText("Event Description should not be empty");
             if (Venue.isBlank()) eventVenueErrorMessage.setText("Event venue should not be empty");
@@ -263,7 +263,7 @@ public class createEventController {
         alertSU.setTitle("Successful");
         alertSU.setHeaderText(null);
         alertSU.setContentText("Event "+ Title + " succesfully created.");
-        
+
         alertSU.showAndWait();
     }
 

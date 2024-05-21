@@ -97,7 +97,7 @@
             <Insets right="495.0" top="30.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventTitle" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#eventTitleValidation" onKeyTyped="#eventTitleValidation" prefHeight="31.0" prefWidth="527.0" promptText="Title">
+      <TextField fx:id="eventTitle" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventTitleValidation" prefHeight="31.0" prefWidth="527.0" promptText="Title">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -107,7 +107,7 @@
             <Insets />
          </VBox.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 300 characters)">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 100 characters)">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
@@ -115,7 +115,7 @@
             <Insets right="300.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventDescription" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#eventDescriptionValidation" onKeyTyped="#eventDescriptionValidation" prefHeight="31.0" prefWidth="523.0" promptText="Description">
+      <TextField fx:id="eventDescription" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventDescriptionValidation" prefHeight="31.0" prefWidth="523.0" promptText="Description">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -133,7 +133,7 @@
             <Insets right="475.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventVenue" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#eventVenueValidation" onKeyTyped="#eventVenueValidation" prefHeight="31.0" prefWidth="523.0" promptText="Venue">
+      <TextField fx:id="eventVenue" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventVenueValidation" prefHeight="31.0" prefWidth="523.0" promptText="Venue">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -151,12 +151,12 @@
             <Insets right="488.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <DatePicker fx:id="eventDate" editable="false" onAction="#eventDateValidation" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
+      <DatePicker fx:id="eventDate" editable="false" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </DatePicker>
-      <Text fx:id="eventDateErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
+      <Text fx:id="eventDateErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="416.0" onKeyTyped="#eventDateValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -169,7 +169,7 @@
             <Insets right="450.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventStartTime" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#eventStartTimeValidation" onKeyTyped="#eventStartTimeValidation" prefHeight="31.0" prefWidth="523.0" promptText="11:30 am">
+      <TextField fx:id="eventStartTime" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventStartTimeValidation" prefHeight="31.0" prefWidth="523.0" promptText="11:30 am">
           <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -187,7 +187,7 @@
             <Insets right="455.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventEndTime" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#eventEndTimeValidation" onKeyTyped="#eventEndTimeValidation" prefHeight="31.0" prefWidth="523.0" promptText="1:30 pm">
+      <TextField fx:id="eventEndTime" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventEndTimeValidation" prefHeight="31.0" prefWidth="523.0" promptText="1:30 pm">
           <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

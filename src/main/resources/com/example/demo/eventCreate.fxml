@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1198.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.createEventController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1198.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.createEventController">
    <children>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: #B2935B;">
          <children>
@@ -97,7 +97,7 @@
             <Insets right="495.0" top="30.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventTitle" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="527.0" promptText="Title">
+      <TextField fx:id="eventTitle" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventTitleValidation" prefHeight="31.0" prefWidth="527.0" promptText="Title">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -133,7 +133,7 @@
             <Insets right="475.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <TextField fx:id="eventVenue" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="523.0" promptText="Venue">
+      <TextField fx:id="eventVenue" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventVenueValidation" prefHeight="31.0" prefWidth="523.0" promptText="Venue">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -156,7 +156,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </DatePicker>
-      <Text fx:id="eventDateErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
+      <Text fx:id="eventDateErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="416.0" onKeyTyped="#eventDateValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>

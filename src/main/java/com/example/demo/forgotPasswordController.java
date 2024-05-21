@@ -10,10 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 import java.io.*;
 import java.util.Random;
 
@@ -24,6 +26,24 @@ public class forgotPasswordController {
 
     @FXML
     private TextField forgetUsermailField;
+
+    @FXML
+    private TextField tempPass;
+
+    @FXML
+    private TextField newPass;
+
+    @FXML
+    private TextField newConPass;
+
+    @FXML
+    private Text passwordErrorMessage;
+
+    @FXML
+    private Text confirmPasswordErrorMessage;
+
+    protected boolean newPassValid = false;
+    protected boolean newConPassValid = false;
 
     @FXML
     public void forgotPasswordStartUp(ActionEvent event) throws IOException {
@@ -47,10 +67,38 @@ public class forgotPasswordController {
 
     @FXML
     public void confirmButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("updatePassword.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
+        if (authenticate()){
+            Parent root2 = FXMLLoader.load(getClass().getResource("updatePassword.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+            stage.setScene(homeScene);
+        }else{
+            showError("The username and temporary password does not match!");
+        }
+    }
+
+    private boolean authenticate(){
+        String fileName = "src/main/java/Data/user.csv";
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line, username, password;
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                if (forgetUsermailField.getText().endsWith(".com")){
+                    username = userData[1].trim();
+                }else{
+                    username = userData[0].trim();
+                }
+                password = userData[2].trim();
+
+                if (username.equals(forgetUsermailField.getText().trim()) && password.equals(tempPass.getText().trim())) {
+                    return true;
+                }
+            }
+        }catch (IOException e){
+            showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
     }
 
     public String generateTemporaryPassword(){
@@ -68,6 +116,38 @@ public class forgotPasswordController {
 
     public void sendTemporaryPassword(String email, String password){
 
+        String host = "smtp.gmail.com";
+        String port = "587";
+        String senderEmail = "hackingthefuture2324@gmail.com";
+        String senderPassword = "nqvyuckofmvjqovk";
+
+        String recipientEmail = email;
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        };
+
+        Session session = Session.getInstance(props, auth);
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
+            message.setSubject("Temporary Password");
+            message.setText("Your temporary password is: " + password);
+
+            Transport.send(message);
+        } catch (MessagingException e) {
+            System.out.println("Failed to send temporary password. Error: " + e.getMessage());
+        }
     }
 
     public void showNotification(){
@@ -83,16 +163,12 @@ public class forgotPasswordController {
         String fileName = "src/main/java/Data/user.csv";
 
         try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
-            String line, username;
+            String line;
             while ((line = reader.readLine()) != null){
                 String[] userData = line.split(",");
-                if (usermail.endsWith(".com")){
-                    username = userData[1].trim();
-                }else{
-                    username = userData[0].trim();
-                }
-
-                if (username.equals(usermail)) {
+                String username = userData[0].trim();
+                String userEmail = userData[1].trim();
+                if (username.equals(usermail) || userEmail.equals(usermail)) {
                     return true;
                 }
             }
@@ -102,20 +178,15 @@ public class forgotPasswordController {
         return false;
     }
 
-    public void updateTemporaryPassword(String usermail, String tempPassword){
+    public void updatePassword(String usermail, String tempPassword){
         String fileName = "src/main/java/Data/user.csv";
+        StringBuilder fileContent = new StringBuilder();
+        boolean userFound = false; // Flag to track if user is found
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
-            StringBuilder fileContent = new StringBuilder();
-            String line, reference;
-            while ((line = reader.readLine()) != null){
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(",");
-                if (usermail.endsWith(".com")){
-                    reference = userData[1].trim();
-                }else{
-                    reference = userData[0].trim();
-                }
-
                 String username = userData[0].trim();
                 String userEmail = userData[1].trim();
                 String password = userData[2].trim();
@@ -123,47 +194,74 @@ public class forgotPasswordController {
                 String latitude = userData[4].trim();
                 String longitude = userData[5].trim();
 
-                if (reference.equals(usermail)){
+                // Check if user exists
+                if (username.equals(usermail) || userEmail.equals(usermail)) {
                     password = tempPassword;
+                    userFound = true; // User found
                 }
 
+                // Append user data to fileContent
                 fileContent.append(username).append(",").append(userEmail).append(",").append(password)
                         .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
-
-                try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                    writer.write(fileContent.toString());
-                }catch (IOException e){
-                    showError("Error appending user data to file: " + e.getMessage());
-                }
             }
-        }catch (IOException e){
+
+            // If user not found, add new entry
+            if (!userFound) {
+                fileContent.append(usermail).append(",").append(usermail).append(",").append(tempPassword)
+                        .append(",").append("role").append(",").append("latitude").append(",").append("longitude").append("\n");
+            }
+        } catch (IOException e) {
             showError("Error reading user data from file: " + e.getMessage());
+            return;
+        }
+
+        // Write fileContent back to the CSV file
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            writer.write(fileContent.toString());
+        } catch (IOException e) {
+            showError("Error writing user data to file: " + e.getMessage());
         }
     }
 
     @FXML
-    public void sendEmail(ActionEvent event) throws Exception {
-        String email = forgetUsermailField.getText().trim();
+    public void sendEmail(ActionEvent event) throws Exception{
+        String fileName = "src/main/java/Data/user.csv";
+        String usermail = forgetUsermailField.getText().trim();
 
-        if (email.isEmpty()) {
+        if (usermail.isEmpty()){
             showError("Please enter your username or email.");
             return;
         }
 
-        if (emailExists(email)) {
+        String email = "";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                String username = userData[0].trim();
+                String userEmail = userData[1].trim();
+
+                if (username.equals(usermail) || userEmail.equals(usermail)) {
+                    email = userData[1].trim() ;
+                }
+            }
+        }
+
+        if (emailExists(email)){
             String tempPassword = generateTemporaryPassword();
 
-            updateTemporaryPassword(email, tempPassword);
+            updatePassword(email, tempPassword);
 
             sendTemporaryPassword(email, tempPassword);
 
             showNotification();
-        } else {
+        }else{
             showError("The username or email entered is not registered!");
         }
     }
 
-    public void showError(String errorMessage) {
+    public void showError(String errorMessage){
         Alert alertError = new Alert(Alert.AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);
@@ -171,4 +269,66 @@ public class forgotPasswordController {
 
         alertError.showAndWait();
     }
+
+    public void confirmUpdatePassword(ActionEvent event){
+        String passwordFP = newPass.getText();
+        String passwordConfirmationFP = newConPass.getText();
+        boolean lowerCase = false, upperCase = false, specialChar = false, numericalChar = false;
+        byte strengthPassword = 0;
+
+        //Check password format
+        if (passwordFP.length() < 6)
+            passwordErrorMessage.setText("Password should contain at least 6 characters");
+        else {
+            for(int i = 0; i < passwordFP.length();i++){
+                char pwChar = passwordFP.charAt(i);
+                if(pwChar >='a' && pwChar <= 'z')
+                    lowerCase = true;
+                if(pwChar >='A' && pwChar <= 'Z')
+                    upperCase = true;
+                if(pwChar >='0' && pwChar <= '9')
+                    specialChar = true;
+                if(pwChar >= 32 && pwChar <= 47 || pwChar >= 58 && pwChar <= 64 || pwChar >= 91 && pwChar <= 96 ||pwChar >= 123 && pwChar <= 126)
+                    numericalChar = true;
+            }
+
+            if(lowerCase)
+                strengthPassword++;
+            if(upperCase)
+                strengthPassword++;
+            if(specialChar)
+                strengthPassword++;
+            if(numericalChar)
+                strengthPassword++;
+
+            switch (strengthPassword){
+                case 0: passwordErrorMessage.setText("Strength: Weak");break;
+                case 1: passwordErrorMessage.setText("Strength: Weak");break;
+                case 2: passwordErrorMessage.setText("Strength: Moderate");break;
+                case 3: passwordErrorMessage.setText("Strength: Moderate");break;
+                case 4: passwordErrorMessage.setText("Strength: Strong");break;
+            }
+            newPassValid = true;
+
+            //Check whether both password match
+            if (!passwordFP.equals(passwordConfirmationFP))
+                confirmPasswordErrorMessage.setText("Password does not match");
+            else {
+                confirmPasswordErrorMessage.setText("");
+                newConPassValid = true;
+            }
+
+            if (newPassValid && newConPassValid){
+                updatePassword(forgetUsermailField.getText(), newPass.getText());
+            }else{
+                showError("Password does not match");
+            }
+        }
+    }
+
+    public void updatePasswordButton(ActionEvent event) throws Exception {
+        loginController loginController = new loginController();
+        loginController.loginStartUp(event);
+    }
+
 }

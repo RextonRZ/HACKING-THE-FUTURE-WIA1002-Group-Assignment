@@ -3,6 +3,7 @@ package com.example.demo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,6 +17,8 @@ public class HelloApplication extends Application {
 
         stage.setMaximized(true);
         stage.initStyle(StageStyle.UNDECORATED);
+        Image icon = new Image("icon.png");
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
     }

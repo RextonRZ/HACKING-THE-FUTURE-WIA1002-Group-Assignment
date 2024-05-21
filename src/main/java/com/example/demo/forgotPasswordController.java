@@ -41,7 +41,8 @@ public class forgotPasswordController {
 
     @FXML
     private Text confirmPasswordErrorMessage;
-
+    @FXML
+    private TextField user;
     protected boolean newPassValid = false;
     protected boolean newConPassValid = false;
 
@@ -70,8 +71,16 @@ public class forgotPasswordController {
         if (authenticate()){
             Parent root2 = FXMLLoader.load(getClass().getResource("updatePassword.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-            stage.setScene(homeScene);
+            Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+            stage.setScene(scene);
+
+            user = (TextField) root2.lookup("#user");
+            if (user != null){
+                user.setText(forgetUsermailField.getText());
+            }else{
+                System.err.println("Error: TextField 'forgetUsermailField' not found.");
+            }
+
         }else{
             showError("The username and temporary password does not match!");
         }
@@ -141,14 +150,8 @@ public class forgotPasswordController {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
-            message.setSubject("Temporary Password to Hacking The Future");
-
-            String emailContent = "<html><body>";
-            emailContent += "<p>Dear " + forgetUsermailField.getText() + ",</p>";
-            emailContent += "<p>Your temporary password is: <b>" + password + "</b></p>";
-            emailContent += "</body></html>";
-
-            message.setContent(emailContent, "text/html");
+            message.setSubject("Temporary Password");
+            message.setText("Your temporary password is: " + password);
 
             Transport.send(message);
 
@@ -163,6 +166,15 @@ public class forgotPasswordController {
         alertNoti.setTitle("Sent Successful");
         alertNoti.setHeaderText(null);
         alertNoti.setContentText("An email with your new temporary password is sent to the linked email!");
+
+        alertNoti.showAndWait();
+    }
+
+    public void showNotification2(){
+        Alert alertNoti = new Alert(Alert.AlertType.INFORMATION);
+        alertNoti.setTitle("Update Successful");
+        alertNoti.setHeaderText(null);
+        alertNoti.setContentText("New password update successful!");
 
         alertNoti.showAndWait();
     }
@@ -206,18 +218,19 @@ public class forgotPasswordController {
                 if (username.equals(usermail) || userEmail.equals(usermail)) {
                     password = tempPassword;
                     userFound = true; // User found
+                    // Append user data to fileContent
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
                 }
 
-                // Append user data to fileContent
-                fileContent.append(username).append(",").append(userEmail).append(",").append(password)
-                        .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
+                if(!userFound){
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append("role").append(",").append("latitude").append(",").append("longitude").append("\n");
+                }
+
+
             }
 
-            // If user not found, add new entry
-            if (!userFound) {
-                fileContent.append(usermail).append(",").append(usermail).append(",").append(tempPassword)
-                        .append(",").append("role").append(",").append("latitude").append(",").append("longitude").append("\n");
-            }
         } catch (IOException e) {
             showError("Error reading user data from file: " + e.getMessage());
             return;
@@ -279,38 +292,8 @@ public class forgotPasswordController {
     }
 
     public void confirmUpdatePassword(){
-        boolean passwordValid = passwordValidation();
-        if (passwordValid){
-            boolean passwordCValid = passwordConfirmationValidation();
-            if (passwordCValid) {
-                showError("User" + forgetUsermailField.getText() + "New Password " + newPass.getText());
-                updatePassword(forgetUsermailField.getText(), newPass.getText());
-                showUpdateSuccessful();
-            }
-        }
-    }
-
-    public void updatePasswordButton(ActionEvent event) throws Exception {
-        if (passwordValidation() && passwordConfirmationValidation()){
-            showError("User" + forgetUsermailField.getText() + "New Password " + newPass.getText());
-            updatePassword(forgetUsermailField.getText(), newPass.getText());
-            showUpdateSuccessful();
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.close();
-        }
-    }
-
-    public void showUpdateSuccessful(){
-        Alert alertNoti = new Alert(Alert.AlertType.INFORMATION);
-        alertNoti.setTitle("Update Successful");
-        alertNoti.setHeaderText(null);
-        alertNoti.setContentText("Your new password is successfully updated!");
-
-        alertNoti.showAndWait();
-    }
-
-    public boolean passwordValidation(){
         String passwordFP = newPass.getText();
+        String passwordConfirmationFP = newConPass.getText();
         boolean lowerCase = false, upperCase = false, specialChar = false, numericalChar = false;
         byte strengthPassword = 0;
 
@@ -347,23 +330,26 @@ public class forgotPasswordController {
                 case 4: passwordErrorMessage.setText("Strength: Strong");break;
             }
             newPassValid = true;
-        }
-        return newPassValid;
-    }
 
-    public boolean passwordConfirmationValidation() {
-        String passwordFP = newPass.getText();
-        String passwordConfirmationFP = newConPass.getText();
-
-        //Check whether both password match
-        if (newPassValid) {
-            if (!passwordFP.equals(passwordConfirmationFP) && !passwordConfirmationFP.isEmpty())
+            //Check whether both password match
+            if (!passwordFP.equals(passwordConfirmationFP))
                 confirmPasswordErrorMessage.setText("Password does not match");
             else {
                 confirmPasswordErrorMessage.setText("");
                 newConPassValid = true;
             }
+
         }
-        return newConPassValid;
     }
+
+    public void updatePasswordButton(ActionEvent event) throws Exception {
+        if (newPassValid && newConPassValid){
+            updatePassword(user.getText(),newPass.getText());
+            showNotification2();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.close();
+        }
+
+    }
+
 }

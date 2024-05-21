@@ -32,39 +32,38 @@ public class loginController {
     @FXML
     private TextField passwordLogin;
 
-
     @FXML
-    public void loginStartUp(ActionEvent event) throws Exception {
+    public void loginStartUp(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("login.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
     }
 
     @FXML
-    public void loginButton(ActionEvent event) throws Exception {
+    public void loginButton(ActionEvent event) throws Exception{
 
-        if (authenticate()) {
+        if (authenticate()){
             Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setScene(homeScene);
-        } else {
+        }else{
             displayLoginError();
         }
 
     }
 
-    private boolean authenticate() {
+    private boolean authenticate(){
         String fileName = "src/main/java/Data/user.csv";
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
             String line, username, password;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null){
                 String[] userData = line.split(",");
-                if (useremailLogin.getText().endsWith(".com")) {
+                if (useremailLogin.getText().endsWith(".com")){
                     username = userData[1].trim();
-                } else {
+                }else{
                     username = userData[0].trim();
                 }
                 password = userData[2].trim();
@@ -73,13 +72,13 @@ public class loginController {
                     return true;
                 }
             }
-        } catch (IOException e) {
+        }catch (IOException e){
             showError("Error reading user data from file: " + e.getMessage());
         }
         return false;
     }
 
-    private void displayLoginError() {
+    private void displayLoginError(){
         Alert alertLogin = new Alert(AlertType.ERROR);
         alertLogin.setTitle("Login Failed");
         alertLogin.setHeaderText(null);
@@ -89,7 +88,7 @@ public class loginController {
     }
 
     @FXML
-    public void forgotpassword(ActionEvent event) throws Exception {
+    public void forgotpassword(ActionEvent event) throws Exception{
         forgotPasswordController forgotPasswordController = new forgotPasswordController();
         forgotPasswordController.forgotPasswordStartUp(event);
 
@@ -97,18 +96,18 @@ public class loginController {
     }
 
     @FXML
-    public void cAAButton(ActionEvent event) throws Exception {
+    public void cAAButton(ActionEvent event) throws Exception{
         signUpController signUpController = new signUpController();
         signUpController.signUP(event);
     }
 
     @FXML
-    public void closeButton(ActionEvent event) {
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    public void closeButton(ActionEvent event){
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
     }
 
-    public void showError(String errorMessage) {
+    public void showError(String errorMessage){
         Alert alertError = new Alert(AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);

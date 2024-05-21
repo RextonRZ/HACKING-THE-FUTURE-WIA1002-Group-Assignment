@@ -292,8 +292,8 @@ public class forgotPasswordController {
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
         if (passwordValidation() && passwordConfirmationValidation()){
-            showError("User" + this.user + "New Password " + newPass.getText());
-            updatePassword(this.user, newPass.getText());
+            showError("User" + forgetUsermailField.getText() + "New Password " + newPass.getText());
+            updatePassword(forgetUsermailField.getText(), newPass.getText());
             showUpdateSuccessful();
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();

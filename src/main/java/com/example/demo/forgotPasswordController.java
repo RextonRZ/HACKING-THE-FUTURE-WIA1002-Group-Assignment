@@ -141,8 +141,14 @@ public class forgotPasswordController {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
-            message.setSubject("Temporary Password");
-            message.setText("Your temporary password is: " + password);
+            message.setSubject("Temporary Password to Hacking The Future");
+
+            String emailContent = "<html><body>";
+            emailContent += "<p>Dear " + forgetUsermailField.getText() + ",</p>";
+            emailContent += "<p>Your temporary password is: <b>" + password + "</b></p>";
+            emailContent += "</body></html>";
+
+            message.setContent(emailContent, "text/html");
 
             Transport.send(message);
 
@@ -272,9 +278,41 @@ public class forgotPasswordController {
         alertError.showAndWait();
     }
 
-    public void confirmUpdatePassword(ActionEvent event){
+    public void confirmUpdatePassword(){
+        boolean passwordValid = passwordValidation();
+        if (passwordValid){
+            boolean passwordCValid = passwordConfirmationValidation();
+            if (passwordValid && passwordCValid) {
+                updatePassword(forgetUsermailField.getText(), newPass.getText());
+                showUpdateSuccessful();
+            }
+        }
+    }
+
+    public void updatePasswordButton(ActionEvent event) throws Exception {
+        boolean passwordValid = passwordValidation();
+        if (passwordValid){
+            boolean passwordCValid = passwordConfirmationValidation();
+            if (passwordValid && passwordCValid) {
+                updatePassword(forgetUsermailField.getText(), newPass.getText());
+                showUpdateSuccessful();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.close();
+            }
+        }
+    }
+
+    public void showUpdateSuccessful(){
+        Alert alertNoti = new Alert(Alert.AlertType.INFORMATION);
+        alertNoti.setTitle("Update Successful");
+        alertNoti.setHeaderText(null);
+        alertNoti.setContentText("Your new password is successfully updated!");
+
+        alertNoti.showAndWait();
+    }
+
+    public boolean passwordValidation(){
         String passwordFP = newPass.getText();
-        String passwordConfirmationFP = newConPass.getText();
         boolean lowerCase = false, upperCase = false, specialChar = false, numericalChar = false;
         byte strengthPassword = 0;
 
@@ -311,26 +349,21 @@ public class forgotPasswordController {
                 case 4: passwordErrorMessage.setText("Strength: Strong");break;
             }
             newPassValid = true;
-
-            //Check whether both password match
-            if (!passwordFP.equals(passwordConfirmationFP))
-                confirmPasswordErrorMessage.setText("Password does not match");
-            else {
-                confirmPasswordErrorMessage.setText("");
-                newConPassValid = true;
-            }
-
-            if (newPassValid && newConPassValid){
-                updatePassword(forgetUsermailField.getText(), newPass.getText());
-            }else{
-                showError("Password does not match");
-            }
         }
+        return newPassValid;
     }
 
-    public void updatePasswordButton(ActionEvent event) throws Exception {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.close();
-    }
+    public boolean passwordConfirmationValidation(){
+        String passwordFP = newPass.getText();
+        String passwordConfirmationFP = newConPass.getText();
 
+        //Check whether both password match
+        if (!passwordFP.equals(passwordConfirmationFP))
+            confirmPasswordErrorMessage.setText("Password does not match");
+        else {
+            confirmPasswordErrorMessage.setText("");
+            newConPassValid = true;
+        }
+        return newConPassValid;
+    }
 }

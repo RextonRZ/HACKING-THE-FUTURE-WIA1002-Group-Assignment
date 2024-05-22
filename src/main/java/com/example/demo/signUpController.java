@@ -201,7 +201,11 @@ public class signUpController {
                 case 4: passwordErrorMessage.setText("Strength: Strong");break;
             }
             passwordValid = true;
-        }
+
+            if (!passwordSU.equals(passwordConfirmationSU) && !passwordConfirmationSU.isBlank())
+                passwordConfirmationValidation();
+            }
+
     }
     //Password Confirmation
     public void passwordConfirmationValidation(){

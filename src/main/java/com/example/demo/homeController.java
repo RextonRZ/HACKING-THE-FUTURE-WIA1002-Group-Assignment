@@ -32,8 +32,8 @@ public class homeController {
     }
 
     public void eventButton(ActionEvent event) throws Exception{
-        createEventController createEventController = new createEventController();
-        createEventController.createEventStartUp(event);
+        viewEventController createEventController = new viewEventController();
+        createEventController.viewEventStartUp(event);
     }
 
     public void bookingButton(ActionEvent event) throws Exception{

@@ -170,12 +170,12 @@
                         <Font name="Showcard Gothic" size="30.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="350.0" top="30.0" />
+                        <Insets bottom="20.0" left="350.0" top="30.0" />
                      </VBox.margin>
                   </Text>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <VBox.margin>
-                        <Insets left="20.0" right="200.0" top="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
                      </VBox.margin>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
@@ -223,9 +223,9 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
@@ -277,14 +277,14 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -334,12 +334,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -388,12 +391,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -442,12 +448,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -496,12 +505,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -550,12 +562,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -604,12 +619,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -658,12 +676,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox prefHeight="149.0" prefWidth="892.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
@@ -712,12 +733,15 @@
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Register">
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
-                              <Insets left="800.0" top="15.0" />
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="200.0" />
+                     </VBox.margin>
                   </VBox>
                </children>
             </VBox>

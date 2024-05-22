@@ -219,17 +219,17 @@
                <items>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#personalProfileStartUp" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: #DBDBB3;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0" />
+                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#profileButton" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: #DBDBB3;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="47.0" prefWidth="207.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" />
+                        <Button mnemonicParsing="false" onAction="#requestButton" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
+                        <Button mnemonicParsing="false" onAction="#friendButton" prefHeight="42.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
                      </children>
                   </AnchorPane>
                </items>

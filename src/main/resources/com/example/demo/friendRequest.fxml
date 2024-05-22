@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1266.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.homeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1266.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.friendRequestController">
    <top>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: #B2935B;" BorderPane.alignment="CENTER">
          <children>
@@ -110,7 +110,7 @@
                   <Font name="Showcard Gothic" size="35.0" />
                </font>
                <VBox.margin>
-                  <Insets left="200.0" top="40.0" />
+                  <Insets left="150.0" top="40.0" />
                </VBox.margin>
             </Text>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="115.0" prefWidth="765.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -156,17 +156,17 @@
                <items>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#personalProfileStartUp" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0" />
+                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#profileButton" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="47.0" prefWidth="207.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: #DBDBB3;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" />
+                        <Button mnemonicParsing="false" onAction="#friendRequestStartUp" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: #DBDBB3;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
+                        <Button mnemonicParsing="false" onAction="#friendButton" prefHeight="42.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
                      </children>
                   </AnchorPane>
                </items>

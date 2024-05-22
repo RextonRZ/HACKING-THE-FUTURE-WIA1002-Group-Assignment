@@ -26,10 +26,8 @@ public class viewEventController {
 
     @FXML
     public void homeButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
+        homeController homeController = new homeController();
+        homeController.homeStartUp(event);
     }
 
     public void quizButton(ActionEvent event) throws Exception{

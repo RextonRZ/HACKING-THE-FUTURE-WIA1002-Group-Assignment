@@ -19,7 +19,7 @@ public class homeController {
     private Stage stage;
 
     @FXML
-    public void homeButton(ActionEvent event) throws Exception{
+    public void homeStartUp(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());

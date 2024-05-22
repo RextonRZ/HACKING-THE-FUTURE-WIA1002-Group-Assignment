@@ -40,7 +40,7 @@
             </Pane>
             <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="772.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#homeButton" prefHeight="73.0" prefWidth="78.0" style="-fx-background-color: #9B804E;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Home">
+                  <Button mnemonicParsing="false" onAction="#homeStartUp" prefHeight="73.0" prefWidth="78.0" style="-fx-background-color: #9B804E;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Home">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

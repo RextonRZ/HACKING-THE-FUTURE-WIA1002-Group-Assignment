@@ -123,7 +123,7 @@
                         <Font name="Showcard Gothic" size="30.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="360.0" top="30.0" />
+                        <Insets bottom="20.0" left="400.0" top="30.0" />
                      </VBox.margin>
                   </Text>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">

@@ -4,3 +4,9 @@
     -fx-border-color: #897045;
     -fx-border-width: 8px px px 3px;
 }
+
+.side:hover {
+  -fx-background-color: #DBDBB3;
+  -fx-border-color: #DBDBB3;
+  -fx-border-width: 8px px px 3px;
+}

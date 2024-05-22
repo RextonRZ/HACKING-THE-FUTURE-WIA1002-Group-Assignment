@@ -286,7 +286,7 @@ public class forgotPasswordController {
         alertError.showAndWait();
     }
 
-    public void confirmUpdatePassword(){
+    public void updatePassword(){
         String passwordFP = newPass.getText();
         String passwordConfirmationFP = newConPass.getText();
         boolean lowerCase = false, upperCase = false, specialChar = false, numericalChar = false;

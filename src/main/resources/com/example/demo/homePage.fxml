@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1048.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.homeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="994.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.homeController">
    <top>
-      <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: #B2935B;" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="846.0" style="-fx-background-color: #B2935B;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="53.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
@@ -25,7 +25,7 @@
                   <Image url="@../../../icon.png" />
                </image>
             </ImageView>
-            <Label text="HTF           " textFill="#3c1f15">
+            <Label prefHeight="22.0" prefWidth="335.0" text="HTF" textFill="#3c1f15">
                <font>
                   <Font name="Showcard Gothic" size="18.0" />
                </font>
@@ -33,46 +33,71 @@
                   <Insets left="10.0" top="25.0" />
                </HBox.margin>
             </Label>
-            <Pane maxWidth="-Infinity" prefHeight="73.0" prefWidth="549.0">
+            <Pane maxWidth="-Infinity" prefHeight="73.0" prefWidth="549.0" style="-fx-background-color: transparent;">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
             </Pane>
-            <Button mnemonicParsing="false" onAction="#homeButton" text="Home">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#quizButton" text="Quiz">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#eventButton" text="Event">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#bookingButton" text="Booking">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#leaderBoardButton" text="LeaderBoard">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#profileButton" text="Profile">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#logOutButton" style="-fx-background-radius: 80;" text="Log Out">
-               <HBox.margin>
-                  <Insets left="10.0" right="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
+            <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="772.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#homeStartUp" prefHeight="73.0" prefWidth="78.0" style="-fx-background-color: #9B804E;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Home">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#quizButton" prefHeight="73.0" prefWidth="73.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Quiz">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#eventButton" prefHeight="73.0" prefWidth="75.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Event">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#bookingButton" prefHeight="73.0" prefWidth="81.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Booking">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#leaderBoardButton" prefHeight="79.0" prefWidth="111.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="LeaderBoard">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#profileButton" prefHeight="77.0" prefWidth="63.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Profile">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOutButton" prefHeight="73.0" prefWidth="75.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Log Out">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets />

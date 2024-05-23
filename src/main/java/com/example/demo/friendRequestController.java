@@ -8,18 +8,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class homeController {
-
+public class friendRequestController {
+    @FXML
     private Stage stage;
 
     @FXML
-    public void homeStartUp(ActionEvent event) throws Exception{
+    public void friendRequestStartUp(ActionEvent event) throws Exception{
+        Parent root2 = FXMLLoader.load(getClass().getResource("friendRequest.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(scene);
+    }
+
+    @FXML
+    public void homeButton(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
@@ -32,8 +38,8 @@ public class homeController {
     }
 
     public void eventButton(ActionEvent event) throws Exception{
-        createEventController createEventController = new createEventController();
-        createEventController.createEventStartUp(event);
+        viewEventController viewEventController = new viewEventController();
+        viewEventController.viewEventStartUp(event);
     }
 
     public void bookingButton(ActionEvent event) throws Exception{
@@ -49,6 +55,11 @@ public class homeController {
     public void profileButton(ActionEvent event) throws Exception{
         personalProfileController personalProfileController = new personalProfileController();
         personalProfileController.personalProfileStartUp(event);
+    }
+
+    public void friendButton(ActionEvent event) throws Exception {
+        friendListController friendListController = new friendListController();
+        friendListController.friendListStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{
@@ -67,6 +78,5 @@ public class homeController {
         } else if (result.get() == ButtonType.CANCEL);
 
     }
-
 
 }

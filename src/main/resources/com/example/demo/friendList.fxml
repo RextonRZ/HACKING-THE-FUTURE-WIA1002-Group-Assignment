@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1266.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.homeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1266.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.friendListController">
    <top>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: #B2935B;" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +26,7 @@
                   <Image url="@../../../icon.png" />
                </image>
             </ImageView>
-            <Label text="DubiDubiDu" textFill="#3c1f15">
+            <Label prefHeight="22.0" prefWidth="157.0" text="HTF" textFill="#3c1f15">
                <font>
                   <Font name="Showcard Gothic" size="18.0" />
                </font>
@@ -39,41 +39,66 @@
                   <Insets left="100.0" />
                </HBox.margin>
             </Pane>
-            <Button mnemonicParsing="false" onAction="#homeButton" text="Home">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Quiz">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Event">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Booking">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="LeaderBoard">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Profile">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#logOutButton" style="-fx-background-radius: 80;" text="Log Out">
-               <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
-               </HBox.margin>
-            </Button>
+            <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="772.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#homeButton" prefHeight="73.0" prefWidth="78.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Home">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#quizButton" prefHeight="73.0" prefWidth="73.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Quiz">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#eventButton" prefHeight="73.0" prefWidth="75.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Event">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#bookingButton" prefHeight="73.0" prefWidth="81.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Booking">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#leaderBoardButton" prefHeight="79.0" prefWidth="111.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="LeaderBoard">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#profileButton" prefHeight="77.0" prefWidth="63.0" style="-fx-background-color: #9B804E;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Profile">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOutButton" prefHeight="73.0" prefWidth="75.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Log Out">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </top>
@@ -85,7 +110,7 @@
                   <Font name="Showcard Gothic" size="35.0" />
                </font>
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets left="230.0" top="40.0" />
                </VBox.margin>
             </Text>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="765.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -118,26 +143,26 @@
       <VBox prefHeight="453.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
             <SplitPane dividerPositions="0.34415584415584416, 0.7240259740259739" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="152.0" prefWidth="220.0">
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="200.0" />
-               </VBox.margin>
                <items>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="220.0" text="Profile" AnchorPane.topAnchor="-2.0" />
+                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#profileButton" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="47.0" prefWidth="207.0">
+                  <AnchorPane prefHeight="47.0" prefWidth="207.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="219.0" text="Request" />
+                        <Button mnemonicParsing="false" onAction="#requestButton" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: #FFFFCC;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button layoutX="-2.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="221.0" text="Friend" />
+                        <Button mnemonicParsing="false" onAction="#friendListStartUp" prefHeight="42.0" prefWidth="219.0" style="-fx-background-color: #DBDBB3;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
                      </children>
                   </AnchorPane>
                </items>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="200.0" />
+               </VBox.margin>
             </SplitPane>
          </children>
       </VBox>

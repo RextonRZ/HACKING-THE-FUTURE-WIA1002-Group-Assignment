@@ -29,7 +29,7 @@
                   <Insets left="30.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="usernameSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onInputMethodTextChanged="#usernameValidation" onKeyTyped="#usernameValidation" prefHeight="28.0" prefWidth="377.0" promptText="admin04" style="-fx-background-color: rgba(222,222,222,0); -fx-border-color: transparent transparent grey transparent;">
+            <TextField fx:id="usernameSignUp" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#usernameValidation" prefHeight="28.0" prefWidth="377.0" promptText="admin04" style="-fx-background-color: rgba(222,222,222,0); -fx-border-color: transparent transparent grey transparent;">
                <VBox.margin>
                   <Insets left="30.0" top="10.0" />
                </VBox.margin>

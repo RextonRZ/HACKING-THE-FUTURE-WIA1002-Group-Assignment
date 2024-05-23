@@ -114,16 +114,29 @@ public class createEventController {
 
 
     public void eventStartTimeValidation() {
-        String startTimeText = eventStartTime.getText(); // corrected to eventEndTime.getText()
+        String startTimeText = eventStartTime.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            LocalTime.parse(startTimeText, formatter);
-            eventStartTimeErrorMessage.setText("");
-            timeStartValid = true;
+            LocalTime startTime = LocalTime.parse(startTimeText, formatter);
+            LocalTime earliestStartTime = LocalTime.of(8, 0); // 8:00 AM
+            LocalTime latestStartTime = LocalTime.of(22, 0); // 10:00 PM
+
+            if (startTime.isBefore(earliestStartTime)) {
+                eventStartTimeErrorMessage.setText("Event start time must be after 8:00 am");
+                timeStartValid = false;
+            } else if (startTime.isAfter(latestStartTime)) {
+                eventStartTimeErrorMessage.setText("Event start time must be before 10:00 pm");
+                timeStartValid = false;
+            } else {
+                eventStartTimeErrorMessage.setText("");
+                timeStartValid = true;
+            }
         } catch (DateTimeParseException e) {
             eventStartTimeErrorMessage.setText("Incorrect format of time (Exp: 11:00 pm)");
-            if (startTimeText.isBlank()) eventStartTimeErrorMessage.setText("Event start time should not be empty");
+            if (startTimeText.isBlank()) {
+                eventStartTimeErrorMessage.setText("Event start time should not be empty");
+            }
             timeStartValid = false;
         }
     }
@@ -138,7 +151,17 @@ public class createEventController {
             System.out.println("Start Time: " + startTime);
             System.out.println("End Time: " + endTime);
 
-            if (endTime.isAfter(startTime.plusHours(1))) {
+            LocalTime earliestEndTime = LocalTime.of(9, 0); // 9:00 AM
+            LocalTime latestEndTime = LocalTime.of(23, 0); // 11:00 PM
+            LocalTime oneHourAfterStartTime = startTime.plusHours(1);
+
+            if (endTime.isBefore(earliestEndTime)) {
+                eventEndTimeErrorMessage.setText("Event end time must be after 9:00 am");
+                timeEndValid = false;
+            } else if (endTime.isAfter(latestEndTime)) {
+                eventEndTimeErrorMessage.setText("Event end time must be before 11:00 pm");
+                timeEndValid = false;
+            } else if (endTime.isAfter(oneHourAfterStartTime) || endTime.equals(oneHourAfterStartTime)) {
                 eventEndTimeErrorMessage.setText("");
                 timeEndValid = true;
             } else {

@@ -284,7 +284,6 @@ public class createEventController {
         bookingController bookingController = new bookingController();
         bookingController.bookingStartUp(event);
     }
-
     public void leaderBoardButton(ActionEvent event) throws Exception {
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);

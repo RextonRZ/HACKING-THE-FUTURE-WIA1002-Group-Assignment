@@ -132,12 +132,12 @@
             <Insets />
          </VBox.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 100 characters)">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 100 words)">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="300.0" top="15.0" />
+            <Insets right="335.0" top="15.0" />
          </VBox.margin>
       </Text>
       <TextField fx:id="eventDescription" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventDescriptionValidation" prefHeight="31.0" prefWidth="523.0" promptText="Description">

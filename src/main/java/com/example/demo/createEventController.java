@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -69,10 +72,13 @@ public class createEventController {
             timeStartValid = false, timeEndValid = false;
 
     private Timer venueTimer;
+    private LocalDate date = null;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
-    private boolean eventCreationInProgress = false; // Flag to track event creation state
+    private boolean eventCreationInProgress = false;
 
-    String Title, Description, Venue, Date, StartTime, EndTime;
+    String Title, Description, Venue;
 
     @FXML
     public void createEventStartUp(ActionEvent event) throws Exception {
@@ -84,9 +90,10 @@ public class createEventController {
 
     public void eventDescriptionValidation() throws Exception {
         Description = eventDescription.getText();
+        String[] words = Description.split("\\s+");
 
-        if (Description.length() > 100) {
-            eventDescriptionErrorMessage.setText("Event description should not contain more than 100 characters");
+        if (words.length > 100) {
+            eventDescriptionErrorMessage.setText("Event description should not contain more than 100 words");
             descriptionValid = false;
         } else if (Description.isEmpty()) {
             eventDescriptionErrorMessage.setText("Event description should not be empty");
@@ -98,7 +105,6 @@ public class createEventController {
     }
 
     public void eventDateValidation() {
-        LocalDate date = null;
         String dateString = eventDate.getEditor().getText();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -122,7 +128,7 @@ public class createEventController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            LocalTime startTime = LocalTime.parse(startTimeText, formatter);
+            startTime = LocalTime.parse(startTimeText, formatter);
             LocalTime earliestStartTime = LocalTime.of(8, 0); // 8:00 AM
             LocalTime latestStartTime = LocalTime.of(22, 0); // 10:00 PM
 
@@ -150,8 +156,8 @@ public class createEventController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
         try {
-            LocalTime startTime = LocalTime.parse(eventStartTime.getText(), formatter);
-            LocalTime endTime = LocalTime.parse(endTimeText, formatter);
+            startTime = LocalTime.parse(eventStartTime.getText(), formatter);
+            endTime = LocalTime.parse(endTimeText, formatter);
             System.out.println("Start Time: " + startTime);
             System.out.println("End Time: " + endTime);
 
@@ -198,9 +204,9 @@ public class createEventController {
     }
 
     public void eventVenueValidation() {
-        String venue = eventVenue.getText();
+        Venue = eventVenue.getText();
 
-        if (venue.isBlank()) {
+        if (Venue.isBlank()) {
             eventVenueErrorMessage.setText("Event venue should not be empty");
             eventVenueLatitude.setText("-");
             eventVenueLongitude.setText("-");
@@ -214,7 +220,7 @@ public class createEventController {
                 venueTimer.cancel();
             }
 
-            if (!venue.isEmpty()) {
+            if (!Venue.isEmpty()) {
                 // set a delay timer task
                 venueTimer = new Timer();
                 venueTimer.schedule(new TimerTask() {
@@ -246,13 +252,13 @@ public class createEventController {
             if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");
             if (Description.isBlank()) eventDescriptionErrorMessage.setText("Event Description should not be empty");
             if (Venue.isBlank()) eventVenueErrorMessage.setText("Event venue should not be empty");
-            if (eventDate.getValue() == null) eventDateErrorMessage.setText("Event date should not be empty");
-            if (StartTime.isBlank()) eventStartTimeErrorMessage.setText("Event start time should not be empty");
-            if (EndTime.isBlank()) eventEndTimeErrorMessage.setText("Event end time should not be empty");
+            if (eventDate == null) eventDateErrorMessage.setText("Event date should not be empty");
+            if (startTime == null) eventStartTimeErrorMessage.setText("Event start time should not be empty");
+            if (endTime == null) eventEndTimeErrorMessage.setText("Event end time should not be empty");
             eventCreationInProgress = false; // Reset flag on validation failure
         } else {
             // store event or proceed further
-            showCreateEventSuccess();
+            storeUser(event);
         }
     }
 
@@ -337,5 +343,28 @@ public class createEventController {
         }
 
         return coordination;
+    }
+
+    public void storeUser(ActionEvent event){
+        String fileName = "src/main/java/Data/newevent.csv";
+
+
+        try{
+
+            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
+                writer.println(Title + "," + Description + "," + Venue + "," + eventVenueLatitude.getText()
+                        + "," + eventVenueLongitude.getText()+ "," + date+ "," +startTime+","+endTime);
+                writer.flush();
+                showCreateEventSuccess();
+                createEventController createEventController = new createEventController();
+                createEventController.createEventStartUp(event);
+
+            }catch (IOException e){
+                showError("Error appending new event data to file: " + e.getMessage());
+            }
+        }catch (Exception e){
+            showError("Error storing new event data: " + e.getMessage());
+        }
+
     }
 }

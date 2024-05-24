@@ -51,7 +51,11 @@ public class signUpController {
     private Text usernameErrorMessage;
 
     @FXML
-    private TextField usernameSignUp;
+    protected TextField usernameSignUp;
+
+    public String getUsernameSignUp() {
+        return usernameSignUp.getText();
+    }
 
     @FXML
     private ChoiceBox role;
@@ -345,7 +349,7 @@ public class signUpController {
             String hexa = Integer.toHexString(0xff & b);
             if (hexa.length() == 1){
                 hexString.append('0');
-            hexString.append(hexa);
+                hexString.append(hexa);
             }
         }
         return hexString.toString();

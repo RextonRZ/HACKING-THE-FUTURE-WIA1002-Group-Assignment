@@ -2,27 +2,19 @@ package com.example.demo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.util.Random;
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 
 public class loginController {
@@ -42,17 +34,27 @@ public class loginController {
     }
 
     @FXML
-    public void loginButton(ActionEvent event) throws Exception{
+    public void loginButton(ActionEvent event) throws Exception {
+        String userEmail = useremailLogin.getText().trim();
 
-        if (authenticate()){
-            Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        // Get the existing instance of personalProfileController
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("personalProfileYS.fxml"));
+        Parent root2 = loader.load();
+        personalProfileController profileController = loader.getController();
+
+        // Set the userMail in personalProfileController
+        profileController.setUserMail(userEmail);
+
+        if (authenticate()) {
+            Parent root3 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+            Scene homeScene = new Scene(root3, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setScene(homeScene);
-        }else{
+
+            profileController.setUserMail(useremailLogin.getText().trim());
+        } else {
             displayLoginError();
         }
-
     }
 
     private boolean authenticate(){

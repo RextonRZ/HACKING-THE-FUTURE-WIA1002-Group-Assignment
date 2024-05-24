@@ -67,7 +67,6 @@ public class createEventController {
     private LocalTime startTime;
     private LocalTime endTime;
 
-    private boolean eventCreationInProgress = false;
 
     String Title, Description, Venue;
 
@@ -109,7 +108,9 @@ public class createEventController {
                 dateValid = true;
             }
         } catch (DateTimeParseException e) {
-            eventDateErrorMessage.setText("Event date should not be empty");
+            if (dateString.isBlank()) {
+                eventDateErrorMessage.setText("Event date should not be empty");
+            }
             dateValid = false;
         }
     }
@@ -208,7 +209,6 @@ public class createEventController {
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
-        eventCreationInProgress = true; // Mark event creation as in progress
 
         eventTitleValidation();
         eventDescriptionValidation();
@@ -222,10 +222,10 @@ public class createEventController {
             if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");
             if (Description.isBlank()) eventDescriptionErrorMessage.setText("Event Description should not be empty");
             if (Venue.isBlank()) eventVenueErrorMessage.setText("Event venue should not be empty");
-            if (eventDate == null) eventDateErrorMessage.setText("Event date should not be empty");
+            if (eventDate == null || eventDate.getEditor().getText().isBlank()) eventDateErrorMessage.setText("Event date should not be empty");
             if (startTime == null) eventStartTimeErrorMessage.setText("Event start time should not be empty");
             if (endTime == null) eventEndTimeErrorMessage.setText("Event end time should not be empty");
-            eventCreationInProgress = false; // Reset flag on validation failure
+
         } else {
             // store event or proceed further
             storeEvent(event);
@@ -289,7 +289,6 @@ public class createEventController {
 
         alertSU.showAndWait();
 
-        eventCreationInProgress = false;
     }
 
     public void showError(String errorMessage) {

@@ -21,7 +21,7 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@logowithbg.png" />
+                  <Image url="@../../../logowithbg.png" />
                </image>
             </ImageView>
             <Pane maxWidth="-Infinity" prefHeight="73.0" prefWidth="549.0" style="-fx-background-color: transparent;">
@@ -245,17 +245,17 @@
                               <Insets left="80.0" top="-30.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="👤  Role">
+                        <Text fx:id="role" strokeType="OUTSIDE" strokeWidth="0.0" text="👤  Role">
                            <VBox.margin>
                               <Insets left="20.0" top="25.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="📍  Coordinate">
+                        <Text fx:id="coordinate" strokeType="OUTSIDE" strokeWidth="0.0" text="📍  Coordinate">
                            <VBox.margin>
                               <Insets left="20.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="⛀  Current Point">
+                        <Text fx:id="point" strokeType="OUTSIDE" strokeWidth="0.0" text="⛀  Current Point">
                            <VBox.margin>
                               <Insets left="20.0" top="2.0" />
                            </VBox.margin>

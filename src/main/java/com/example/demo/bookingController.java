@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -56,14 +58,15 @@ public class bookingController {
         bookingController bookingController = new bookingController();
         bookingController.bookingStartUp(event);
     }
-       @FXML
-    private ChoiceBox<String> destinationChoiceBox;
+
+    @FXML
+    private ChoiceBox destinationChoiceBox;
 
     @FXML
     private TextArea timeSlotsTextArea;
 
     @FXML
-    private TextField timeSlotTextField;
+    private ChoiceBox timeSlotBooking;
 
     private ArrayList<BookingDestination> bookingDestinations;
 
@@ -71,6 +74,7 @@ public class bookingController {
     public void initialize() {
         loadBookingDestinations();
         displayBookingDestinations();
+
     }
 
     private void loadBookingDestinations() {
@@ -85,6 +89,12 @@ public class bookingController {
                 double y = Double.parseDouble(parts[1].trim());
                 BookingDestination destination = new BookingDestination(name, x, y);
                 bookingDestinations.add(destination);
+
+                ObservableList<String> List = FXCollections.observableArrayList(name);
+
+                destinationChoiceBox.setItems(List);
+                destinationChoiceBox.setValue("");
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -123,7 +133,7 @@ public class bookingController {
             showAlert("Error", "Please select a destination.");
             return;
         }
-        String timeSlot = timeSlotTextField.getText();
+        String timeSlot = (String) timeSlotBooking.getValue();
         if (timeSlot.isBlank()) {
             showAlert("Error", "Please enter a time slot.");
             return;
@@ -138,7 +148,7 @@ public class bookingController {
     public void cancelBooking() {
         destinationChoiceBox.getSelectionModel().clearSelection();
         timeSlotsTextArea.clear();
-        timeSlotTextField.clear();
+        timeSlotBooking.getSelectionModel().clearSelection();
     }
 
     private void showAlert(String title, String message) {
@@ -175,20 +185,4 @@ public class bookingController {
 
     }
 
-    @FXML
-    public void loginButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
-    }
-
-    @FXML
-    public void cAAButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(signUpScene);
-
-    }
 }

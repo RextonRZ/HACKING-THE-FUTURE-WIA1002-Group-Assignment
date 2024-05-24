@@ -1,18 +1,14 @@
-.barItem:hover,.barItem:pressed {
+.barItem:hover {
     -fx-background-color: #9B804E;
     -fx-background-radius: 0;
     -fx-border-color: #897045;
-    -fx-border-width: 8px px px 3px;
 }
 
 .side:hover {
   -fx-background-color: #DBDBB3;
   -fx-border-color: #DBDBB3;
-  -fx-border-width: 8px px px 3px;
 }
 
 .exit:hover {
-  -fx-background-color: #DBDBB3;
   -fx-border-color: #FE8EAC;
-  -fx-border-width: 8px px px 3px;
 }

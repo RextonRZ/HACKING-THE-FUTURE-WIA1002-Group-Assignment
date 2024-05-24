@@ -240,13 +240,6 @@ public class createEventController {
     public void createEvent(ActionEvent event) throws Exception {
         eventCreationInProgress = true; // Mark event creation as in progress
 
-        eventTitleValidation();
-        eventDescriptionValidation();
-        eventVenueValidation();
-        eventDateValidation();
-        eventStartTimeValidation();
-        eventEndTimeValidation();
-
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
             if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");

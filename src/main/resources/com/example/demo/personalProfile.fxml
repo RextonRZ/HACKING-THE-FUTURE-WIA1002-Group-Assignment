@@ -22,7 +22,7 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@logowithbg.png" />
+                  <Image url="@../../../logowithbg.png" />
                </image>
             </ImageView>
             <Pane prefHeight="73.0" prefWidth="594.0">

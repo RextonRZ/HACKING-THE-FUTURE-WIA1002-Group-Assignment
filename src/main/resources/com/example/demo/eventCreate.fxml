@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1194.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.createEventController">
+<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1194.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.createEventController">
    <children>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: ffe4e1;">
          <children>
@@ -21,10 +21,10 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@logowithbg.png" />
+                  <Image url="@../../../logowithbg.png" />
                </image>
             </ImageView>
-            <Pane prefHeight="71.0" prefWidth="587.0">
+            <Pane prefHeight="73.0" prefWidth="391.0">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
@@ -102,7 +102,7 @@
             <Font name="Showcard Gothic" size="30.0" />
          </font>
          <VBox.margin>
-            <Insets top="25.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
@@ -110,7 +110,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="495.0" top="30.0" />
+            <Insets right="495.0" top="20.0" />
          </VBox.margin>
       </Text>
       <TextField fx:id="eventTitle" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventTitleValidation" prefHeight="31.0" prefWidth="527.0" promptText="Title">
@@ -118,7 +118,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventTitleErrorMessage" fill="#c51b1b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="522.0">
+      <Text fx:id="eventTitleErrorMessage" fill="#c51b1b" onKeyTyped="#eventTitleValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="522.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -136,7 +136,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventDescriptionErrorMessage" fill="#c51b1b" layoutX="354.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
+      <Text fx:id="eventDescriptionErrorMessage" fill="#c51b1b" layoutX="354.0" layoutY="228.0" onKeyTyped="#eventDescriptionValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -154,7 +154,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventVenueErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="515.0">
+      <Text fx:id="eventVenueErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="322.0" onKeyTyped="#eventVenueValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="515.0">
          <VBox.margin>
             <Insets right="5.0" />
          </VBox.margin>
@@ -196,7 +196,7 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <DatePicker fx:id="eventDate" editable="false" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
+      <DatePicker fx:id="eventDate" editable="false" onAction="#eventDateValidation" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
          <VBox.margin>
             <Insets top="50.0" />
          </VBox.margin>
@@ -219,7 +219,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventStartTimeErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
+      <Text fx:id="eventStartTimeErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="510.0" onKeyTyped="#eventStartTimeValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -237,14 +237,14 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventEndTimeErrorMessage" fill="#c51b1b" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="523.0">
+      <Text fx:id="eventEndTimeErrorMessage" fill="#c51b1b" onKeyTyped="#eventEndTimeValidation" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="523.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </Text>
       <Button mnemonicParsing="false" onAction="#createEvent" prefHeight="26.0" prefWidth="85.0" text="Create">
          <VBox.margin>
-            <Insets bottom="40.0" top="40.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </Button>
    </children>

@@ -29,9 +29,11 @@ public class loginController {
     @FXML
     private Stage stage;
     @FXML
-    private TextField useremailLogin;
+    TextField useremailLogin;
     @FXML
     private TextField passwordLogin;
+
+    public static String line, username, password, usernameID;
 
     @FXML
     public void loginStartUp(ActionEvent event) throws Exception{
@@ -57,12 +59,11 @@ public class loginController {
 
     private boolean authenticate(){
         String fileName = "src/main/java/Data/user.csv";
-
+        usernameID = useremailLogin.getText();
         try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
-            String line, username, password;
             while ((line = reader.readLine()) != null){
                 String[] userData = line.split(",");
-                if (useremailLogin.getText().endsWith(".com")){
+                if (usernameID.endsWith(".com")){
                     username = userData[1].trim();
                 }else{
                     username = userData[0].trim();
@@ -71,7 +72,7 @@ public class loginController {
 
                 String hashedInputPW = signUpController.hashPassword(passwordLogin.getText().trim());
 
-                if (username.equals(useremailLogin.getText().trim()) && password.equals(hashedInputPW)) {
+                if (username.equals(usernameID.trim()) && password.equals(hashedInputPW)) {
                     return true;
                 }
             }

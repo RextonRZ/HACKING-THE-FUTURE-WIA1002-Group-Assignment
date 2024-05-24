@@ -33,7 +33,8 @@ public class homeController implements Initializable {
     @FXML
     private Text username;
 
-
+    loginController loginController = new loginController();
+    String usernamelogin = loginController.usernameID;
     @FXML
     public void homeStartUp(ActionEvent event) throws Exception  {
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
@@ -56,9 +57,12 @@ public class homeController implements Initializable {
                 latitude = userData[4].trim();
                 longitude = userData[5].trim();
                 roleSet = userData[3].trim();
-                role.setText(roleSet);
-                username.setText(usernameSet);
-                coordinate.setText(latitude+", " + longitude);
+
+                if(usernameSet.equals(usernamelogin)) {
+                    role.setText(roleSet);
+                    username.setText(usernameSet);
+                    coordinate.setText(latitude + ", " + longitude);
+                }
             }
 
         } catch (Exception e) {

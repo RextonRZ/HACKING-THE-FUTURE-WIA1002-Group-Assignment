@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1540.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.bookingController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1277.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.bookingController">
    <top>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="55.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="53.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
@@ -31,7 +31,7 @@
                   <Insets left="100.0" />
                </HBox.margin>
             </Pane>
-            <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="772.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="557.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#homeButton" prefHeight="73.0" prefWidth="78.0" style="-fx-background-color: none;" styleClass="barItem" stylesheets="@../../../CssStyle/home.css" text="Home">
                      <HBox.margin>
@@ -95,11 +95,11 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="658.0" prefWidth="345.0" BorderPane.alignment="CENTER">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="659.0" prefWidth="477.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="TOP_CENTER" prefHeight="1031.0" prefWidth="1038.0" style="-fx-background-color: fddde6;">
+            <VBox alignment="TOP_CENTER" prefHeight="1041.0" prefWidth="749.0" style="-fx-background-color: fddde6;">
                <children>
-                  <VBox prefHeight="782.0" prefWidth="452.0" style="-fx-background-color: rgba(255,255,255.5); -fx-background-radius: 20;">
+                  <VBox prefHeight="782.0" prefWidth="259.0" style="-fx-background-color: rgba(255,255,255.5); -fx-background-radius: 20;">
                      <VBox.margin>
                         <Insets left="20.0" right="750.0" top="30.0" />
                      </VBox.margin>
@@ -109,7 +109,7 @@
                               <Font name="Arial Rounded MT Bold" size="25.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
+                              <Insets left="20.0" right="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="km away">
@@ -256,7 +256,7 @@
       </ScrollPane>
    </center>
    <right>
-      <VBox prefHeight="658.0" prefWidth="1226.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="659.0" prefWidth="1013.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <children>
             <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
                <font>
@@ -305,9 +305,9 @@
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField promptText="DD/MM/YYYY">
+                  <TextField prefHeight="25.0" prefWidth="219.0" promptText="DD/MM/YYYY">
                      <VBox.margin>
-                        <Insets left="20.0" right="600.0" top="10.0" />
+                        <Insets left="20.0" right="750.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
                   <Button mnemonicParsing="false" text="Booking">

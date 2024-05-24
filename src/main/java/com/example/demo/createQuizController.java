@@ -1,22 +1,18 @@
 package com.example.demo;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import javafx.scene.text.Text;
 import java.util.Optional;
+import java.net.URL;
+import java.net.MalformedURLException;
 
 public class createQuizController {
     @FXML
@@ -214,21 +210,6 @@ public class createQuizController {
         }
     }
 
-    @FXML
-    public void loginButton(ActionEvent event) throws Exception {
-        Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
-    }
-
-    @FXML
-    public void cAAButton(ActionEvent event) throws Exception {
-        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(signUpScene);
-    }
 
     private void showCreateQuizSuccess() {
         Alert alertSU = new Alert(Alert.AlertType.INFORMATION);

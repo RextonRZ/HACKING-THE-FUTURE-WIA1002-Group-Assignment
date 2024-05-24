@@ -118,7 +118,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventTitleErrorMessage" fill="#c51b1b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="522.0">
+      <Text fx:id="eventTitleErrorMessage" fill="#c51b1b" onKeyTyped="#eventTitleValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="522.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -136,7 +136,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventDescriptionErrorMessage" fill="#c51b1b" layoutX="354.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
+      <Text fx:id="eventDescriptionErrorMessage" fill="#c51b1b" layoutX="354.0" layoutY="228.0" onKeyTyped="#eventDescriptionValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -154,7 +154,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-      <Text fx:id="eventVenueErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="515.0">
+      <Text fx:id="eventVenueErrorMessage" fill="#c51b1b" layoutX="352.0" layoutY="322.0" onKeyTyped="#eventVenueValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="515.0">
          <VBox.margin>
             <Insets right="5.0" />
          </VBox.margin>
@@ -167,7 +167,7 @@
             <Insets right="488.0" top="20.0" />
          </VBox.margin>
       </Text>
-      <DatePicker fx:id="eventDate" editable="false" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
+      <DatePicker fx:id="eventDate" editable="false" onAction="#eventDateValidation" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

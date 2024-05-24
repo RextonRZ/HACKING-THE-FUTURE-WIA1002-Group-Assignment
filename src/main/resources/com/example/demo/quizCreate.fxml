@@ -161,7 +161,7 @@
          </VBox.margin>
       </TextField>
       <Text fx:id="quizContentErrorMessage" fill="#c51b1b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="522.0" />
-      <Button mnemonicParsing="false" text="Create">
+      <Button mnemonicParsing="false" onAction="#createQuiz" text="Create">
          <VBox.margin>
             <Insets bottom="40.0" top="40.0" />
          </VBox.margin>

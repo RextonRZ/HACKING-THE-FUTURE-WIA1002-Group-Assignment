@@ -319,7 +319,7 @@ public class createEventController {
 
         alertSU.showAndWait();
 
-        eventCreationInProgress = false; // Reset flag after successful creation
+        eventCreationInProgress = false;
     }
 
     public void showError(String errorMessage) {

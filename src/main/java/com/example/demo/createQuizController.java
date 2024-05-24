@@ -10,19 +10,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.util.Optional;
 import java.net.URL;
 import java.net.MalformedURLException;
 
 public class createQuizController {
-    @FXML
     private Stage stage;
 
     @FXML
-    private TextField quizTitle;
+    private TextField quizContent;
 
     @FXML
-    private Text quizTitleErrorMessage;
+    private Text quizContentErrorMessage;
 
     @FXML
     private TextField quizDescription;
@@ -37,10 +41,10 @@ public class createQuizController {
     private Text quizThemeErrorMessage;
 
     @FXML
-    private TextField quizContent;
+    private TextField quizTitle;
 
     @FXML
-    private Text quizContentErrorMessage;
+    private Text quizTitleErrorMessage;
 
     private boolean titleValid = false, descriptionValid = false, themeValid = false, contentValid = false;
     private String title, description, theme, content;
@@ -105,7 +109,7 @@ public class createQuizController {
     public void quizThemeValidation() {
         theme = quizTheme.getText();
         if (theme == null || theme.isEmpty() || theme.equals("Select Theme")) {
-            quizThemeErrorMessage.setText("Please select a quiz theme!");
+            quizThemeErrorMessage.setText("Please select a quiz theme !");
             themeValid = false;
         } else {
             quizThemeErrorMessage.setText("");
@@ -117,11 +121,11 @@ public class createQuizController {
     public void quizContentValidation() {
         content = quizContent.getText();
 
-        if (!isValidURL(content)) {
-            quizContentErrorMessage.setText("Please enter a valid Quiziz URL!");
+        if (content.isEmpty()) {
+            quizContentErrorMessage.setText("Please enter a Quiziz URL !");
             contentValid = false;
-        } else if (content.isEmpty()) {
-            quizContentErrorMessage.setText("Please enter a Quiziz URL!");
+        } else if (!isValidURL(content)) {
+            quizContentErrorMessage.setText("Please enter a valid Quiziz URL !");
             contentValid = false;
         } else {
             quizContentErrorMessage.setText("");
@@ -129,11 +133,11 @@ public class createQuizController {
         }
     }
 
-    private boolean isValidURL(String urlStr) {
+    private boolean isValidURL(String url) {
         try {
-            URL url = new URL(urlStr);
+            new URL(url).toURI();
             return true;
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | URISyntaxException e) {
             return false;
         }
     }
@@ -150,10 +154,9 @@ public class createQuizController {
             if (title.isBlank()) quizTitleErrorMessage.setText("Quiz Title should not be empty");
             if (description.isBlank()) quizDescriptionErrorMessage.setText("Quiz Description should not be empty");
             if (theme.isBlank()) quizThemeErrorMessage.setText("Quiz Theme should not be empty");
-            if (content.isBlank()) quizContentErrorMessage.setText("Please enter a Quiziz URL!");
+            if (content.isBlank()) quizContentErrorMessage.setText("Please enter a Quiziz URL !");
         } else {
-            showCreateQuizSuccess();
-            // Proceed with storing the quiz or further actions
+            storeQuiz(event);
         }
     }
 
@@ -215,7 +218,7 @@ public class createQuizController {
         Alert alertSU = new Alert(Alert.AlertType.INFORMATION);
         alertSU.setTitle("Success");
         alertSU.setHeaderText(null);
-        alertSU.setContentText("Quiz " + title + " successfully created.");
+        alertSU.setContentText("Successfully created Quiz '" + title +"'");
         alertSU.showAndWait();
     }
 
@@ -225,5 +228,27 @@ public class createQuizController {
         alertError.setHeaderText(null);
         alertError.setContentText(errorMessage);
         alertError.showAndWait();
+    }
+
+    public void storeQuiz(ActionEvent event){
+        String fileName = "src/main/java/Data/newquiz.csv";
+
+
+        try{
+
+            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
+                writer.println(title + "|" + description + "|" + theme + "|" + content);
+                writer.flush();
+                showCreateQuizSuccess();
+                createQuizController createQuizController = new createQuizController();
+                createQuizController.createQuizStartUp(event);
+
+            }catch (IOException e){
+                showError("Error appending new quiz data to file: " + e.getMessage());
+            }
+        }catch (Exception e){
+            showError("Error storing new quiz data: " + e.getMessage());
+        }
+
     }
 }

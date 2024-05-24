@@ -18,9 +18,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import java.util.Optional;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class createEventController {
     @FXML
@@ -62,16 +59,10 @@ public class createEventController {
     @FXML
     private Text eventEndTimeErrorMessage;
 
-    @FXML
-    private TextField eventVenueLatitude;
-
-    @FXML
-    private TextField eventVenueLongitude;
 
     private boolean titleValid = false, descriptionValid = false, venueValid = false, dateValid = false,
             timeStartValid = false, timeEndValid = false;
 
-    private Timer venueTimer;
     private LocalDate date = null;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -208,31 +199,10 @@ public class createEventController {
 
         if (Venue.isBlank()) {
             eventVenueErrorMessage.setText("Event venue should not be empty");
-            eventVenueLatitude.setText("-");
-            eventVenueLongitude.setText("-");
             venueValid = false;
         } else {
             eventVenueErrorMessage.setText("");
             venueValid = true;
-
-            // Cancel any previously scheduled timer task
-            if (venueTimer != null) {
-                venueTimer.cancel();
-            }
-
-            if (!Venue.isEmpty()) {
-                // set a delay timer task
-                venueTimer = new Timer();
-                venueTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        // Generate coordinates
-                        String[] newCoordinates = generateCoordinates();
-                        eventVenueLatitude.setText(newCoordinates[0]);
-                        eventVenueLongitude.setText(newCoordinates[1]);
-                    }
-                }, 2000); // Delay in milliseconds
-            }
         }
     }
 
@@ -258,7 +228,7 @@ public class createEventController {
             eventCreationInProgress = false; // Reset flag on validation failure
         } else {
             // store event or proceed further
-            storeUser(event);
+            storeEvent(event);
         }
     }
 
@@ -331,28 +301,15 @@ public class createEventController {
         alertError.showAndWait();
     }
 
-    public static String[] generateCoordinates() { // Generate coordinates for venue
-        Random random = new Random();
 
-        String[] coordination = new String[2];
-
-        for (int i = 0; i < coordination.length; i++) {
-            double coords = -500.0 + (1000.0 * random.nextDouble());
-            coordination[i] = String.format("%.2f", coords);
-        }
-
-        return coordination;
-    }
-
-    public void storeUser(ActionEvent event){
+    public void storeEvent(ActionEvent event){
         String fileName = "src/main/java/Data/newevent.csv";
 
 
         try{
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(Title + "," + Description + "," + Venue + "," + eventVenueLatitude.getText()
-                        + "," + eventVenueLongitude.getText()+ "," + date+ "," +startTime+","+endTime);
+                writer.println(Title + "|" + Description + "|" + Venue + "|" + date+ "|" +startTime+"|"+endTime);
                 writer.flush();
                 showCreateEventSuccess();
                 createEventController createEventController = new createEventController();

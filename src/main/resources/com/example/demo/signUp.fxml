@@ -9,14 +9,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="stage" alignment="CENTER" fillWidth="false" prefHeight="594.0" prefWidth="621.0" scaleZ="2.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.signUpController">
+<VBox fx:id="stage" alignment="CENTER" fillWidth="false" prefHeight="594.0" prefWidth="621.0" scaleZ="2.0" style="-fx-background-color: ffe4e1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.signUpController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create account" textAlignment="CENTER" wrappingWidth="318.9382019042969">
+      <Text fill="#354c76" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE ACCOUNT" textAlignment="CENTER" wrappingWidth="318.9382019042969">
          <font>
             <Font name="Showcard Gothic" size="35.0" />
          </font>
          <VBox.margin>
-            <Insets left="150.0" right="150.0" top="20.0" />
+            <Insets left="150.0" right="150.0" top="23.0" />
          </VBox.margin>
       </Text>
       <VBox alignment="CENTER_LEFT" prefHeight="505.0" prefWidth="438.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -155,11 +155,17 @@
          <VBox.margin>
             <Insets left="150.0" right="150.0" top="20.0" />
          </VBox.margin>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
       </Button>
       <Text fx:id="login" fill="#433eac" onMouseClicked="#login" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <VBox.margin>
             <Insets bottom="20.0" left="490.0" top="-20.0" />
          </VBox.margin>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font>
       </Text>
    </children>
 </VBox>

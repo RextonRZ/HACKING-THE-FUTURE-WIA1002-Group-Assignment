@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
 
         stage.setMaximized(true);
         stage.initStyle(StageStyle.UNDECORATED);
-        Image icon = new Image("icon.png");
+        Image icon = new Image("logowithbg.png");
         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();

@@ -210,13 +210,6 @@ public class createEventController {
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
 
-        eventTitleValidation();
-        eventDescriptionValidation();
-        eventVenueValidation();
-        eventDateValidation();
-        eventStartTimeValidation();
-        eventEndTimeValidation();
-
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
             if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");

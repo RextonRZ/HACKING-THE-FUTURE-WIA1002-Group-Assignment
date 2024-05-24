@@ -16,9 +16,11 @@ public class personalProfileController {
     @FXML
     private Stage stage;
 
+
+
     @FXML
     public void personalProfileStartUp(ActionEvent event) throws Exception {
-        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfile.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
@@ -79,6 +81,10 @@ public class personalProfileController {
             loginController.loginStartUp(event);
 
         } else if (result.get() == ButtonType.CANCEL) ;
+
+    }
+
+    public void showEmail(){
 
     }
 

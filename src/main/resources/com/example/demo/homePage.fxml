@@ -237,7 +237,7 @@
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>

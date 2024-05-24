@@ -3,6 +3,7 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,10 +11,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Optional;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.scene.text.Text;
 
-public class homeController {
+public class homeController implements Initializable {
 
     private Stage stage;
 
@@ -23,31 +30,43 @@ public class homeController {
     private Text coordinate;
     @FXML
     private Text point;
+    @FXML
+    private Text username;
+
 
     @FXML
-    public void homeStartUp(ActionEvent event) throws Exception{
+    public void homeStartUp(ActionEvent event) throws Exception  {
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
-
-        // Printing out children of root2
-        System.out.println("Children of root2:");
-        for (Node child : root2.getChildrenUnmodifiable()) {
-            System.out.println(child);
-        }
-        
-        role = (Text) root2.lookup("#role");
-        if (role != null){
-            role.setText("haha");
-        }else{
-            System.err.println("Error: TextField 'latitude' not found.");
-        }
-
     }
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Profile Dashboard
+        //Username
 
-    public void quizButton(ActionEvent event) throws Exception{
+        String fileName = "src/main/java/Data/user.csv";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line, usernameSet, latitude, longitude,roleSet;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                usernameSet = userData[0].trim();
+                latitude = userData[4].trim();
+                longitude = userData[5].trim();
+                roleSet = userData[3].trim();
+                role.setText(roleSet);
+                username.setText(usernameSet);
+                coordinate.setText(latitude+", " + longitude);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        public void quizButton(ActionEvent event) throws Exception{
         createQuizController createQuizController = new createQuizController();
         createQuizController.createQuizStartUp(event);
     }

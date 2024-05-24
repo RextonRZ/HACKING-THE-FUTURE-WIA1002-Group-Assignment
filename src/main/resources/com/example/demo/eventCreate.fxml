@@ -111,7 +111,7 @@
             <Font name="Showcard Gothic" size="30.0" />
          </font>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="25.0" />
          </VBox.margin>
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
@@ -119,7 +119,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="495.0" top="30.0" />
+            <Insets right="495.0" top="20.0" />
          </VBox.margin>
       </Text>
       <TextField fx:id="eventTitle" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#eventTitleValidation" prefHeight="31.0" prefWidth="527.0" promptText="Title">
@@ -176,7 +176,7 @@
             <Insets right="488.0" top="15.0" />
          </VBox.margin>
       </Text>
-      <DatePicker fx:id="eventDate" editable="false" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
+      <DatePicker fx:id="eventDate" editable="false" onAction="#eventDateValidation" onInputMethodTextChanged="#eventDateValidation" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -224,7 +224,7 @@
       </Text>
       <Button mnemonicParsing="false" onAction="#createEvent" text="Create">
         <VBox.margin>
-            <Insets bottom="15.0" top="40.0" />
+            <Insets bottom="15.0" top="20.0" />
         </VBox.margin>
 </Button>
    </children>

@@ -258,7 +258,7 @@ public class createEventController {
             eventCreationInProgress = false; // Reset flag on validation failure
         } else {
             // store event or proceed further
-            storeUser(event);
+            storeEvent(event);
         }
     }
 
@@ -344,15 +344,15 @@ public class createEventController {
         return coordination;
     }
 
-    public void storeUser(ActionEvent event){
+    public void storeEvent(ActionEvent event){
         String fileName = "src/main/java/Data/newevent.csv";
 
 
         try{
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(Title + "," + Description + "," + Venue + "," + eventVenueLatitude.getText()
-                        + "," + eventVenueLongitude.getText()+ "," + date+ "," +startTime+","+endTime);
+                writer.println(Title + "|" + Description + "|" + Venue + "|" + eventVenueLatitude.getText()
+                        + "|" + eventVenueLongitude.getText()+ "|" + date+ "|" +startTime+"|"+endTime);
                 writer.flush();
                 showCreateEventSuccess();
                 createEventController createEventController = new createEventController();

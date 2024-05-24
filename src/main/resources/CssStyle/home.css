@@ -10,3 +10,9 @@
   -fx-border-color: #DBDBB3;
   -fx-border-width: 8px px px 3px;
 }
+
+.exit:hover {
+  -fx-background-color: #DBDBB3;
+  -fx-border-color: #FE8EAC;
+  -fx-border-width: 8px px px 3px;
+}

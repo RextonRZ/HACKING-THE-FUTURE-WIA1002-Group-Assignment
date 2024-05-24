@@ -24,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class signUpController {
     protected Stage stage;
@@ -204,9 +206,9 @@ public class signUpController {
 
             if (!passwordSU.equals(passwordConfirmationSU) && !passwordConfirmationSU.isBlank())
                 passwordConfirmationValidation();
-            }
-
+        }
     }
+
     //Password Confirmation
     public void passwordConfirmationValidation(){
         passwordSU = passwordSignUp.getText();
@@ -277,8 +279,10 @@ public class signUpController {
         }
 
         try{
+            String hashedPW = hashPassword(passwordSU);
+
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(usernameSU + "," + emailSU + "," + passwordSU + "," + role.getValue()
+                writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
                         + "," + latitude.getText() + "," + longitude.getText());
                 writer.flush();
                 showSignUpSuccess();
@@ -323,5 +327,25 @@ public class signUpController {
         }
 
         return coordination;
+    }
+
+    // Hash password using SHA-3
+    public static String hashPassword(String password) throws NoSuchAlgorithmException{
+        MessageDigest digest = MessageDigest.getInstance("SHA3-256");
+        byte[] hashPW = digest.digest(password.getBytes());
+        return bytesToHex(hashPW);
+    }
+
+    // Helper method to convert byte array to hexadecimal string
+    public static String bytesToHex(byte[] bytes){
+        StringBuilder hexString = new StringBuilder();
+        for (byte b: bytes){
+            String hexa = Integer.toHexString(0xff & b);
+            if (hexa.length() == 1){
+                hexString.append('0');
+            hexString.append(hexa);
+            }
+        }
+        return hexString.toString();
     }
 }

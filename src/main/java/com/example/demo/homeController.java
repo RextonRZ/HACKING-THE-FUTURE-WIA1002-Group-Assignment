@@ -27,8 +27,8 @@ public class homeController {
     }
 
     public void quizButton(ActionEvent event) throws Exception{
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+        createQuizController createQuizController = new createQuizController();
+        createQuizController.createQuizStartUp(event);
     }
 
     public void eventButton(ActionEvent event) throws Exception{

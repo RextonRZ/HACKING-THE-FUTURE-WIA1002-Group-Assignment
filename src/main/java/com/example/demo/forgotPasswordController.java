@@ -340,7 +340,8 @@ public class forgotPasswordController {
 
     public void updatePasswordButton(ActionEvent event) throws Exception {
         if (newPassValid && newConPassValid){
-            updatePassword(user.getText(),newPass.getText());
+            String hashedNewPW = signUpController.hashPassword(newPass.getText());
+            updatePassword(user.getText(),hashedNewPW);
             showUpdateSuccessful();
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();

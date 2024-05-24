@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -68,12 +69,16 @@ public class loginController {
                 }
                 password = userData[2].trim();
 
-                if (username.equals(useremailLogin.getText().trim()) && password.equals(passwordLogin.getText().trim())) {
+                String hashedInputPW = signUpController.hashPassword(passwordLogin.getText().trim());
+
+                if (username.equals(useremailLogin.getText().trim()) && password.equals(hashedInputPW)) {
                     return true;
                 }
             }
         }catch (IOException e){
             showError("Error reading user data from file: " + e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
+            showError("Error hashing your password: " + e.getMessage());
         }
         return false;
     }

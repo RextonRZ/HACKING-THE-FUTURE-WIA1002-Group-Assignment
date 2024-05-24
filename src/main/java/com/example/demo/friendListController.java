@@ -53,8 +53,8 @@ public class friendListController {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileYSController personalProfileYSController = new personalProfileYSController();
+        personalProfileYSController.personalProfileStartUp(event);
     }
 
     public void requestButton(ActionEvent event) throws Exception {

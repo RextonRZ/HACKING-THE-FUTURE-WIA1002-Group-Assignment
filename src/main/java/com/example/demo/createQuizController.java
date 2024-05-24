@@ -194,8 +194,8 @@ public class createQuizController {
 
     @FXML
     public void profileButton(ActionEvent event) throws Exception {
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileYSController personalProfileYSController = new personalProfileYSController();
+        personalProfileYSController.personalProfileStartUp(event);
     }
 
     @FXML

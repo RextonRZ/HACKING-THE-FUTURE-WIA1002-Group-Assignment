@@ -9,12 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Optional;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,9 +42,6 @@ public class homeController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Profile Dashboard
-        //Username
-
         String fileName = "src/main/java/Data/user.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -91,8 +86,8 @@ public class homeController implements Initializable {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileYSController personalProfileYSController = new personalProfileYSController();
+        personalProfileYSController.personalProfileStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{

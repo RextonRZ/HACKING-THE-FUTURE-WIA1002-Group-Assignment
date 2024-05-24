@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -164,8 +163,8 @@ public class bookingController {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileYSController personalProfileYSController = new personalProfileYSController();
+        personalProfileYSController.personalProfileStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{

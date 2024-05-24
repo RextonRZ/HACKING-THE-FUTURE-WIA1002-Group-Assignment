@@ -94,7 +94,7 @@ public class createEventController {
         }
     }
 
-    public void eventDateValidation() {
+    public void eventDateValidation(ActionEvent event) {
         String dateString = eventDate.getEditor().getText();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -209,6 +209,9 @@ public class createEventController {
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
+        Title = eventTitle.getText();
+        Description = eventDescription.getText();
+        Venue = eventVenue.getText();
 
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
@@ -253,8 +256,8 @@ public class createEventController {
     }
 
     public void profileButton(ActionEvent event) throws Exception {
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileYSController personalProfileYSController = new personalProfileYSController();
+        personalProfileYSController.personalProfileStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception {

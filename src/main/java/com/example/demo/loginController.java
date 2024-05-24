@@ -42,10 +42,7 @@ public class loginController {
         // Get the existing instance of personalProfileController
         FXMLLoader loader = new FXMLLoader(getClass().getResource("personalProfileYS.fxml"));
         Parent root2 = loader.load();
-        personalProfileController profileController = loader.getController();
-
-        // Set the userMail in personalProfileController
-        profileController.setUserMail(userEmail);
+        personalProfileYSController profileController = loader.getController();
 
         if (authenticate()) {
             Parent root3 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
@@ -53,7 +50,6 @@ public class loginController {
             Scene homeScene = new Scene(root3, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setScene(homeScene);
 
-            profileController.setUserMail(useremailLogin.getText().trim());
         } else {
             displayLoginError();
         }

@@ -3,6 +3,7 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,9 +15,11 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class personalProfileController {
+public class personalProfileYSController implements Initializable {
     @FXML
     private Stage stage;
 
@@ -35,61 +38,16 @@ public class personalProfileController {
     @FXML
     private Label username;
 
-    private String userMail;
 
-    public void setUserMail(String userMail) {
-        this.userMail = userMail;
-    }
+    String usernamelogin = loginController.usernameID;
 
     @FXML
     public void personalProfileStartUp(ActionEvent event) throws IOException {
-        showError(this.userMail);
-        try {
-            Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-            stage.setScene(homeScene);
+        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
 
-            String fileName = "src/main/java/Data/user.csv";
-            String[] details = readUserDataYS(fileName, userMail);
-
-            username = (Label) root2.lookup("#username");
-            if (username != null) {
-                username.setText(details[0]);
-            } else {
-                System.err.println("Error: Label 'username' not found.");
-            }
-
-            email = (Label) root2.lookup("#email");
-            if (email != null) {
-                email.setText(details[1]);
-            } else {
-                System.err.println("Error: Label 'email' not found.");
-            }
-
-            coords = (Label) root2.lookup("#coords");
-            if (coords != null) {
-                coords.setText("(" + details[3] + ", " + details[4] + ")");
-            } else {
-                System.err.println("Error: Label 'coords' not found.");
-            }
-
-            point = (Label) root2.lookup("#point");
-            if (point != null) {
-                point.setText(details[5]);
-            } else {
-                System.err.println("Error: Label 'point' not found.");
-            }
-
-            role = (Label) root2.lookup("#role");
-            if (role != null) {
-                role.setText(details[2]);
-            } else {
-                System.err.println("Error: Label 'role' not found.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error loading FXML file: " + e.getMessage());
-        }
     }
 
     @FXML
@@ -119,8 +77,8 @@ public class personalProfileController {
     }
 
     public void profileButton(ActionEvent event) throws Exception {
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileYSController personalProfileYSController = new personalProfileYSController();
+        personalProfileYSController.personalProfileStartUp(event);
     }
 
     public void requestButton(ActionEvent event) throws Exception {
@@ -169,12 +127,42 @@ public class personalProfileController {
         return details;
     }
 
-    public void showError(String errorMessage){
+    public void showError(String errorMessage) {
         Alert alertError = new Alert(Alert.AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);
         alertError.setContentText(errorMessage);
 
         alertError.showAndWait();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        String fileName = "src/main/java/Data/user.csv";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line, usernameSet, latitude, longitude, roleSet, emailSet, pointSet;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                usernameSet = userData[0].trim();
+                emailSet = userData[1].trim();
+                latitude = userData[4].trim();
+                longitude = userData[5].trim();
+                roleSet = userData[3].trim();
+                pointSet = userData[6].trim();
+
+                if (usernameSet.equals(usernamelogin)) {
+                    role.setText(roleSet);
+                    username.setText(usernameSet);
+                    coords.setText(latitude + ", " + longitude);
+                    email.setText(emailSet);
+                    point.setText(pointSet);
+
+                }
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

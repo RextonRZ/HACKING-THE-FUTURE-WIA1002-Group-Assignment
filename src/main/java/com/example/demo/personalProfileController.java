@@ -35,14 +35,61 @@ public class personalProfileController {
     @FXML
     private Label username;
 
+    private String userMail;
+
+    public void setUserMail(String userMail) {
+        this.userMail = userMail;
+    }
+
     @FXML
-    public void personalProfileStartUp(ActionEvent event) throws Exception {
-        String fileName = "src/main/java/Data/user.csv";
-        readUserDataFromCSV(fileName);
-        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
+    public void personalProfileStartUp(ActionEvent event) throws IOException {
+        showError(this.userMail);
+        try {
+            Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+            stage.setScene(homeScene);
+
+            String fileName = "src/main/java/Data/user.csv";
+            String[] details = readUserDataYS(fileName, userMail);
+
+            username = (Label) root2.lookup("#username");
+            if (username != null) {
+                username.setText(details[0]);
+            } else {
+                System.err.println("Error: Label 'username' not found.");
+            }
+
+            email = (Label) root2.lookup("#email");
+            if (email != null) {
+                email.setText(details[1]);
+            } else {
+                System.err.println("Error: Label 'email' not found.");
+            }
+
+            coords = (Label) root2.lookup("#coords");
+            if (coords != null) {
+                coords.setText("(" + details[3] + ", " + details[4] + ")");
+            } else {
+                System.err.println("Error: Label 'coords' not found.");
+            }
+
+            point = (Label) root2.lookup("#point");
+            if (point != null) {
+                point.setText(details[5]);
+            } else {
+                System.err.println("Error: Label 'point' not found.");
+            }
+
+            role = (Label) root2.lookup("#role");
+            if (role != null) {
+                role.setText(details[2]);
+            } else {
+                System.err.println("Error: Label 'role' not found.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -102,28 +149,32 @@ public class personalProfileController {
         } else if (result.get() == ButtonType.CANCEL) ;
     }
 
-    private void readUserDataFromCSV(String fileName) throws IOException {
-
+    private String[] readUserDataYS(String fileName, String userMail) throws IOException {
         String line;
+        String[] details = new String[5];
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         while ((line = reader.readLine()) != null) {
             String[] userData = line.split(",");
 
-            if (userData[3] == "Young Student") {
-                String usernameText = userData[0];
-                String emailText = userData[1];
-                String roleText = userData[3];
-                String latText = userData[4];
-                String longText = userData[5];
-                String pointText = userData[6];
-
-                username.setText(usernameText);
-                email.setText(emailText);
-                role.setText(roleText);
-                coords.setText("(" + latText + ", " + longText);
-                point.setText(pointText);
+            if ("Young Student".equals(userData[3]) && ((userMail.equals(userData[0])) || (userMail.equals(userData[1])))) {
+                details[0] = userData[0];
+                details[1] = userData[1];
+                details[2] = userData[3];
+                details[3] = userData[4];
+                details[4] = userData[5];
+                details[5] = userData[6];
             }
         }
         reader.close();
+        return details;
+    }
+
+    public void showError(String errorMessage){
+        Alert alertError = new Alert(Alert.AlertType.ERROR);
+        alertError.setTitle("Error");
+        alertError.setHeaderText(null);
+        alertError.setContentText(errorMessage);
+
+        alertError.showAndWait();
     }
 }

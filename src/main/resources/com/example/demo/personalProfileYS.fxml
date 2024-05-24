@@ -136,7 +136,7 @@
                         <Insets left="40.0" top="60.0" />
                      </VBox.margin>
                   </Text>
-                  <Label fx:id="username1" text="Label">
+                  <Label fx:id="role" text="Label">
                      <VBox.margin>
                         <Insets left="200.0" top="-18.0" />
                      </VBox.margin>
@@ -149,12 +149,7 @@
                         <Insets left="40.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <Label fx:id="username11" text="Label">
-                     <VBox.margin>
-                        <Insets left="200.0" top="-18.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="username111" text="Label">
+                  <Label fx:id="coords" text="Label">
                      <VBox.margin>
                         <Insets left="200.0" top="-18.0" />
                      </VBox.margin>
@@ -167,7 +162,7 @@
                         <Insets left="40.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <Label fx:id="username1111" text="Label">
+                  <Label fx:id="point" text="Label">
                      <VBox.margin>
                         <Insets left="200.0" top="-18.0" />
                      </VBox.margin>

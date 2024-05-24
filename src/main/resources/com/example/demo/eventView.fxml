@@ -95,7 +95,7 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane prefHeight="453.0" prefWidth="1006.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="453.0" prefWidth="1006.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <content>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1711.0" prefWidth="1520.0" style="-fx-background-color: fddde6;">
                <children>

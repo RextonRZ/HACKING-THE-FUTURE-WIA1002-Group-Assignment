@@ -39,7 +39,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <VBox.margin>
-            <Insets right="195.0" top="50.0" />
+            <Insets right="195.0" top="60.0" />
          </VBox.margin>
       </Text>
       <TextField fx:id="useremailLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="378.0" promptText="admin1234/admin04@gmail.com" style="-fx-background-color: rgba(53,89,119,0); -fx-border-color: transparent transparent grey transparent;">

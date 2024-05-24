@@ -117,11 +117,6 @@
                         <Insets left="40.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <Button mnemonicParsing="false" text="View Profile">
-                     <VBox.margin>
-                        <Insets left="725.0" top="-22.0" />
-                     </VBox.margin>
-                  </Button>
                </children>
             </VBox>
          </children>
@@ -137,17 +132,23 @@
                <items>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffdde6;">
                      <children>
-                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#profileButton" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0" />
+                        <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#profileButton" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="47.0" prefWidth="207.0" style="-fx-background-color: ffdde6;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#requestButton" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" />
+                        <Button mnemonicParsing="false" onAction="#requestButton" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffdde6;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#friendListStartUp" prefHeight="42.0" prefWidth="219.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
+                        <Button mnemonicParsing="false" onAction="#friendListStartUp" prefHeight="51.0" prefWidth="219.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Friend" />
                      </children>
                   </AnchorPane>
                </items>

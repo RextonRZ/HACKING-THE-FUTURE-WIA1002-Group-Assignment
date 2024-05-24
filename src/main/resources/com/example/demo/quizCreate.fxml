@@ -119,12 +119,12 @@
          </VBox.margin>
       </TextField>
       <Text fx:id="quizTitleErrorMessage" fill="#c51b1b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="522.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description (&lt; 50 words)">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="440.0" top="30.0" />
+            <Insets right="345.0" top="30.0" />
          </VBox.margin>
       </Text>
       <TextField fx:id="quizDescription" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#quizDescriptionValidation" prefHeight="31.0" prefWidth="523.0" promptText="Description">
@@ -141,7 +141,7 @@
             <Insets right="470.0" top="30.0" />
          </VBox.margin>
       </Text>
-      <SplitMenuButton fx:id="quizTheme" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onKeyTyped="#quizThemeValidation" prefHeight="25.0" prefWidth="520.0" text="Theme">
+      <SplitMenuButton fx:id="quizTheme" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onKeyTyped="#quizThemeValidation" prefHeight="25.0" prefWidth="520.0" text="Select Theme">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

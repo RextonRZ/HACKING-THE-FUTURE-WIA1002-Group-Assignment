@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1484.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.viewEventController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1222.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.viewEventController">
    <top>
       <HBox prefHeight="73.0" prefWidth="1151.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="53.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="53.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
@@ -26,7 +26,7 @@
                   <Image url="@logowithbg.png" />
                </image>
             </ImageView>
-            <Pane prefHeight="73.0" prefWidth="587.0">
+            <Pane prefHeight="73.0" prefWidth="594.0">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
@@ -97,19 +97,19 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" prefHeight="453.0" prefWidth="1006.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1711.0" prefWidth="1520.0" style="-fx-background-color: fddde6;">
+            <VBox alignment="CENTER" prefHeight="1711.0" prefWidth="1300.0" style="-fx-background-color: fddde6;">
                <children>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Event">
                      <font>
                         <Font name="Showcard Gothic" size="30.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" top="30.0" />
+                        <Insets bottom="20.0" top="30.0" />
                      </VBox.margin>
                   </Text>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
@@ -218,7 +218,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -275,7 +275,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -332,7 +332,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -389,7 +389,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -446,7 +446,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -503,7 +503,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -560,7 +560,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -617,7 +617,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
@@ -674,10 +674,13 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="200.0" right="200.0" />
+                        <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                </children>
+               <padding>
+                  <Insets right="2.0" />
+               </padding>
             </VBox>
          </content>
          <BorderPane.margin>

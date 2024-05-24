@@ -20,14 +20,13 @@ import java.net.URL;
 import java.net.MalformedURLException;
 
 public class createQuizController {
-    @FXML
     private Stage stage;
 
     @FXML
-    private TextField quizTitle;
+    private TextField quizContent;
 
     @FXML
-    private Text quizTitleErrorMessage;
+    private Text quizContentErrorMessage;
 
     @FXML
     private TextField quizDescription;
@@ -42,10 +41,10 @@ public class createQuizController {
     private Text quizThemeErrorMessage;
 
     @FXML
-    private TextField quizContent;
+    private TextField quizTitle;
 
     @FXML
-    private Text quizContentErrorMessage;
+    private Text quizTitleErrorMessage;
 
     private boolean titleValid = false, descriptionValid = false, themeValid = false, contentValid = false;
     private String title, description, theme, content;

@@ -8,8 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Optional;
 
 public class personalProfileController {
@@ -17,8 +21,25 @@ public class personalProfileController {
     private Stage stage;
 
     @FXML
+    private Label coords;
+
+    @FXML
+    private Label email;
+
+    @FXML
+    private Label point;
+
+    @FXML
+    private Label role;
+
+    @FXML
+    private Label username;
+
+    @FXML
     public void personalProfileStartUp(ActionEvent event) throws Exception {
-        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfile.fxml"));
+        String fileName = "src/main/java/Data/user.csv";
+        readUserDataFromCSV(fileName);
+        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
@@ -79,11 +100,30 @@ public class personalProfileController {
             loginController.loginStartUp(event);
 
         } else if (result.get() == ButtonType.CANCEL) ;
-
     }
 
+    private void readUserDataFromCSV(String fileName) throws IOException {
 
+        String line;
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        while ((line = reader.readLine()) != null) {
+            String[] userData = line.split(",");
 
+            if (userData[3] == "Young Student") {
+                String usernameText = userData[0];
+                String emailText = userData[1];
+                String roleText = userData[3];
+                String latText = userData[4];
+                String longText = userData[5];
+                String pointText = userData[6];
 
-
+                username.setText(usernameText);
+                email.setText(emailText);
+                role.setText(roleText);
+                coords.setText("(" + latText + ", " + longText);
+                point.setText(pointText);
+            }
+        }
+        reader.close();
+    }
 }

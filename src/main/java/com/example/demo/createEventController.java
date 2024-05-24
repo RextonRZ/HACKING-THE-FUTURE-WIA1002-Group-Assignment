@@ -18,9 +18,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import java.util.Optional;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class createEventController {
     @FXML
@@ -62,21 +59,14 @@ public class createEventController {
     @FXML
     private Text eventEndTimeErrorMessage;
 
-    @FXML
-    private TextField eventVenueLatitude;
-
-    @FXML
-    private TextField eventVenueLongitude;
 
     private boolean titleValid = false, descriptionValid = false, venueValid = false, dateValid = false,
             timeStartValid = false, timeEndValid = false;
 
-    private Timer venueTimer;
     private LocalDate date = null;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    private boolean eventCreationInProgress = false;
 
     String Title, Description, Venue;
 
@@ -118,7 +108,9 @@ public class createEventController {
                 dateValid = true;
             }
         } catch (DateTimeParseException e) {
-            eventDateErrorMessage.setText("Event date should not be empty");
+            if (dateString.isBlank()) {
+                eventDateErrorMessage.setText("Event date should not be empty");
+            }
             dateValid = false;
         }
     }
@@ -208,47 +200,25 @@ public class createEventController {
 
         if (Venue.isBlank()) {
             eventVenueErrorMessage.setText("Event venue should not be empty");
-            eventVenueLatitude.setText("-");
-            eventVenueLongitude.setText("-");
             venueValid = false;
         } else {
             eventVenueErrorMessage.setText("");
             venueValid = true;
-
-            // Cancel any previously scheduled timer task
-            if (venueTimer != null) {
-                venueTimer.cancel();
-            }
-
-            if (!Venue.isEmpty()) {
-                // set a delay timer task
-                venueTimer = new Timer();
-                venueTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        // Generate coordinates
-                        String[] newCoordinates = generateCoordinates();
-                        eventVenueLatitude.setText(newCoordinates[0]);
-                        eventVenueLongitude.setText(newCoordinates[1]);
-                    }
-                }, 2000); // Delay in milliseconds
-            }
         }
     }
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
-        eventCreationInProgress = true; // Mark event creation as in progress
 
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
             if (Title.isBlank()) eventTitleErrorMessage.setText("Event Title should not be empty");
             if (Description.isBlank()) eventDescriptionErrorMessage.setText("Event Description should not be empty");
             if (Venue.isBlank()) eventVenueErrorMessage.setText("Event venue should not be empty");
-            if (eventDate == null) eventDateErrorMessage.setText("Event date should not be empty");
+            if (eventDate == null || eventDate.getEditor().getText().isBlank()) eventDateErrorMessage.setText("Event date should not be empty");
             if (startTime == null) eventStartTimeErrorMessage.setText("Event start time should not be empty");
             if (endTime == null) eventEndTimeErrorMessage.setText("Event end time should not be empty");
-            eventCreationInProgress = false; // Reset flag on validation failure
+
         } else {
             // store event or proceed further
             storeEvent(event);
@@ -312,7 +282,6 @@ public class createEventController {
 
         alertSU.showAndWait();
 
-        eventCreationInProgress = false;
     }
 
     public void showError(String errorMessage) {
@@ -324,18 +293,6 @@ public class createEventController {
         alertError.showAndWait();
     }
 
-    public static String[] generateCoordinates() { // Generate coordinates for venue
-        Random random = new Random();
-
-        String[] coordination = new String[2];
-
-        for (int i = 0; i < coordination.length; i++) {
-            double coords = -500.0 + (1000.0 * random.nextDouble());
-            coordination[i] = String.format("%.2f", coords);
-        }
-
-        return coordination;
-    }
 
     public void storeEvent(ActionEvent event){
         String fileName = "src/main/java/Data/newevent.csv";
@@ -344,8 +301,7 @@ public class createEventController {
         try{
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(Title + "|" + Description + "|" + Venue + "|" + eventVenueLatitude.getText()
-                        + "|" + eventVenueLongitude.getText()+ "|" + date+ "|" +startTime+"|"+endTime);
+                writer.println(Title + "|" + Description + "|" + Venue + "|" + date+ "|" +startTime+"|"+endTime);
                 writer.flush();
                 showCreateEventSuccess();
                 createEventController createEventController = new createEventController();

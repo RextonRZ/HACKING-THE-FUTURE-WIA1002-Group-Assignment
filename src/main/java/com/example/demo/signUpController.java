@@ -282,8 +282,10 @@ public class signUpController {
             String hashedPW = hashPassword(passwordSU);
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
-                        + "," + latitude.getText() + "," + longitude.getText());
+                if (role.getValue() == "Young Student") {
+                    writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
+                            + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point
+                }
                 writer.flush();
                 showSignUpSuccess();
                 loginController loginController = new loginController();

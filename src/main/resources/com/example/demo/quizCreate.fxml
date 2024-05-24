@@ -146,7 +146,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </SplitMenuButton>
-      <Text fx:id="quizThemeErrorMessage" fill="#c51b1b" layoutX="403.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0" />
+      <Text fx:id="quizThemeErrorMessage" fill="#c51b1b" layoutX="403.0" layoutY="362.0" onKeyTyped="#quizThemeValidation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="520.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Content">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />

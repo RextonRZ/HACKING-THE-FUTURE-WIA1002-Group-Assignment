@@ -117,11 +117,11 @@ public class createQuizController {
     public void quizContentValidation() {
         content = quizContent.getText();
 
-        if (!isValidURL(content)) {
-            quizContentErrorMessage.setText("Please enter a valid Quiziz URL!");
-            contentValid = false;
-        } else if (content.isEmpty()) {
+        if (content.isEmpty()) {
             quizContentErrorMessage.setText("Please enter a Quiziz URL!");
+            contentValid = false;
+        } else if (!isValidURL(content)) {
+            quizContentErrorMessage.setText("Please enter a valid Quiziz URL!");
             contentValid = false;
         } else {
             quizContentErrorMessage.setText("");

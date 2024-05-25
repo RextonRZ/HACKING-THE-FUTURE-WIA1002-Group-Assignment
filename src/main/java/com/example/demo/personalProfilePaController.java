@@ -19,7 +19,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class personalProfileYSController implements Initializable {
+public class personalProfilePaController implements Initializable {
+
     @FXML
     private Stage stage;
 
@@ -30,7 +31,7 @@ public class personalProfileYSController implements Initializable {
     private Label email;
 
     @FXML
-    private Label point;
+    private Label booking;
 
     @FXML
     private Label role;
@@ -46,23 +47,22 @@ public class personalProfileYSController implements Initializable {
         String fileName = "src/main/java/Data/user.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line, usernameSet, latitude, longitude, roleSet, emailSet, pointSet;
+            String line, usernameSet, latitude, longitude, roleSet, emailSet, bookingSet;
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(",");
                 usernameSet = userData[0].trim();
                 emailSet = userData[1].trim();
+                roleSet = userData[3].trim();
                 latitude = userData[4].trim();
                 longitude = userData[5].trim();
-                roleSet = userData[3].trim();
-                pointSet = userData[6].trim();
+                bookingSet = userData[6].trim();
 
                 if (usernameSet.equals(usernamelogin)) {
                     role.setText(roleSet);
                     username.setText(usernameSet);
                     coords.setText(latitude + ", " + longitude);
                     email.setText(emailSet);
-                    point.setText(pointSet);
-
+                    booking.setText(bookingSet);
                 }
             }
 
@@ -136,5 +136,4 @@ public class personalProfileYSController implements Initializable {
 
         } else if (result.get() == ButtonType.CANCEL) ;
     }
-
 }

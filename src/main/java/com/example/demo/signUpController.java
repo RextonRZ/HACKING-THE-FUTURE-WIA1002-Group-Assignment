@@ -288,9 +288,11 @@ public class signUpController {
                 }else if (role.getValue() == "Educator") {
                     writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
                             + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point + ",0,0"); // First 0 is for event created, Second 0 is for quiz created
-                } else if (role.getValue() == "Parents") {
+                }else if (role.getValue() == "Parent") {
                     writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
                             + "," + latitude.getText() + "," + longitude.getText());
+                }else{
+                    showError("Role not found!");
                 }
                 writer.flush();
                 showSignUpSuccess();

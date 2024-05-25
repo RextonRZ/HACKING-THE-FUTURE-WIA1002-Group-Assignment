@@ -7,8 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -16,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class personalProfilePaController implements Initializable {
@@ -55,14 +52,17 @@ public class personalProfilePaController implements Initializable {
                 roleSet = userData[3].trim();
                 latitude = userData[4].trim();
                 longitude = userData[5].trim();
-                bookingSet = userData[6].trim();
 
                 if (usernameSet.equals(usernamelogin)) {
                     role.setText(roleSet);
                     username.setText(usernameSet);
                     coords.setText(latitude + ", " + longitude);
                     email.setText(emailSet);
-                    booking.setText(bookingSet);
+
+                    if(roleSet.equals("Educator")) {
+                        bookingSet = userData[6].trim();
+                        booking.setText(bookingSet);
+                    }
                 }
             }
 
@@ -73,7 +73,7 @@ public class personalProfilePaController implements Initializable {
 
     @FXML
     public void personalProfileStartUp(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfileYS.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfilePa.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
@@ -86,54 +86,34 @@ public class personalProfilePaController implements Initializable {
         homeController.homeStartUp(event);
     }
 
-    public void quizButton(ActionEvent event) throws Exception {
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+    public void quizButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
-    public void eventButton(ActionEvent event) throws Exception {
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+    public void eventButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
-    public void bookingButton(ActionEvent event) throws Exception {
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+    public void bookingButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
 
-    public void leaderBoardButton(ActionEvent event) throws Exception {
+    public void leaderBoardButton(ActionEvent event) throws Exception{
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    public void profileButton(ActionEvent event) throws Exception {
-        personalProfileYSController personalProfileYSController = new personalProfileYSController();
-        personalProfileYSController.personalProfileStartUp(event);
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
     }
 
-    public void requestButton(ActionEvent event) throws Exception {
-        friendRequestController friendRequestController = new friendRequestController();
-        friendRequestController.friendRequestStartUp(event);
-    }
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
 
-    public void friendButton(ActionEvent event) throws Exception {
-        friendListController friendListController = new friendListController();
-        friendListController.friendListStartUp(event);
-    }
-
-    public void logOutButton(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isEmpty()) {
-            System.out.println("Alert closed");
-
-        } else if (result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-
-        } else if (result.get() == ButtonType.CANCEL) ;
     }
 }

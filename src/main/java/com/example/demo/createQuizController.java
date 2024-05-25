@@ -161,56 +161,42 @@ public class createQuizController {
     }
 
     @FXML
-    public void homeButton(ActionEvent event) throws Exception {
+    public void homeButton(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
     }
 
-    @FXML
-    public void quizButton(ActionEvent event) throws Exception {
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+    public void quizButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
-    @FXML
-    public void eventButton(ActionEvent event) throws Exception {
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+    public void eventButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
-    @FXML
-    public void bookingButton(ActionEvent event) throws Exception {
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+    public void bookingButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
 
-    @FXML
-    public void leaderBoardButton(ActionEvent event) throws Exception {
+    public void leaderBoardButton(ActionEvent event) throws Exception{
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    @FXML
-    public void profileButton(ActionEvent event) throws Exception {
-        personalProfileYSController personalProfileYSController = new personalProfileYSController();
-        personalProfileYSController.personalProfileStartUp(event);
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
     }
 
-    @FXML
-    public void logOutButton(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure you want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
 
-        if (result.isEmpty()) {
-            System.out.println("Alert closed");
-        } else if (result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-        }
     }
 
 

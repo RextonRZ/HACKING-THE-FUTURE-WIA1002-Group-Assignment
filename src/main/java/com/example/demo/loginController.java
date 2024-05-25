@@ -25,8 +25,6 @@ public class loginController {
     @FXML
     private TextField passwordLogin;
 
-    public static String line, username, password, usernameID;
-
     @FXML
     public void loginStartUp(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -37,12 +35,6 @@ public class loginController {
 
     @FXML
     public void loginButton(ActionEvent event) throws Exception {
-        String userEmail = useremailLogin.getText().trim();
-
-        // Get the existing instance of personalProfileController
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("personalProfileYS.fxml"));
-        Parent root2 = loader.load();
-        personalProfileYSController profileController = loader.getController();
 
         if (authenticate()) {
             Parent root3 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
@@ -55,6 +47,7 @@ public class loginController {
         }
     }
 
+    public static String line, username, password, usernameID;
     private boolean authenticate(){
         String fileName = "src/main/java/Data/user.csv";
         usernameID = useremailLogin.getText();

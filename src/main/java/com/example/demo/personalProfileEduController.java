@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+public class personalProfileEduController implements Initializable {
 
-public class personalProfileYSController implements Initializable {
     @FXML
     private Stage stage;
 
@@ -30,7 +30,10 @@ public class personalProfileYSController implements Initializable {
     private Label email;
 
     @FXML
-    private Label point;
+    private Label event;
+
+    @FXML
+    private Label quiz;
 
     @FXML
     private Label role;
@@ -46,23 +49,24 @@ public class personalProfileYSController implements Initializable {
         String fileName = "src/main/java/Data/user.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line, usernameSet, latitude, longitude, roleSet, emailSet, pointSet;
+            String line, usernameSet, latitude, longitude, roleSet, emailSet, eventSet, quizSet;
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(",");
                 usernameSet = userData[0].trim();
                 emailSet = userData[1].trim();
+                roleSet = userData[3].trim();
                 latitude = userData[4].trim();
                 longitude = userData[5].trim();
-                roleSet = userData[3].trim();
-                pointSet = userData[6].trim();
+                eventSet = userData[6].trim();
+                quizSet = userData[7].trim();
 
                 if (usernameSet.equals(usernamelogin)) {
                     role.setText(roleSet);
                     username.setText(usernameSet);
                     coords.setText(latitude + ", " + longitude);
                     email.setText(emailSet);
-                    point.setText(pointSet);
-
+                    event.setText(eventSet);
+                    quiz.setText(quizSet);
                 }
             }
 
@@ -136,5 +140,4 @@ public class personalProfileYSController implements Initializable {
 
         } else if (result.get() == ButtonType.CANCEL) ;
     }
-
 }

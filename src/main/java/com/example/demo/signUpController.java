@@ -53,10 +53,6 @@ public class signUpController {
     @FXML
     protected TextField usernameSignUp;
 
-    public String getUsernameSignUp() {
-        return usernameSignUp.getText();
-    }
-
     @FXML
     private ChoiceBox role;
 
@@ -289,6 +285,12 @@ public class signUpController {
                 if (role.getValue() == "Young Student") {
                     writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
                             + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point
+                }else if (role.getValue() == "Educator") {
+                    writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
+                            + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point + ",0,0"); // First 0 is for event created, Second 0 is for quiz created
+                } else if (role.getValue() == "Parents") {
+                    writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
+                            + "," + latitude.getText() + "," + longitude.getText());
                 }
                 writer.flush();
                 showSignUpSuccess();

@@ -104,11 +104,6 @@ public class leaderBoardController {
                 return;
             }
         }
-        // If the student does not exist, add a new student
-        Student newStudent = new Student(username, points, LocalDateTime.now());
-        students.add(newStudent);
-        saveStudentsToCSV();
-        updateLeaderboard();
     }
 
     private void updateLeaderboard() {

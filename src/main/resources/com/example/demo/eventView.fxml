@@ -97,7 +97,7 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" prefHeight="453.0" prefWidth="1006.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="CENTER" prefHeight="1711.0" prefWidth="1300.0" style="-fx-background-color: fddde6;">
+            <VBox alignment="CENTER" prefHeight="1711.0" prefWidth="1540.0" style="-fx-background-color: fddde6;">
                <children>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Event">
                      <font>

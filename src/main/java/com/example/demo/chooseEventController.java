@@ -10,6 +10,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
+import java.util.Comparator;
+import java.util.List;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Collections;
+
+
 import java.util.Optional;
 
 public class chooseEventController {
@@ -20,21 +27,9 @@ public class chooseEventController {
     public void chooseEventStartUp(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("chooseEvent.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(scene);
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
     }
-
-    public void createButton(ActionEvent event) throws Exception {
-        createEventController createEventController = new createEventController();
-        createEventController.createEventStartUp(event);
-    }
-
-    public void viewButton(ActionEvent event) throws Exception {
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
-    }
-
-
 
     @FXML
     public void homeButton(ActionEvent event) throws Exception{
@@ -43,18 +38,28 @@ public class chooseEventController {
     }
 
     public void quizButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.quizButton(event);
+        attemptQuizController attemptQuizController = new attemptQuizController();
+        attemptQuizController.attemptQuizStartUp(event);
     }
 
     public void eventButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.eventButton(event);
+        viewEventController viewEventController = new viewEventController();
+        viewEventController.viewEventStartUp(event);
+    }
+
+    public void createButton(ActionEvent event) throws Exception{
+        createEventController createEventController = new createEventController();
+        createEventController.createEventStartUp(event);
+    }
+
+    public void viewButton(ActionEvent event) throws Exception{
+        viewEventController viewEventController = new viewEventController();
+        viewEventController.viewEventStartUp(event);
     }
 
     public void bookingButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.bookingButton(event);
+        bookingController bookingController = new bookingController();
+        bookingController.bookingStartUp(event);
     }
 
     public void leaderBoardButton(ActionEvent event) throws Exception{
@@ -63,14 +68,24 @@ public class chooseEventController {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.profileButton(event);
+        personalProfileEduController personalProfileEduController = new personalProfileEduController();
+        personalProfileEduController.personalProfileStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.logOutButton(event);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log Out");
+        alert.setContentText("Are you sure want to log out?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.isEmpty()){
+            System.out.println("Alert closed");
+
+        } else if(result.get() == ButtonType.OK) {
+            loginController loginController = new loginController();
+            loginController.loginStartUp(event);
+
+        } else if (result.get() == ButtonType.CANCEL);
 
     }
-
 }

@@ -68,8 +68,8 @@ public class chooseEventController {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileEduController personalProfileEduController = new personalProfileEduController();
+        personalProfileEduController.personalProfileStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{

@@ -97,19 +97,35 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" prefHeight="453.0" prefWidth="1006.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="CENTER" prefHeight="1711.0" prefWidth="1540.0" style="-fx-background-color: fddde6;">
+            <VBox alignment="CENTER" prefHeight="1111.0" prefWidth="1540.0" style="-fx-background-color: fddde6;">
                <children>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Event">
                      <font>
-                        <Font name="Showcard Gothic" size="30.0" />
+                        <Font name="Showcard Gothic" size="41.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="20.0" top="30.0" />
+                        <Insets bottom="80.0" top="30.0" />
+                     </VBox.margin>
+                  </Text>
+                  <ImageView fitHeight="76.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Downloads/Live.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="-55.0" right="800.0" top="-40.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Events">
+                     <font>
+                        <Font name="Arial Narrow Bold" size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="640.0" />
                      </VBox.margin>
                   </Text>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
+                        <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
@@ -164,9 +180,25 @@
                         </Button>
                      </children>
                   </VBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events">
+                     <font>
+                        <Font name="Arial Narrow Bold" size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="-140.0" right="580.0" top="120.0" />
+                     </VBox.margin>
+                  </Text>
+                  <ImageView fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Downloads/Upcoming.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets right="830.0" top="100.0" />
+                     </VBox.margin>
+                  </ImageView>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                        <Text fx:id="upEventTitle1" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
@@ -174,7 +206,7 @@
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                        <TextField fx:id="upEventDate1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -182,7 +214,7 @@
                               <Insets left="60.0" right="750.0" top="-20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                        <TextField fx:id="upEventTimeStart1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -190,7 +222,7 @@
                               <Insets left="150.0" right="650.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                        <TextField fx:id="upEventTimeEnd1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -198,7 +230,7 @@
                               <Insets left="250.0" right="550.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
+                        <TextField fx:id="upEventVenue1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -206,7 +238,64 @@
                               <Insets left="350.0" right="450.0" top="-24.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                        <TextArea fx:id="upEventDescription1" editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="10.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="30.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="upEventTitle2" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="upEventDate2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="60.0" right="750.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="upEventTimeStart2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="150.0" right="650.0" top="-23.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="upEventTimeEnd2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="250.0" right="550.0" top="-23.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="upEventVenue2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="350.0" right="450.0" top="-24.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="upEventDescription2" editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
                            <VBox.margin>
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
@@ -223,7 +312,7 @@
                   </VBox>
                   <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                        <Text fx:id="upEventTitle3" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
@@ -231,7 +320,7 @@
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                        <TextField fx:id="upEventDate3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -239,7 +328,7 @@
                               <Insets left="60.0" right="750.0" top="-20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                        <TextField fx:id="upEventTimeStart3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -247,7 +336,7 @@
                               <Insets left="150.0" right="650.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                        <TextField fx:id="upEventTimeEnd3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -255,7 +344,7 @@
                               <Insets left="250.0" right="550.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
+                        <TextField fx:id="upEventVenue3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -263,7 +352,7 @@
                               <Insets left="350.0" right="450.0" top="-24.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                        <TextArea fx:id="upEventDescription3" editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
                            <VBox.margin>
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
@@ -275,406 +364,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
-                           <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="10.0" />
+                        <Insets bottom="50.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                </children>

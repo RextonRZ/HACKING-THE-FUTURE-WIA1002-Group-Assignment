@@ -21,11 +21,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Optional;
 
 public class bookingController {
     @FXML
     private Stage stage;
+    private HashSet<Object> registeredEventDates;
+
 
     @FXML
     public void bookingStartUp(ActionEvent event) throws Exception{
@@ -105,11 +108,21 @@ public class bookingController {
                 BookingDestination destination = new BookingDestination(name, x, y);
                 bookingDestinations.add(destination);
 
-                ObservableList<String> List = FXCollections.observableArrayList(name);
+                System.out.println(bookingDestinations.toString());
 
-                destinationChoiceBox.setItems(List);
-                destinationChoiceBox.setValue("");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void loadRegisteredEventDates() {
+        registeredEventDates = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/Data/RegisteredEvents.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                LocalDate eventDate = LocalDate.parse(line.trim());
+                registeredEventDates.add(eventDate);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,7 +150,10 @@ public class bookingController {
         timeSlotsTextArea.clear();
         LocalDate currentDate = LocalDate.now();
         for (int i = 0; i < 7; i++) {
-            timeSlotsTextArea.appendText("[" + (i + 1) + "] " + currentDate.plusDays(i) + "\n");
+            LocalDate date = currentDate.plusDays(i);
+            if (!registeredEventDates.contains(date)) {
+                timeSlotsTextArea.appendText("[" + (i + 1) + "] " + date + "\n");
+            }
         }
     }
 

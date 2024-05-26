@@ -1,19 +1,22 @@
 package com.example.demo;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class leaderBoardController {
     @FXML
@@ -52,23 +55,12 @@ public class leaderBoardController {
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    public void profileButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.profileButton(event);
-    }
-
-    public void logOutButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.logOutButton(event);
-
-    }
-
     @FXML
     private ListView<String> leaderboardListView;
 
     private List<Student> students;
 
-    private static final String CSV_FILE = "src/main/java/Data/students.csv";
+    private static final String CSV_FILE = "students.csv";
 
     @FXML
     public void initialize() {
@@ -127,5 +119,15 @@ public class leaderBoardController {
         }
     }
 
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
+    }
+
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
+
+    }
 
 }

@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import java.util.Optional;
+import java.sql.PreparedStatement;
+import javafx.event.ActionEvent;
+
 
 public class createEventController {
     @FXML
@@ -78,6 +81,17 @@ public class createEventController {
         stage.setScene(homeScene);
     }
 
+    public void restartEventCreate() throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("eventCreate.fxml"));
+
+        // Get the current stage
+        Stage stage = (Stage) eventTitle.getScene().getWindow(); // Assuming eventTitle is part of the old scene
+
+        // Set the scene to the new content, maintaining the previous stage size
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
+    }
+
     public void eventDescriptionValidation() throws Exception {
         Description = eventDescription.getText();
         String[] words = Description.split("\\s+");
@@ -94,7 +108,7 @@ public class createEventController {
         }
     }
 
-    public void eventDateValidation(ActionEvent event) {
+    public void eventDateValidation() {
         String dateString = eventDate.getEditor().getText();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -209,9 +223,13 @@ public class createEventController {
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
-        Title = eventTitle.getText();
-        Description = eventDescription.getText();
-        Venue = eventVenue.getText();
+
+        eventTitleValidation();
+        eventDescriptionValidation();
+        eventVenueValidation();
+        eventDateValidation();
+        eventStartTimeValidation();
+        eventEndTimeValidation();
 
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
@@ -223,8 +241,7 @@ public class createEventController {
             if (endTime == null) eventEndTimeErrorMessage.setText("Event end time should not be empty");
 
         } else {
-            // store event or proceed further
-            storeEvent(event);
+            addEventToDatabase(Title, Description, Venue, date, startTime, endTime);
         }
     }
 
@@ -236,34 +253,44 @@ public class createEventController {
         stage.setScene(homeScene);
     }
 
-    public void quizButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.quizButton(event);
+    public void quizButton(ActionEvent event) throws Exception {
+        attemptQuizController attemptQuizController = new attemptQuizController();
+        attemptQuizController.attemptQuizStartUp(event);
     }
 
-    public void eventButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.eventButton(event);
+    public void eventButton(ActionEvent event) throws Exception {
+        viewEventController viewEventController = new viewEventController();
+        viewEventController.viewEventStartUp(event);
     }
 
-    public void bookingButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.bookingButton(event);
+    public void bookingButton(ActionEvent event) throws Exception {
+        bookingController bookingController = new bookingController();
+        bookingController.bookingStartUp(event);
     }
-
-    public void leaderBoardButton(ActionEvent event) throws Exception{
+    public void leaderBoardButton(ActionEvent event) throws Exception {
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    public void profileButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.profileButton(event);
+    public void profileButton(ActionEvent event) throws Exception {
+        personalProfileEduController personalProfileEduController = new personalProfileEduController();
+        personalProfileEduController.personalProfileStartUp(event);
     }
 
-    public void logOutButton(ActionEvent event) throws Exception{
-        homeController homeController = new homeController();
-        homeController.logOutButton(event);
+    public void logOutButton(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log Out");
+        alert.setContentText("Are you sure want to log out?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isEmpty()) {
+            System.out.println("Alert closed");
+
+        } else if (result.get() == ButtonType.OK) {
+            loginController loginController = new loginController();
+            loginController.loginStartUp(event);
+
+        } else if (result.get() == ButtonType.CANCEL) ;
 
     }
 
@@ -274,6 +301,13 @@ public class createEventController {
         alertSU.setContentText("Event " + Title + " successfully created.");
 
         alertSU.showAndWait();
+
+        try {
+            restartEventCreate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -287,25 +321,32 @@ public class createEventController {
     }
 
 
-    public void storeEvent(ActionEvent event){
-        String fileName = "src/main/java/Data/newevent.csv";
+    public void addEventToDatabase(String eventTitle, String eventDescription, String eventVenue, LocalDate eventDate, LocalTime eventStartTime, LocalTime eventEndTime) throws ClassNotFoundException {
+        // Load the MySQL JDBC driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
+        String DB_URL = "jdbc:mysql://localhost:3306/eventhtf";
+        String USERNAME = "root";
+        String PASSWORD = "HackingTheFuture!5"; // Replace with your actual password
 
-        try{
+        String insertSQL = "INSERT INTO events (title, description, venue, date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)";
 
-            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(Title + "|" + Description + "|" + Venue + "|" + date+ "|" +startTime+"|"+endTime);
-                writer.flush();
-                showCreateEventSuccess();
-                createEventController createEventController = new createEventController();
-                createEventController.createEventStartUp(event);
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
 
-            }catch (IOException e){
-                showError("Error appending new event data to file: " + e.getMessage());
-            }
-        }catch (Exception e){
+            pstmt.setString(1, eventTitle);
+            pstmt.setString(2, eventDescription);
+            pstmt.setString(3, eventVenue);
+            pstmt.setDate(4, java.sql.Date.valueOf(eventDate));
+            pstmt.setTime(5, java.sql.Time.valueOf(eventStartTime));
+            pstmt.setTime(6, java.sql.Time.valueOf(eventEndTime));
+
+            pstmt.executeUpdate();
+
+            showCreateEventSuccess();
+        } catch (SQLException e) {
             showError("Error storing new event data: " + e.getMessage());
         }
-
     }
+
 }

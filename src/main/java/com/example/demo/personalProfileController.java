@@ -15,6 +15,8 @@ import java.util.Optional;
 public class personalProfileController {
     @FXML
     private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     public void personalProfileStartUp(ActionEvent event) throws Exception {
@@ -61,7 +63,7 @@ public class personalProfileController {
     }
 
     public void friendButton(ActionEvent event) throws Exception {
-        friendListController friendListController = new friendListController();
+        FriendListController friendListController = new FriendListController();
         friendListController.friendListStartUp(event);
     }
 
@@ -80,6 +82,26 @@ public class personalProfileController {
 
         } else if (result.get() == ButtonType.CANCEL) ;
 
+    }
+    @FXML
+    public void handleFriendButtonAction(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("friendList.fxml"));
+        root = loader.load();
+
+        FriendListController controller = loader.getController();
+        // Pass the current username to the friend list controller
+        String currentUsername = getCurrentUsername(); // Implement this method
+        controller.loadFriendList(currentUsername);
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private String getCurrentUsername() {
+        // Implement this method to get the current logged-in username
+        return "currentUsername"; // Placeholder
     }
 
 

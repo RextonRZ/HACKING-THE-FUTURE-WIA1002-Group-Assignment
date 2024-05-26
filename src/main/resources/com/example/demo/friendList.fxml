@@ -12,8 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1266.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.friendListController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1266.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.FriendListController">
    <top>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
          <children>
@@ -109,14 +111,11 @@
                   <Insets left="80.0" right="100.0" top="40.0" />
                </VBox.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="40.0" top="20.0" />
-                     </VBox.margin>
-                  </Text>
+                  <TableView fx:id="friendListTable" prefHeight="200.0" prefWidth="800.0">
+                     <columns>
+                        <TableColumn text="Username" />
+                     </columns>
+                  </TableView>
                </children>
             </VBox>
          </children>

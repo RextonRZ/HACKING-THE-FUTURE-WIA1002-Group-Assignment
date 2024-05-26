@@ -72,6 +72,7 @@ public class loginController {
                 String hashedInputPW = signUpController.hashPassword(passwordLogin.getText().trim());
 
                 if (username.equals(useremailLogin.getText().trim()) && password.equals(hashedInputPW)) {
+
                     return true;
                 }
             }

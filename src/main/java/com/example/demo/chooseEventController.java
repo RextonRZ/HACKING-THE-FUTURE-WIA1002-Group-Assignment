@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.util.Optional;
 
 public class chooseEventController {
@@ -61,8 +60,8 @@ public class chooseEventController {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+        personalProfileEduController personalProfileEduController = new personalProfileEduController();
+        personalProfileEduController.personalProfileStartUp(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{
@@ -79,23 +78,6 @@ public class chooseEventController {
             loginController.loginStartUp(event);
 
         } else if (result.get() == ButtonType.CANCEL);
-
-    }
-
-    @FXML
-    public void loginButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
-    }
-
-    @FXML
-    public void cAAButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(signUpScene);
 
     }
 }

@@ -2,34 +2,26 @@ package com.example.demo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.util.Random;
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 
 public class loginController {
     @FXML
     private Stage stage;
     @FXML
-    private TextField useremailLogin;
+    TextField useremailLogin;
     @FXML
     private TextField passwordLogin;
 
@@ -42,27 +34,27 @@ public class loginController {
     }
 
     @FXML
-    public void loginButton(ActionEvent event) throws Exception{
+    public void loginButton(ActionEvent event) throws Exception {
 
-        if (authenticate()){
-            Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        if (authenticate()) {
+            Parent root3 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+            Scene homeScene = new Scene(root3, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setScene(homeScene);
-        }else{
+
+        } else {
             displayLoginError();
         }
-
     }
 
+    public static String line, username, password, usernameID;
     private boolean authenticate(){
         String fileName = "src/main/java/Data/user.csv";
-
+        usernameID = useremailLogin.getText();
         try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
-            String line, username, password;
             while ((line = reader.readLine()) != null){
                 String[] userData = line.split(",");
-                if (useremailLogin.getText().endsWith(".com")){
+                if (usernameID.endsWith(".com")){
                     username = userData[1].trim();
                 }else{
                     username = userData[0].trim();
@@ -71,8 +63,7 @@ public class loginController {
 
                 String hashedInputPW = signUpController.hashPassword(passwordLogin.getText().trim());
 
-                if (username.equals(useremailLogin.getText().trim()) && password.equals(hashedInputPW)) {
-
+                if (username.equals(usernameID.trim()) && password.equals(hashedInputPW)) {
                     return true;
                 }
             }

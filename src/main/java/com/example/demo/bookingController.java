@@ -1,11 +1,12 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -43,27 +44,44 @@ public class bookingController {
     }
 
     public void quizButton(ActionEvent event) throws Exception{
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
     public void eventButton(ActionEvent event) throws Exception{
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
     public void bookingButton(ActionEvent event) throws Exception{
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
-       @FXML
-    private ChoiceBox<String> destinationChoiceBox;
+
+    public void leaderBoardButton(ActionEvent event) throws Exception{
+        leaderBoardController leaderBoardController = new leaderBoardController();
+        leaderBoardController.leaderBoardStartUp(event);
+    }
+
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
+    }
+
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
+
+    }
+
+    @FXML
+    private ChoiceBox destinationChoiceBox;
 
     @FXML
     private TextArea timeSlotsTextArea;
 
     @FXML
-    private TextField timeSlotTextField;
+    private ChoiceBox timeSlotBooking;
 
     private ArrayList<BookingDestination> bookingDestinations;
 
@@ -71,11 +89,12 @@ public class bookingController {
     public void initialize() {
         loadBookingDestinations();
         displayBookingDestinations();
+
     }
 
     private void loadBookingDestinations() {
         bookingDestinations = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("BookingDestination.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(" BookingDestination.txt "))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String name = line;
@@ -85,6 +104,12 @@ public class bookingController {
                 double y = Double.parseDouble(parts[1].trim());
                 BookingDestination destination = new BookingDestination(name, x, y);
                 bookingDestinations.add(destination);
+
+                ObservableList<String> List = FXCollections.observableArrayList(name);
+
+                destinationChoiceBox.setItems(List);
+                destinationChoiceBox.setValue("");
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -123,7 +148,7 @@ public class bookingController {
             showAlert("Error", "Please select a destination.");
             return;
         }
-        String timeSlot = timeSlotTextField.getText();
+        String timeSlot = (String) timeSlotBooking.getValue();
         if (timeSlot.isBlank()) {
             showAlert("Error", "Please enter a time slot.");
             return;
@@ -138,7 +163,7 @@ public class bookingController {
     public void cancelBooking() {
         destinationChoiceBox.getSelectionModel().clearSelection();
         timeSlotsTextArea.clear();
-        timeSlotTextField.clear();
+        timeSlotBooking.getSelectionModel().clearSelection();
     }
 
     private void showAlert(String title, String message) {
@@ -148,47 +173,5 @@ public class bookingController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    public void leaderBoardButton(ActionEvent event) throws Exception{
-        leaderBoardController leaderBoardController = new leaderBoardController();
-        leaderBoardController.leaderBoardStartUp(event);
-    }
 
-    public void profileButton(ActionEvent event) throws Exception{
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
-    }
-
-    public void logOutButton(ActionEvent event) throws Exception{
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if(result.isEmpty()){
-            System.out.println("Alert closed");
-
-        } else if(result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-
-        } else if (result.get() == ButtonType.CANCEL);
-
-    }
-
-    @FXML
-    public void loginButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
-    }
-
-    @FXML
-    public void cAAButton(ActionEvent event) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("signUp.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene signUpScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(signUpScene);
-
-    }
 }

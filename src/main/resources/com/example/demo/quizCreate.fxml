@@ -21,7 +21,7 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@logowithbg.png" />
+                  <Image url="@../../../logowithbg.png" />
                </image>
             </ImageView>
             <Pane prefHeight="64.0" prefWidth="589.0">
@@ -141,7 +141,7 @@
             <Insets right="470.0" top="30.0" />
          </VBox.margin>
       </Text>
-      <SplitMenuButton fx:id="quizTheme" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onKeyTyped="#quizThemeValidation" prefHeight="25.0" prefWidth="520.0" text="Select Theme">
+      <SplitMenuButton fx:id="quizTheme" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quizThemeValidation" onKeyTyped="#quizThemeValidation" prefHeight="25.0" prefWidth="520.0" text="Select Theme">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

@@ -15,6 +15,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.net.URL;
 import java.net.MalformedURLException;
@@ -68,6 +74,17 @@ public class createQuizController {
     public void createQuizStartUp(ActionEvent event) throws Exception {
         Parent root2 = FXMLLoader.load(getClass().getResource("quizCreate.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
+    }
+
+    public void restartQuizCreate() throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("quizCreate.fxml"));
+
+        // Get the current stage
+        Stage stage = (Stage) quizTitle.getScene().getWindow(); // Assuming eventTitle is part of the old scene
+
+        // Set the scene to the new content, maintaining the previous stage size
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
     }
@@ -156,61 +173,47 @@ public class createQuizController {
             if (theme.isBlank()) quizThemeErrorMessage.setText("Quiz Theme should not be empty");
             if (content.isBlank()) quizContentErrorMessage.setText("Please enter a Quiziz URL !");
         } else {
-            storeQuiz(event);
+            addQuizToDatabase(title, description, theme, content);
         }
     }
 
     @FXML
-    public void homeButton(ActionEvent event) throws Exception {
+    public void homeButton(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
     }
 
-    @FXML
-    public void quizButton(ActionEvent event) throws Exception {
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+    public void quizButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
-    @FXML
-    public void eventButton(ActionEvent event) throws Exception {
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+    public void eventButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
-    @FXML
-    public void bookingButton(ActionEvent event) throws Exception {
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+    public void bookingButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
 
-    @FXML
-    public void leaderBoardButton(ActionEvent event) throws Exception {
+    public void leaderBoardButton(ActionEvent event) throws Exception{
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    @FXML
-    public void profileButton(ActionEvent event) throws Exception {
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
     }
 
-    @FXML
-    public void logOutButton(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure you want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
 
-        if (result.isEmpty()) {
-            System.out.println("Alert closed");
-        } else if (result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-        }
     }
 
 
@@ -220,6 +223,12 @@ public class createQuizController {
         alertSU.setHeaderText(null);
         alertSU.setContentText("Successfully created Quiz '" + title +"'");
         alertSU.showAndWait();
+
+        try {
+            restartQuizCreate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void showError(String errorMessage) {
@@ -230,25 +239,30 @@ public class createQuizController {
         alertError.showAndWait();
     }
 
-    public void storeQuiz(ActionEvent event){
-        String fileName = "src/main/java/Data/newquiz.csv";
 
+    public void addQuizToDatabase(String quizTitle, String quizDescription, String quizTheme,  String quizContent) throws ClassNotFoundException {
+        // Load the MySQL JDBC driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try{
+        String DB_URL = "jdbc:mysql://localhost:3306/eventhtf";
+        String USERNAME = "root";
+        String PASSWORD = "HackingTheFuture!5"; // Replace with your actual password
 
-            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(title + "|" + description + "|" + theme + "|" + content);
-                writer.flush();
-                showCreateQuizSuccess();
-                createQuizController createQuizController = new createQuizController();
-                createQuizController.createQuizStartUp(event);
+        String insertSQL = "INSERT INTO quiz (title, description, theme, content) VALUES (?, ?, ?, ?)";
 
-            }catch (IOException e){
-                showError("Error appending new quiz data to file: " + e.getMessage());
-            }
-        }catch (Exception e){
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+
+            pstmt.setString(1, quizTitle);
+            pstmt.setString(2, quizDescription);
+            pstmt.setString(3, quizTheme);
+            pstmt.setString(4, quizContent);
+
+            pstmt.executeUpdate();
+
+            showCreateQuizSuccess();
+        } catch (SQLException e) {
             showError("Error storing new quiz data: " + e.getMessage());
         }
-
     }
 }

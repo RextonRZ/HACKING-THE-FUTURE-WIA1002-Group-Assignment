@@ -51,7 +51,7 @@ public class signUpController {
     private Text usernameErrorMessage;
 
     @FXML
-    private TextField usernameSignUp;
+    protected TextField usernameSignUp;
 
     @FXML
     private ChoiceBox role;
@@ -282,8 +282,18 @@ public class signUpController {
             String hashedPW = hashPassword(passwordSU);
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
-                        + "," + latitude.getText() + "," + longitude.getText());
+                if (role.getValue() == "Young Student") {
+                    writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
+                            + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point
+                }else if (role.getValue() == "Educator") {
+                    writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
+                            + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point + ",0,0"); // First 0 is for event created, Second 0 is for quiz created
+                }else if (role.getValue() == "Parent") {
+                    writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
+                            + "," + latitude.getText() + "," + longitude.getText());
+                }else{
+                    showError("Role not found!");
+                }
                 writer.flush();
                 showSignUpSuccess();
                 loginController loginController = new loginController();
@@ -343,7 +353,7 @@ public class signUpController {
             String hexa = Integer.toHexString(0xff & b);
             if (hexa.length() == 1){
                 hexString.append('0');
-            hexString.append(hexa);
+                hexString.append(hexa);
             }
         }
         return hexString.toString();

@@ -21,7 +21,7 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@logowithbg.png" />
+                  <Image url="@../../../logowithbg.png" />
                </image>
             </ImageView>
             <Pane prefHeight="71.0" prefWidth="587.0">
@@ -167,7 +167,7 @@
             <Insets right="488.0" top="20.0" />
          </VBox.margin>
       </Text>
-      <DatePicker fx:id="eventDate" editable="false" onAction="#eventDateValidation" onKeyTyped="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
+      <DatePicker fx:id="eventDate" editable="false" onAction="#eventDateValidation" prefHeight="31.0" prefWidth="521.0" promptText="DD/MM/YYYY">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

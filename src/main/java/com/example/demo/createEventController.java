@@ -108,7 +108,7 @@ public class createEventController {
         }
     }
 
-    public void eventDateValidation() {
+    public void eventDateValidation(ActionEvent event) {
         String dateString = eventDate.getEditor().getText();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -223,13 +223,9 @@ public class createEventController {
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
-
-        eventTitleValidation();
-        eventDescriptionValidation();
-        eventVenueValidation();
-        eventDateValidation();
-        eventStartTimeValidation();
-        eventEndTimeValidation();
+        Title = eventTitle.getText();
+        Description = eventDescription.getText();
+        Venue = eventVenue.getText();
 
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
@@ -253,44 +249,34 @@ public class createEventController {
         stage.setScene(homeScene);
     }
 
-    public void quizButton(ActionEvent event) throws Exception {
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+    public void quizButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
-    public void eventButton(ActionEvent event) throws Exception {
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+    public void eventButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
-    public void bookingButton(ActionEvent event) throws Exception {
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+    public void bookingButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
-    public void leaderBoardButton(ActionEvent event) throws Exception {
+
+    public void leaderBoardButton(ActionEvent event) throws Exception{
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    public void profileButton(ActionEvent event) throws Exception {
-        personalProfileController personalProfileController = new personalProfileController();
-        personalProfileController.personalProfileStartUp(event);
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
     }
 
-    public void logOutButton(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isEmpty()) {
-            System.out.println("Alert closed");
-
-        } else if (result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-
-        } else if (result.get() == ButtonType.CANCEL) ;
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
 
     }
 

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -33,10 +34,6 @@ public class bookingController implements Initializable {
 
     @FXML
     private TextArea timeSlotsTextArea;
-
-    @FXML
-    private TextArea choice;
-
 
     @FXML
     private ChoiceBox timeSlotBooking;
@@ -85,26 +82,37 @@ public class bookingController implements Initializable {
 
         for (BookingDestination destination : bookingDestinations) {
             destinationChoiceBox.getItems().add(destination.getName() + "\n" + String.format("%.2f km away", destination.getDistance()));
+            destinationChoiceBox.setValue("");
         }
 
-        if (destinationChoiceBox.getValue()!=null){
-            timeSlotsTextArea.setText("haha");
-            destinationSelected();
+    }
+
+    public void destinationSelected(MouseEvent event) {
+        timeSlotsTextArea.clear();
+        timeSlotBooking.getItems().clear();
+        timeSlotBooking.getSelectionModel().clearSelection();
+
+        ArrayList<String> timeslot = new ArrayList<>();
+
+        if(destinationChoiceBox.getValue()!=null) {
+            LocalDate currentDate = LocalDate.now();
+            for (int i = 0; i < 7; i++) {
+                String n = "[" + (i + 1) + "] " + currentDate.plusDays(i) + "\n";
+                timeslot.add(n);
+            }
         }
+
+        for(String slot: timeslot){
+            timeSlotsTextArea.appendText(slot);
+            timeSlotBooking.getItems().add(slot);
+        }
+
+
+
     }
 
     @FXML
-    public void destinationSelected() {
-        destinationChoiceBox.getValue();
-
-        LocalDate currentDate = LocalDate.now();
-        for (int i = 0; i < 7; i++) {
-            timeSlotsTextArea.setText("[" + (i + 1) + "] " + currentDate.plusDays(i) + "\n");
-        }
-    }
-
-    @FXML
-    public void bookDestination() {
+    public void bookDestination(ActionEvent event) {
         int selectedIndex = destinationChoiceBox.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1) {
             showAlert("Error", "Please select a destination.");
@@ -117,16 +125,10 @@ public class bookingController implements Initializable {
         }
 
         // Additional logic to check for event clashes can be implemented here
+        showAlert("Success", "Booking confirmed for: \n\n" + destinationChoiceBox.getValue() + " \n " + timeSlot);
 
-        showAlert("Success", "Booking confirmed for: " + destinationChoiceBox.getValue() + " on " + timeSlot);
     }
 
-    @FXML
-    public void cancelBooking() {
-        destinationChoiceBox.getSelectionModel().clearSelection();
-        timeSlotsTextArea.clear();
-        timeSlotBooking.getSelectionModel().clearSelection();
-    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

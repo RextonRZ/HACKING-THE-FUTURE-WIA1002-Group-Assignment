@@ -12,3 +12,20 @@
 .exit:hover {
   -fx-border-color: #FE8EAC;
 }
+
+.textarea {
+    -fx-background-color: rgba(53,89,119,0.4);
+}
+
+.textarea .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.textarea .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.textarea .scroll-pane .content{
+    -fx-background-color: transparent;
+}

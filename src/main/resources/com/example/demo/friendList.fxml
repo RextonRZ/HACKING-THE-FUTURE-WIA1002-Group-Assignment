@@ -117,6 +117,11 @@
                         <Insets left="40.0" top="20.0" />
                      </VBox.margin>
                   </Text>
+                  <Button mnemonicParsing="false" text="View Profile">
+                     <VBox.margin>
+                        <Insets left="600.0" top="-23.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </children>

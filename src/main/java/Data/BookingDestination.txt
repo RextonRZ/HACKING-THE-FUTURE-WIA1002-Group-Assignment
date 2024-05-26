@@ -15,4 +15,10 @@ Biomedical Museum
 Telegraph Museum
 7.02, -359.28
 Penang Science Cluster
+<<<<<<< HEAD
 21.33, -0.59
+=======
+21.33, -0.59
+Telegraph Museum
+7.02, -359.28
+>>>>>>> 2a97190b5ff2d4ab64dc75123b86e03f6b78d25b

@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import java.util.Optional;
+import java.sql.PreparedStatement;
+import javafx.event.ActionEvent;
+
 
 public class createEventController {
     @FXML
@@ -74,6 +77,17 @@ public class createEventController {
     public void createEventStartUp(ActionEvent event) throws Exception {
         Parent root2 = FXMLLoader.load(getClass().getResource("eventCreate.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
+    }
+
+    public void restartEventCreate() throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("eventCreate.fxml"));
+
+        // Get the current stage
+        Stage stage = (Stage) eventTitle.getScene().getWindow(); // Assuming eventTitle is part of the old scene
+
+        // Set the scene to the new content, maintaining the previous stage size
         Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(homeScene);
     }
@@ -227,8 +241,7 @@ public class createEventController {
             if (endTime == null) eventEndTimeErrorMessage.setText("Event end time should not be empty");
 
         } else {
-            // store event or proceed further
-            storeEvent(event);
+            addEventToDatabase(Title, Description, Venue, date, startTime, endTime);
         }
     }
 
@@ -289,6 +302,13 @@ public class createEventController {
 
         alertSU.showAndWait();
 
+        try {
+            restartEventCreate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void showError(String errorMessage) {
@@ -301,25 +321,32 @@ public class createEventController {
     }
 
 
-    public void storeEvent(ActionEvent event){
-        String fileName = "src/main/java/Data/newevent.csv";
+    public void addEventToDatabase(String eventTitle, String eventDescription, String eventVenue, LocalDate eventDate, LocalTime eventStartTime, LocalTime eventEndTime) throws ClassNotFoundException {
+        // Load the MySQL JDBC driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
+        String DB_URL = "jdbc:mysql://localhost:3306/eventhtf";
+        String USERNAME = "root";
+        String PASSWORD = "HackingTheFuture!5"; // Replace with your actual password
 
-        try{
+        String insertSQL = "INSERT INTO events (title, description, venue, date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)";
 
-            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.println(Title + "|" + Description + "|" + Venue + "|" + date+ "|" +startTime+"|"+endTime);
-                writer.flush();
-                showCreateEventSuccess();
-                createEventController createEventController = new createEventController();
-                createEventController.createEventStartUp(event);
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
 
-            }catch (IOException e){
-                showError("Error appending new event data to file: " + e.getMessage());
-            }
-        }catch (Exception e){
+            pstmt.setString(1, eventTitle);
+            pstmt.setString(2, eventDescription);
+            pstmt.setString(3, eventVenue);
+            pstmt.setDate(4, java.sql.Date.valueOf(eventDate));
+            pstmt.setTime(5, java.sql.Time.valueOf(eventStartTime));
+            pstmt.setTime(6, java.sql.Time.valueOf(eventEndTime));
+
+            pstmt.executeUpdate();
+
+            showCreateEventSuccess();
+        } catch (SQLException e) {
             showError("Error storing new event data: " + e.getMessage());
         }
-
     }
+
 }

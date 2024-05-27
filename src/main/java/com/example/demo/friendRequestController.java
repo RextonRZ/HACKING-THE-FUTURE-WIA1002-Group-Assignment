@@ -10,7 +10,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import com.example.demo.FriendListViewController;
+
 
 public class friendRequestController {
     @FXML
@@ -58,7 +65,7 @@ public class friendRequestController {
     }
 
     public void friendButton(ActionEvent event) throws Exception {
-        friendListController friendListController = new friendListController();
+        FriendListViewController friendListController = new FriendListViewController();
         friendListController.friendListStartUp(event);
     }
 
@@ -66,5 +73,22 @@ public class friendRequestController {
         homeController homeController = new homeController();
         homeController.logOutButton(event);
 
+    }
+    public List<String> viewFriendList(String username) throws IOException {
+        String filename = username + "_friendList.csv"; // Construct the filename from the username
+        List<String> friends = new ArrayList<>(); // List to store friend usernames
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Assuming each line in the file is a friend's username
+                friends.add(line.trim()); // Add friend username to the list, trimming any whitespace
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading from file: " + e.getMessage());
+            throw e; // Re-throw to allow calling method to handle or report the error
+        }
+
+        return friends; // Return the list of friends
     }
 }

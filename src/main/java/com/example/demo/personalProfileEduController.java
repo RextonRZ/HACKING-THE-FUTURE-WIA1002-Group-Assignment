@@ -63,7 +63,7 @@ public class personalProfileEduController implements Initializable {
                 if (usernameSet.equals(usernamelogin)) {
                     role.setText(roleSet);
                     username.setText(usernameSet);
-                    coords.setText(latitude + ", " + longitude);
+                    coords.setText("(" + latitude + ", " + longitude + ")");
                     email.setText(emailSet);
 
                     if(roleSet.equals("Educator")) {

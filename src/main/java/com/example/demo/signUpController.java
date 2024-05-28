@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import javafx.collections.FXCollections;
@@ -276,6 +277,14 @@ public class signUpController {
         }else if(!emailErrorMessage.getText().isEmpty()){
             showError(emailErrorMessage.getText());
             return;
+        }
+
+        if ("Young Student".equals(role)) {
+            try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/java/Data/students.csv",true))) {
+                writer.println(usernameSU + "," + 0 + "," + LocalDateTime.now() + "\n");
+            } catch (IOException e) {
+                showError("Error storing student data: " + e.getMessage());
+            }
         }
 
         try{

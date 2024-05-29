@@ -111,7 +111,7 @@
                   <Insets left="50.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <VBox prefHeight="200.0" prefWidth="488.0">
+            <VBox prefWidth="488.0">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
@@ -190,6 +190,14 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </Text>
+            <Button mnemonicParsing="false" onAction="#refresh" text="Refresh">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="1078.0" top="-30.0" />
+               </VBox.margin>
+            </Button>
             <ScrollPane fx:id="discussion" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="1100.0">
                <opaqueInsets>
                   <Insets />
@@ -198,64 +206,64 @@
                   <Insets left="50.0" top="10.0" />
                </VBox.margin>
                <content>
-                  <VBox maxWidth="-Infinity" prefHeight="800.0" prefWidth="1099.0">
+                  <VBox fx:id="forumVBox" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="1099.0">
                      <children>
                         <TextArea fx:id="forum1" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton1" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum2" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton2" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum3" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton3" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum4" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton4" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum5" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
-                           <VBox.margin>
-                              <Insets left="1038.0" />
-                           </VBox.margin>
-                        </Button>
-                        <TextArea fx:id="forum10" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton5" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum6" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
-                           <VBox.margin>
-                              <Insets left="1038.0" />
-                           </VBox.margin>
-                        </Button>
-                        <TextArea fx:id="forum9" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton6" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum7" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton7" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>
                         </Button>
                         <TextArea fx:id="forum8" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Reply">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton8" text="Reply">
+                           <VBox.margin>
+                              <Insets left="1038.0" />
+                           </VBox.margin>
+                        </Button>
+                        <TextArea fx:id="forum9" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton9" text="Reply">
+                           <VBox.margin>
+                              <Insets left="1038.0" />
+                           </VBox.margin>
+                        </Button>
+                        <TextArea fx:id="forum10" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton10" text="Reply">
                            <VBox.margin>
                               <Insets left="1038.0" />
                            </VBox.margin>

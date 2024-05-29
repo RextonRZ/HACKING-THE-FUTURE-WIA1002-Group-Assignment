@@ -120,8 +120,7 @@ public class personalProfileYSController implements Initializable {
     }
 
     public void friendButton(ActionEvent event) throws Exception {
-        friendListController friendListController = new friendListController();
-        friendListController.friendListStartUp(event);
+
     }
 
     public void logOutButton(ActionEvent event) throws Exception{

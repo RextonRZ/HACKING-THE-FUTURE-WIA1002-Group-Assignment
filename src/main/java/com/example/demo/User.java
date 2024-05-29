@@ -1,27 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.demo;
+
 import java.util.List;
 
-/**
- *
- * @author ruizh
- */
 public class User {
-    private String email, username, passsword;
+    private String email,password;
+    public String username;
     private Role role;
     private List<User> parents; // For young students
     private List<User> children; // For parents
     private LocationCoordinate locationCoordinate;
     private int currentPoints;
+    private List<String> friends; // Add this field
 
-    public User(String email, String username, String passsword, Role role) {
+    public User(String email, String username, String password, Role role) {
         this.email = email;
         this.username = username;
-        this.passsword = passsword;
+        this.password = password;
         this.role = role;
+    }
+
+    public User(String username, String email, String password, Role role, LocationCoordinate coordinate, List<String> friends) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.locationCoordinate = coordinate;
+        this.friends = friends;
     }
 
     public String getEmail() {
@@ -32,8 +36,8 @@ public class User {
         return username;
     }
 
-    public String getPasssword() {
-        return passsword;
+    public String getPassword() {
+        return password;
     }
 
     public Role getRole() {
@@ -56,6 +60,10 @@ public class User {
         return currentPoints;
     }
 
+    public List<String> getFriends() {
+        return friends;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -64,8 +72,8 @@ public class User {
         this.username = username;
     }
 
-    public void setPasssword(String passsword) {
-        this.passsword = passsword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setRole(Role role) {
@@ -87,13 +95,17 @@ public class User {
     public void setCurrentPoints(int currentPoints) {
         this.currentPoints = currentPoints;
     }
+
+    public void setFriends(List<String> friends) {
+        this.friends = friends;
+    }
 }
 
-enum Role{
+enum Role {
     Young_Students, Parent, Educators
 }
 
-class LocationCoordinate{
+class LocationCoordinate {
     private double latitude, longitude;
 
     public LocationCoordinate(double latitude, double longitude) {

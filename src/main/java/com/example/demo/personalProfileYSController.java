@@ -58,7 +58,7 @@ public class personalProfileYSController implements Initializable {
                 if (usernameSet.equals(usernamelogin)) {
                     role.setText(roleSet);
                     username.setText(usernameSet);
-                    coords.setText(latitude + ", " + longitude);
+                    coords.setText("(" + latitude + ", " + longitude + ")");
                     email.setText(emailSet);
 
                     if(roleSet.equals("Young Student")) {
@@ -120,7 +120,7 @@ public class personalProfileYSController implements Initializable {
     }
 
     public void friendButton(ActionEvent event) throws Exception {
-        friendListController friendListController = new friendListController();
+        FriendListViewController friendListController = new FriendListViewController();
         friendListController.friendListStartUp(event);
     }
 

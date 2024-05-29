@@ -15,9 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,6 +37,7 @@ public class bookingController implements Initializable {
     private ChoiceBox timeSlotBooking;
 
     private ArrayList<BookingDestination> bookingDestinations;
+    String usernamelogin = loginController.usernameID;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,8 +69,27 @@ public class bookingController implements Initializable {
 
 
     private void displayBookingDestinations() {
-        double userX = 0; // Example user coordinate
-        double userY = 0; // Example user coordinate
+        String fileName = "src/main/java/Data/user.csv";
+        String user;
+        double userX = 0, userY = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                user = userData[0].trim();
+
+                if (user.equals(usernamelogin)) {
+                    userX = Double.parseDouble(userData[4].trim());
+                    userY = Double.parseDouble(userData[5].trim());
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         for (BookingDestination destination : bookingDestinations) {
             double distance = Math.sqrt(Math.pow(userX - destination.getX(), 2) + Math.pow(userY - destination.getY(), 2));
@@ -84,7 +102,6 @@ public class bookingController implements Initializable {
             destinationChoiceBox.getItems().add(destination.getName() + "\n" + String.format("%.2f km away", destination.getDistance()));
             destinationChoiceBox.setValue("");
         }
-
     }
 
     public void destinationSelected(MouseEvent event) {
@@ -96,8 +113,8 @@ public class bookingController implements Initializable {
 
         if(destinationChoiceBox.getValue()!=null) {
             LocalDate currentDate = LocalDate.now();
-            for (int i = 0; i < 7; i++) {
-                String n = "[" + (i + 1) + "] " + currentDate.plusDays(i) + "\n";
+            for (int i = 1; i < 7; i++) {
+                String n = "[" + i + "] " + currentDate.plusDays(i) + "\n";
                 timeslot.add(n);
             }
         }
@@ -106,9 +123,6 @@ public class bookingController implements Initializable {
             timeSlotsTextArea.appendText(slot);
             timeSlotBooking.getItems().add(slot);
         }
-
-
-
     }
 
     @FXML
@@ -118,16 +132,68 @@ public class bookingController implements Initializable {
             showAlert("Error", "Please select a destination.");
             return;
         }
-        String timeSlot = (String) timeSlotBooking.getValue();
-        if (timeSlot.isBlank()) {
-            showAlert("Error", "Please enter a time slot.");
+
+        if (timeSlotBooking.getValue()==null) {
+            showAlert("Error", "Please select a time slot.");
             return;
         }
 
-        // Additional logic to check for event clashes can be implemented here
-        showAlert("Success", "Booking confirmed for: \n\n" + destinationChoiceBox.getValue() + " \n " + timeSlot);
+        String fileName = "src/main/java/Data/bookingData.csv";
+        if(!clashing()){
+            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
+                writer.print(usernamelogin+","+destinationChoiceBox.getValue().toString().replace("\n",",")+","+timeSlotBooking.getValue().toString().substring(4).trim()+"\n");
+                writer.flush();timeSlotBooking.getValue().toString().substring(4).trim();
+                showBookingSuccess();
+                destinationChoiceBox.getSelectionModel().clearSelection();
+                timeSlotsTextArea.clear();
+                timeSlotBooking.getItems().clear();
+                timeSlotBooking.getSelectionModel().clearSelection();
+                destinationChoiceBox.setValue("");
 
+            }catch (IOException e){
+                throw new RuntimeException(e);
+            }
+        } else{
+            showAlert("Clashing", "You did a booking on this date.");
+        }
     }
+
+    private void showBookingSuccess(){
+        Alert alertSU = new Alert(Alert.AlertType.INFORMATION);
+        alertSU.setTitle("Booking Successful");
+        alertSU.setHeaderText(null);
+        alertSU.setContentText("Your booking has been successfully made!");
+
+        alertSU.showAndWait();
+    }
+
+    public boolean clashing() {
+        // Additional logic to check for event clashes can be implemented here
+        String fileName = "src/main/java/Data/bookingData.csv";
+        String prebook;
+        String date = timeSlotBooking.getValue().toString().substring(4).trim();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                String user = userData[0].trim();
+
+                if (user.equals(usernamelogin)) {
+                    prebook = userData[3].trim();
+
+                    if (prebook.equals(date)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        return false;
+    }
+
 
 
     private void showAlert(String title, String message) {
@@ -185,6 +251,5 @@ public class bookingController implements Initializable {
         homeController.logOutButton(event);
 
     }
-
 
 }

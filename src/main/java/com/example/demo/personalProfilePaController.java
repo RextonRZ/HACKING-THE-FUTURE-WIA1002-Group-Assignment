@@ -8,14 +8,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
-
+import javafx.scene.layout.VBox;
 public class personalProfilePaController implements Initializable {
 
     @FXML
@@ -36,6 +42,9 @@ public class personalProfilePaController implements Initializable {
     @FXML
     private Label username;
 
+    @FXML
+    private VBox vbox;
+
 
     String usernamelogin = loginController.usernameID;
 
@@ -44,7 +53,7 @@ public class personalProfilePaController implements Initializable {
         String fileName = "src/main/java/Data/user.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line, usernameSet, latitude, longitude, roleSet, emailSet, bookingSet;
+            String line, usernameSet, latitude, longitude, roleSet, emailSet;
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(",");
                 usernameSet = userData[0].trim();
@@ -59,16 +68,51 @@ public class personalProfilePaController implements Initializable {
                     coords.setText(latitude + ", " + longitude);
                     email.setText(emailSet);
 
-                    if(roleSet.equals("Educator")) {
-                        bookingSet = userData[6].trim();
-                        booking.setText(bookingSet);
+                    if (roleSet.equals("Parent")) {
+
+                        String csv = "src/main/java/Data/bookingData.csv";
+
+                        try (BufferedReader read = new BufferedReader(new FileReader(csv))) {
+                            String in, user;
+                            String[] bookingSet;
+                            ArrayList<String[]> show = new ArrayList<>();
+                            String bookingShow = "";
+                            while (( in = read.readLine()) != null) {
+                                String[] data = in.split(",");
+                                user= data[0].trim();
+
+                                if(user.equals(usernamelogin)) {
+                                    bookingSet = new String[]{data[1].trim(), data[3].trim()};
+                                    show.add(bookingSet);
+                                    show.sort(Comparator.comparing(a-> LocalDate.parse(a[1])));
+                                }
+                            }
+
+                            for(int i=0;i<Math.min(show.size(),5);i++){
+                                String [] haha = show.get(i);
+                                bookingShow += haha[0].trim() + "\t" + haha[1].trim() + "\n\n";
+                                booking.setText(bookingShow);
+                                Text text = new Text(bookingShow);
+                                double textHeight = text.getLayoutBounds().getHeight()+20;
+                                vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom()+200);
+                            }
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
+
                 }
+
             }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+
+
     }
 
     @FXML

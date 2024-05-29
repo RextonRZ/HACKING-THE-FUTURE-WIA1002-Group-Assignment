@@ -30,28 +30,18 @@ public class chooseEventController {
     }
 
     public void quizButton(ActionEvent event) throws Exception{
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
     public void eventButton(ActionEvent event) throws Exception{
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
-    }
-
-    public void createButton(ActionEvent event) throws Exception{
-        createEventController createEventController = new createEventController();
-        createEventController.createEventStartUp(event);
-    }
-
-    public void viewButton(ActionEvent event) throws Exception{
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
     public void bookingButton(ActionEvent event) throws Exception{
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
 
     public void leaderBoardButton(ActionEvent event) throws Exception{
@@ -60,24 +50,13 @@ public class chooseEventController {
     }
 
     public void profileButton(ActionEvent event) throws Exception{
-        personalProfileEduController personalProfileEduController = new personalProfileEduController();
-        personalProfileEduController.personalProfileStartUp(event);
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
     }
 
     public void logOutButton(ActionEvent event) throws Exception{
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if(result.isEmpty()){
-            System.out.println("Alert closed");
-
-        } else if(result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-
-        } else if (result.get() == ButtonType.CANCEL);
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
 
     }
 }

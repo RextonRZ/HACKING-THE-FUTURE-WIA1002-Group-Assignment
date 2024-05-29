@@ -50,7 +50,7 @@ public class homeController implements Initializable {
                 if(usernameSet.equals(usernamelogin)) {
                     role.setText("\uD83D\uDC64  " + roleSet);
                     username.setText(usernameSet);
-                    coordinate.setText("\uD83D\uDCCD  " + latitude + ", " + longitude);
+                    coordinate.setText("\uD83D\uDCCD  (" + latitude + ", " + longitude+")");
 
                     if(roleSet.equals("Parent")||roleSet.equals("Educator")){
                         point.setText("");

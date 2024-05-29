@@ -90,7 +90,7 @@
             </HBox>
          </children>
       </HBox>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="815.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+      <VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="815.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                <font>
@@ -154,7 +154,7 @@
             </Text>
             <Label fx:id="booking" text="Label">
                <VBox.margin>
-                  <Insets left="200.0" top="-18.0" />
+                  <Insets left="200.0" top="-27.0" />
                </VBox.margin>
             </Label>
          </children>

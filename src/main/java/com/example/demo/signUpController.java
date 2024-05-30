@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import javafx.collections.FXCollections;
@@ -282,10 +283,14 @@ public class signUpController {
         try{
             String hashedPW = hashPassword(passwordSU);
 
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = currentDateTime.format(formatter);
+
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
                 if (role.getValue() == "Young Student") {
                     writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
-                            + "," + latitude.getText() + "," + longitude.getText() + ",0"); // 0 is for current point
+                            + "," + latitude.getText() + "," + longitude.getText() + ",0," + formattedDateTime); // 0 is for current point
                 }else if (role.getValue() == "Educator") {
                     writer.println(usernameSU + "," + emailSU + "," + hashedPW + "," + role.getValue()
                             + "," + latitude.getText() + "," + longitude.getText() + ",0,0"); // First 0 is for event created, Second 0 is for quiz created
@@ -314,6 +319,8 @@ public class signUpController {
         alertSU.setTitle("Sign-Up Successful");
         alertSU.setHeaderText(null);
         alertSU.setContentText("Your account has been successfully created!");
+        createFriendListFile(usernameSU);
+
 
         alertSU.showAndWait();
     }
@@ -348,15 +355,28 @@ public class signUpController {
     }
 
     // Helper method to convert byte array to hexadecimal string
-    public static String bytesToHex(byte[] bytes) {
+    public static String bytesToHex(byte[] bytes){
         StringBuilder hexString = new StringBuilder();
-        for (byte b : bytes) {
+        for (byte b: bytes){
             String hexa = Integer.toHexString(0xff & b);
-            if (hexa.length() == 1) {
+            if (hexa.length() == 1){
                 hexString.append('0');
                 hexString.append(hexa);
             }
         }
         return hexString.toString();
     }
+    private void createFriendListFile(String username) throws IOException {
+        String filename = "src/main/java/Data/" + username + "_friendList.csv";
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename, false))) {
+            // If you decide later to add headers, uncomment the next line
+            // writer.println("FriendID,FriendName,FriendEmail");
+
+            writer.flush();  // Ensure any buffered output bytes are written out
+        } catch (IOException e) {
+            showError("Error creating friend list file for user: " + e.getMessage());
+            throw e;  // Re-throw the exception to handle it further up if necessary
+        }
+    }
+
 }

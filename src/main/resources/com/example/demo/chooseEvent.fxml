@@ -95,7 +95,7 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="453.0" prefWidth="707.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENT">
+            <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Event">
                <font>
                   <Font name="Showcard Gothic" size="50.0" />
                </font>

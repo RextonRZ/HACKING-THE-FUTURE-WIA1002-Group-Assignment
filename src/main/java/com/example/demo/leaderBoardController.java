@@ -16,6 +16,7 @@ import javafx.scene.control.ButtonType;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class leaderBoardController implements Initializable {
@@ -109,7 +110,7 @@ public class leaderBoardController implements Initializable {
     public void initialize() {
     }
 
-    String line, usernameSet, roleSet, pointSet;
+    String line, usernameSet, roleSet, pointSet, dateSet;
     String[] data;
     private void loadStudentsFromCSV() {
         String fileName = "src/main/java/Data/user.csv";
@@ -125,8 +126,9 @@ public class leaderBoardController implements Initializable {
                     if (roleSet.equals("Young Student")){
                         usernameSet = userData[0].trim();
                         pointSet= userData[6].trim();
+                        dateSet= userData[7].trim();
 
-                        data = new String[]{usernameSet, pointSet};
+                        data = new String[]{usernameSet, pointSet, dateSet};
                         leaderBoard.add(data);
                     }
                 }
@@ -139,10 +141,11 @@ public class leaderBoardController implements Initializable {
     private void updateLeaderboard() {
         loadStudentsFromCSV();
 
-        leaderBoard.sort(Comparator.comparingInt(a -> Integer.parseInt(a[1])));
-        Collections.reverse(leaderBoard);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        leaderBoard.sort(Comparator.<String[]>comparingInt(a -> Integer.parseInt(a[1])).reversed()
+                .thenComparing(Comparator.comparing(a -> LocalDateTime.parse(a[2], formatter))));
 
-        // Example: Displaying the sorted leaderboard
+        // Displaying the sorted leaderboard
         for (int i = 0; i < Math.min(leaderBoard.size(), 9); i++) {
             String[] data = leaderBoard.get(i);
             switch (i) {

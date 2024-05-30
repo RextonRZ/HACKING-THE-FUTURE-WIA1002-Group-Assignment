@@ -31,6 +31,9 @@ public class bookingController implements Initializable {
     private ChoiceBox destinationChoiceBox;
 
     @FXML
+    private ChoiceBox childChoiceBox;
+
+    @FXML
     private TextArea timeSlotsTextArea;
 
     @FXML
@@ -43,6 +46,32 @@ public class bookingController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         loadBookingDestinations();
         displayBookingDestinations();
+        childSelection();
+    }
+
+    public void childSelection(){
+        String fileName = "src/main/java/Data/ParentChild.txt";
+
+        ArrayList<String> childList = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                String user = userData[0].trim();
+
+                if (user.equals(usernamelogin)) {
+                    String child = userData[1].trim();
+                    childChoiceBox.getItems().add(child);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void loadBookingDestinations() {
@@ -110,20 +139,79 @@ public class bookingController implements Initializable {
         timeSlotBooking.getSelectionModel().clearSelection();
 
         ArrayList<String> timeslot = new ArrayList<>();
+        ArrayList<String> prebook = new ArrayList<>();
+        ArrayList<String> allDate = new ArrayList<>();
+        int clashing;
 
-        if(destinationChoiceBox.getValue()!=null) {
-            LocalDate currentDate = LocalDate.now();
-            for (int i = 1; i < 7; i++) {
-                String n = "[" + i + "] " + currentDate.plusDays(i) + "\n";
-                timeslot.add(n);
+        LocalDate currentDate = LocalDate.now();
+
+        if (destinationChoiceBox.getValue() != null) {
+            String fileName = "src/main/java/Data/bookingData.csv";
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] userData = line.split(",");
+                    String user = userData[0].trim();
+
+                    if (user.equals(usernamelogin)) {
+                        String date = userData[3].trim();
+                        prebook.add(date);
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            String file = "src/main/java/Data/registeredEvent.csv";
+
+            try (BufferedReader read = new BufferedReader(new FileReader(file))) {
+                String s;
+
+                while ((s = read.readLine()) != null) {
+                    String[] userData = s.split(",");
+                    String user = userData[0].trim();
+                    System.out.println(user);
+
+                    if (user.equals(usernamelogin)) {
+                        String date = userData[2].substring(0,10);
+                        prebook.add(date);
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
 
-        for(String slot: timeslot){
-            timeSlotsTextArea.appendText(slot);
-            timeSlotBooking.getItems().add(slot);
+        for (int i = 1; i < 8; i++) {
+            allDate.add(currentDate.plusDays(i).toString());
+        }
+
+        for (String date : allDate) {
+            clashing=0;
+
+            for(String filter: prebook) {
+                if (filter.equals(date)) {
+                    clashing ++;
+                }
+            }
+            if(clashing==0) {
+                timeslot.add(date);
+            }
+        }
+
+        for(int i=0; i< timeslot.size(); i++){
+            String n = "[" + (i+1) + "] " + timeslot.get(i) + "\n";
+            timeSlotsTextArea.appendText(n);
+            timeSlotBooking.getItems().add(n);
         }
     }
+
 
     @FXML
     public void bookDestination(ActionEvent event) {
@@ -133,28 +221,30 @@ public class bookingController implements Initializable {
             return;
         }
 
-        if (timeSlotBooking.getValue()==null) {
+        if (timeSlotBooking.getValue() == null) {
             showAlert("Error", "Please select a time slot.");
             return;
         }
 
+        if (childChoiceBox.getValue() == null) {
+            showAlert("Error", "Please select a child.");
+            return;
+        }
         String fileName = "src/main/java/Data/bookingData.csv";
-        if(!clashing()){
-            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
-                writer.print(usernamelogin+","+destinationChoiceBox.getValue().toString().replace("\n",",")+","+timeSlotBooking.getValue().toString().substring(4).trim()+"\n");
-                writer.flush();timeSlotBooking.getValue().toString().substring(4).trim();
-                showBookingSuccess();
-                destinationChoiceBox.getSelectionModel().clearSelection();
-                timeSlotsTextArea.clear();
-                timeSlotBooking.getItems().clear();
-                timeSlotBooking.getSelectionModel().clearSelection();
-                destinationChoiceBox.setValue("");
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
+            writer.print(childChoiceBox.getValue() + "," + destinationChoiceBox.getValue().toString().replace("\n", ",") + "," + timeSlotBooking.getValue().toString().substring(4).trim() + "\n");
+            writer.flush();
+            timeSlotBooking.getValue().toString().substring(4).trim();
+            showBookingSuccess();
+            destinationChoiceBox.getSelectionModel().clearSelection();
+            timeSlotsTextArea.clear();
+            timeSlotBooking.getItems().clear();
+            timeSlotBooking.getSelectionModel().clearSelection();
+            destinationChoiceBox.setValue("");
+            childChoiceBox.getSelectionModel().clearSelection();
 
-            }catch (IOException e){
-                throw new RuntimeException(e);
-            }
-        } else{
-            showAlert("Clashing", "You did a booking on this date.");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -166,35 +256,6 @@ public class bookingController implements Initializable {
 
         alertSU.showAndWait();
     }
-
-    public boolean clashing() {
-        // Additional logic to check for event clashes can be implemented here
-        String fileName = "src/main/java/Data/bookingData.csv";
-        String prebook;
-        String date = timeSlotBooking.getValue().toString().substring(4).trim();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                String[] userData = line.split(",");
-                String user = userData[0].trim();
-
-                if (user.equals(usernamelogin)) {
-                    prebook = userData[3].trim();
-
-                    if (prebook.equals(date)) {
-                        return true;
-                    }
-                }
-            }
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        return false;
-    }
-
-
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

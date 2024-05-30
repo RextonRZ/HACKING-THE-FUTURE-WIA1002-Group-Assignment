@@ -8,16 +8,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
+
+import static com.example.demo.loginController.usernameID;
 
 public class personalProfileYSController implements Initializable {
     @FXML
@@ -38,8 +40,20 @@ public class personalProfileYSController implements Initializable {
     @FXML
     private Label username;
 
+    @FXML
+    private TextField newFriendUsername;
 
-    String usernamelogin = loginController.usernameID;
+    String fileName = "src/main/java/Data/user.csv";
+    String usernamelogin = usernameID;
+    String searchUser, userMail, userRole;
+    StringBuilder[] errorMessage = {
+        new StringBuilder("Oops! Looks like you've entered your own username. Try searching for someone else this time! \uD83D\uDE04"),
+        new StringBuilder("Hold up! You're already here! Try searching for another username. \uD83D\uDE04"),
+        new StringBuilder("Whoops! That's you! Try searching for a different username to find someone else. 🕵️‍♂️"),
+        new StringBuilder("Hey there, you! You're already in the spotlight! Search for someone else's username to find them. 🌟"),
+        new StringBuilder("Uh-oh! You've stumbled upon yourself! Try searching for a different username to explore. 🚀"),
+        new StringBuilder("Looks like you're searching for a mirror image! Try searching for a different username to find someone new. 🪞")
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -127,6 +141,83 @@ public class personalProfileYSController implements Initializable {
     public void logOutButton(ActionEvent event) throws Exception{
         homeController homeController = new homeController();
         homeController.logOutButton(event);
+    }
 
+    public void viewProfile(ActionEvent event) throws Exception{
+        searchUser = newFriendUsername.getText();
+
+        if (searchUser == null || searchUser.isEmpty()){
+            showError("Please enter a username!");
+        }else if (searchUser.equals(usernamelogin)) {
+            Random random = new Random();
+            int index = random.nextInt(6);
+            System.out.println(index);
+            showError(errorMessage[index].toString());
+        } else if (authenticate()) {
+            if (Role.equals("Young Student")) {
+                viewProfileYSController viewProfileController = new viewProfileYSController();
+                viewProfileController.profileStartUp(event);
+            }else if (Role.equals("Educator")){
+                viewProfileEduController viewProfileController = new viewProfileEduController();
+                viewProfileController.profileStartUp(event);
+            }else if (Role.equals("Parent")){
+                viewProfilePaController viewProfileController = new viewProfilePaController();
+                viewProfileController.profileStartUp(event);
+            }
+        } else{
+            showError("User not found!");
+        }
+    }
+
+    public void showError(String errorMessage){
+        Alert alertError = new Alert(Alert.AlertType.ERROR);
+        alertError.setTitle("Error");
+        alertError.setHeaderText(null);
+        alertError.setContentText(errorMessage);
+
+        alertError.showAndWait();
+    }
+
+    String line;
+    public static String Username, Email, Coordinate, Role, Points, Quiz, Events;
+    private boolean authenticate(){
+        searchUser = newFriendUsername.getText();
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                if (searchUser.endsWith(".com")){
+                    userMail = userData[1].trim();
+                }else{
+                    userMail = userData[0].trim();
+                }
+                userRole = userData[3].trim();
+
+                if (userMail.equals(searchUser)){
+                    if (userRole.equals("Young Student")){
+                        Username = userData[0].trim();
+                        Email = userData[1].trim();
+                        Coordinate = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                        Role = userRole;
+                        Points = userData[6].trim();
+                    } else if (userRole.equals("Educator")) {
+                        Username = userData[0].trim();
+                        Email = userData[1].trim();
+                        Coordinate = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                        Role = userRole;
+                        Events = userData[6].trim();
+                        Quiz = userData[7].trim();
+                    } else if (userRole.equals("Parent")){
+                        Username = userData[0].trim();
+                        Email = userData[1].trim();
+                        Coordinate = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                        Role = userRole;
+                    }
+                    return true;
+                }
+            }
+        }catch (IOException e) {
+            showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
     }
 }

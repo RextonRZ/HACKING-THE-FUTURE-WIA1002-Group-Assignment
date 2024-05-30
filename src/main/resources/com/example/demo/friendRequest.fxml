@@ -144,7 +144,7 @@
                         <Insets left="245.0" />
                      </VBox.margin>
                   </Text>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox1" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend1" strokeType="OUTSIDE" strokeWidth="0.0" text="friend1">
                            <VBox.margin>
@@ -183,7 +183,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox2" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -222,7 +222,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox3" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -261,7 +261,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox4" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -300,7 +300,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox5" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -339,7 +339,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox6" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -378,7 +378,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox7" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend7" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -417,7 +417,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox8" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -456,7 +456,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox9" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend9" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
@@ -495,7 +495,7 @@
                         <Insets left="-25.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="vbox10" maxWidth="-Infinity" prefHeight="115.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="friend10" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>

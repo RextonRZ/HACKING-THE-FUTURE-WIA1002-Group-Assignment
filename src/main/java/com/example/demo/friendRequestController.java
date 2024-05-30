@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -45,9 +46,41 @@ public class friendRequestController implements Initializable {
     @FXML
     private Text friend9;
 
-    Text[] friends = {
-            friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9, friend10
-    };
+    @FXML
+    private Text[] friends;
+
+    @FXML
+    private VBox vbox1;
+
+    @FXML
+    private VBox vbox10;
+
+    @FXML
+    private VBox vbox2;
+
+    @FXML
+    private VBox vbox3;
+
+    @FXML
+    private VBox vbox4;
+
+    @FXML
+    private VBox vbox5;
+
+    @FXML
+    private VBox vbox6;
+
+    @FXML
+    private VBox vbox7;
+
+    @FXML
+    private VBox vbox8;
+
+    @FXML
+    private VBox vbox9;
+
+    @FXML
+    private VBox[] vbox;
 
     String fileName = "src/main/java/Data/friend_requests.csv";
 
@@ -121,13 +154,14 @@ public class friendRequestController implements Initializable {
             System.out.println(request);
         }
 
-        for (int i = 0; i < friends.length && i < pendingRequest.size(); i++) {
-            if (friends[i] != null) {
-                System.out.println("Friend " + (i + 1) + ": " + friends[i].getText());
+        for(VBox box: vbox){
+            box.setVisible(false);
+        }
+
+        for (int i = 0; i < Math.min(friends.length, pendingRequest.size()); i++) {
                 friends[i].setText(pendingRequest.get(i));
-            } else {
-                System.out.println("Friend " + (i + 1) + ": null");
-            }
+                vbox[i].setVisible(true);
+
         }
     }
 
@@ -138,6 +172,8 @@ public class friendRequestController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        friends = new Text[]{friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9, friend10};
+        vbox = new VBox[]{vbox1,vbox2,vbox3,vbox4,vbox5,vbox6,vbox7,vbox8,vbox9,vbox10};
         printFriendsRequest();
     }
 }

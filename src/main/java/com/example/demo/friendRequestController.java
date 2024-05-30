@@ -8,20 +8,44 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import com.example.demo.FriendListViewController;
-
 
 public class friendRequestController {
     @FXML
     private Stage stage;
+
+    @FXML
+    private Label friend1;
+    @FXML
+    private Label friend10;
+    @FXML
+    private Label friend2;
+    @FXML
+    private Label friend3;
+    @FXML
+    private Label friend4;
+    @FXML
+    private Label friend5;
+    @FXML
+    private Label friend6;
+    @FXML
+    private Label friend7;
+    @FXML
+    private Label friend8;
+    @FXML
+    private Label friend9;
+
+    Label[] friends = {
+            friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9, friend10
+    };
+
+    String fileName = "src/main/java/Data/friend_requests.csv";
 
     @FXML
     public void friendRequestStartUp(ActionEvent event) throws Exception{
@@ -29,6 +53,7 @@ public class friendRequestController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(scene);
+        printFriendsRequest();
     }
 
     @FXML
@@ -72,23 +97,25 @@ public class friendRequestController {
     public void logOutButton(ActionEvent event) throws Exception{
         homeController homeController = new homeController();
         homeController.logOutButton(event);
-
     }
-    public List<String> viewFriendList(String username) throws IOException {
-        String filename = username + "_friendList.csv"; // Construct the filename from the username
-        List<String> friends = new ArrayList<>(); // List to store friend usernames
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Assuming each line in the file is a friend's username
-                friends.add(line.trim()); // Add friend username to the list, trimming any whitespace
+    public void printFriendsRequest(){
+        String line;
+        ArrayList<String> pendingRequest = new ArrayList<String>();
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                String[] friendRequest = line.split(",");
+                int status = Integer.parseInt(friendRequest[2]);
+                if ((friendRequest[1].equals(loginController.HostUsername)) && (status == 0)){
+                    pendingRequest.add(friendRequest[0]);
+                }
             }
-        } catch (IOException e) {
-            System.err.println("Error reading from file: " + e.getMessage());
-            throw e; // Re-throw to allow calling method to handle or report the error
+            for (int i = 0; i < pendingRequest.size(); i++){
+                System.out.println(pendingRequest.get(i));
+            }
+        }catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
         }
-
-        return friends; // Return the list of friends
     }
+
 }

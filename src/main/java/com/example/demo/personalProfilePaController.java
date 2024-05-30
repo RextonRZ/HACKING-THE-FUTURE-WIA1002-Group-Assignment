@@ -46,7 +46,7 @@ public class personalProfilePaController implements Initializable {
     private VBox vbox;
 
 
-    String usernamelogin = loginController.usernameID;
+    String usernamelogin = loginController.HostUsername;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

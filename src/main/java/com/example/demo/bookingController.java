@@ -37,7 +37,7 @@ public class bookingController implements Initializable {
     private ChoiceBox timeSlotBooking;
 
     private ArrayList<BookingDestination> bookingDestinations;
-    String usernamelogin = loginController.usernameID;
+    String usernamelogin = loginController.HostUsername;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

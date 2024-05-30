@@ -43,12 +43,12 @@ public class personalProfileEduController implements Initializable {
     private Label username;
 
 
-    String usernamelogin = loginController.usernameID;
+    String usernamelogin = loginController.HostUsername;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String fileName = "src/main/java/Data/user.csv";
-
+        System.out.println(usernamelogin);
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line, usernameSet, latitude, longitude, roleSet, emailSet, eventSet, quizSet;
             while ((line = reader.readLine()) != null) {

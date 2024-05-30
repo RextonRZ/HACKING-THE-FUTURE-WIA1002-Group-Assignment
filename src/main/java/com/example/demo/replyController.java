@@ -38,7 +38,7 @@ public class replyController {
     boolean enter = false;
     String reply, hostUsername, hostTime, hostContent;
     String fileNameDiscussion = "src/main/java/Data/discussion.txt";
-    String usernamelogin = loginController.usernameID;
+    String usernamelogin = loginController.HostUsername;
 
     public void replyStartUp1(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("reply1.fxml"));

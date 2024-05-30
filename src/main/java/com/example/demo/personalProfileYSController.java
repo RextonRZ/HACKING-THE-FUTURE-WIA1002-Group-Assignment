@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import static com.example.demo.loginController.usernameID;
 
 public class personalProfileYSController implements Initializable {
     @FXML
@@ -44,7 +43,7 @@ public class personalProfileYSController implements Initializable {
     private TextField newFriendUsername;
 
     String fileName = "src/main/java/Data/user.csv";
-    String usernamelogin = usernameID;
+    String usernamelogin = loginController.HostUsername;
     String searchUser, userMail, userRole;
     StringBuilder[] errorMessage = {
         new StringBuilder("Oops! Looks like you've entered your own username. Try searching for someone else this time! \uD83D\uDE04"),
@@ -169,7 +168,7 @@ public class personalProfileYSController implements Initializable {
         }
     }
 
-    public void showError(String errorMessage){
+    public static void showError(String errorMessage){
         Alert alertError = new Alert(Alert.AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);

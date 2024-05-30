@@ -61,7 +61,7 @@ public class homeController implements Initializable {
     @FXML
     private TextArea forum10;
 
-    String usernamelogin = loginController.usernameID;
+    String usernamelogin = loginController.HostUsername;
     public static String roleCon;
     String discussion;
     boolean discussionvalid = false;

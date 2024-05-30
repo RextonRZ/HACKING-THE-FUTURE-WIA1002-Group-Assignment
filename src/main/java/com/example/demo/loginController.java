@@ -47,7 +47,7 @@ public class loginController {
         }
     }
 
-    public static String line, username, password, usernameID;
+    public static String line, username, password, usernameID, HostUsername;
     private boolean authenticate(){
         String fileName = "src/main/java/Data/user.csv";
         usernameID = useremailLogin.getText();
@@ -60,6 +60,8 @@ public class loginController {
                     username = userData[0].trim();
                 }
                 password = userData[2].trim();
+
+                HostUsername = userData[0].trim();
 
                 String hashedInputPW = signUpController.hashPassword(passwordLogin.getText().trim());
 

@@ -279,14 +279,6 @@ public class signUpController {
             return;
         }
 
-        if (role.getValue() == "Young Student") {
-            try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/java/Data/students.csv",true))) {
-                writer.println(usernameSU + "," + 0 + "," + LocalDateTime.now() + "\n");
-            } catch (IOException e) {
-                showError("Error storing student data: " + e.getMessage());
-            }
-        }
-
         try{
             String hashedPW = hashPassword(passwordSU);
 

@@ -3,45 +3,49 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class friendRequestController {
+public class friendRequestController implements Initializable {
     @FXML
     private Stage stage;
 
     @FXML
-    private Label friend1;
+    private Text friend1;
     @FXML
-    private Label friend10;
+    private Text friend10;
     @FXML
-    private Label friend2;
+    private Text friend2;
     @FXML
-    private Label friend3;
+    private Text friend3;
     @FXML
-    private Label friend4;
+    private Text friend4;
     @FXML
-    private Label friend5;
+    private Text friend5;
     @FXML
-    private Label friend6;
+    private Text friend6;
     @FXML
-    private Label friend7;
+    private Text friend7;
     @FXML
-    private Label friend8;
+    private Text friend8;
     @FXML
-    private Label friend9;
+    private Text friend9;
 
-    Label[] friends = {
+    Text[] friends = {
             friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9, friend10
     };
 
@@ -53,7 +57,6 @@ public class friendRequestController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
         stage.setScene(scene);
-        printFriendsRequest();
     }
 
     @FXML
@@ -99,25 +102,32 @@ public class friendRequestController {
         homeController.logOutButton(event);
     }
 
-    public void printFriendsRequest(){
+    public void printFriendsRequest() {
         String line;
-        ArrayList<String> pendingRequest = new ArrayList<String>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        ArrayList<String> pendingRequest = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             while ((line = reader.readLine()) != null) {
                 String[] friendRequest = line.split(",");
                 int status = Integer.parseInt(friendRequest[2]);
-                if ((friendRequest[1].equals(loginController.HostUsername)) && (status == 0)){
+                if ((friendRequest[1].equals(loginController.HostUsername)) && (status == 0)) {
                     pendingRequest.add(friendRequest[0]);
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
         }
-        for (int i = 0; i < pendingRequest.size(); i++){
-            System.out.println(pendingRequest.get(i));
+
+        for (String request : pendingRequest) {
+            System.out.println(request);
         }
-        for (int i = 0; i < friends.length; i++){
-            friends[i].setText(pendingRequest.get(i));
+
+        for (int i = 0; i < friends.length && i < pendingRequest.size(); i++) {
+            if (friends[i] != null) {
+                System.out.println("Friend " + (i + 1) + ": " + friends[i].getText());
+                friends[i].setText(pendingRequest.get(i));
+            } else {
+                System.out.println("Friend " + (i + 1) + ": null");
+            }
         }
     }
 
@@ -126,4 +136,8 @@ public class friendRequestController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        printFriendsRequest();
+    }
 }

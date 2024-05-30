@@ -110,12 +110,20 @@ public class friendRequestController {
                     pendingRequest.add(friendRequest[0]);
                 }
             }
-            for (int i = 0; i < pendingRequest.size(); i++){
-                System.out.println(pendingRequest.get(i));
-            }
         }catch (IOException e) {
             personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
         }
+        for (int i = 0; i < pendingRequest.size(); i++){
+            System.out.println(pendingRequest.get(i));
+        }
+        for (int i = 0; i < friends.length; i++){
+            friends[i].setText(pendingRequest.get(i));
+        }
+    }
+
+    @FXML
+    void viewProfile(ActionEvent event) {
+
     }
 
 }

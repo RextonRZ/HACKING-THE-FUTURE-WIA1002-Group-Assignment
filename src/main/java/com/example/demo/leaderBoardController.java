@@ -61,6 +61,9 @@ public class leaderBoardController implements Initializable {
     @FXML
     private Text point9;
 
+    private Text[] user;
+    private Text[] point;
+
 
 
 
@@ -106,11 +109,7 @@ public class leaderBoardController implements Initializable {
 
     private static final String CSV_FILE = "students.csv";
 
-    @FXML
-    public void initialize() {
-    }
-
-    String line, usernameSet, roleSet, pointSet, dateSet;
+    String line, usernameSet, roleSet, pointSet, pointLastUpdate;
     String[] data;
     private void loadStudentsFromCSV() {
         String fileName = "src/main/java/Data/user.csv";
@@ -126,9 +125,9 @@ public class leaderBoardController implements Initializable {
                     if (roleSet.equals("Young Student")){
                         usernameSet = userData[0].trim();
                         pointSet= userData[6].trim();
-                        dateSet= userData[7].trim();
+                        pointLastUpdate= userData[7].trim();
 
-                        data = new String[]{usernameSet, pointSet, dateSet};
+                        data = new String[]{usernameSet, pointSet, pointLastUpdate};
                         leaderBoard.add(data);
                     }
                 }
@@ -148,45 +147,8 @@ public class leaderBoardController implements Initializable {
         // Displaying the sorted leaderboard
         for (int i = 0; i < Math.min(leaderBoard.size(), 9); i++) {
             String[] data = leaderBoard.get(i);
-            switch (i) {
-                case 0:
-                    user1.setText(data[0]);
-                    point1.setText(data[1]);
-                    break;
-                case 1:
-                    user2.setText(data[0]);
-                    point2.setText(data[1]);
-                    break;
-                case 2:
-                    user3.setText(data[0]);
-                    point3.setText(data[1]);
-                    break;
-                case 3:
-                    user4.setText(data[0]);
-                    point4.setText(data[1]);
-                    break;
-                case 4:
-                    user5.setText(data[0]);
-                    point5.setText(data[1]);
-                    break;
-                case 5:
-                    user6.setText(data[0]);
-                    point6.setText(data[1]);
-                    break;
-                case 6:
-                    user7.setText(data[0]);
-                    point7.setText(data[1]);
-                    break;
-                case 7:
-                    user8.setText(data[0]);
-                    point8.setText(data[1]);
-                    break;
-                case 8:
-                    user9.setText(data[0]);
-                    point9.setText(data[1]);
-                    break;
-            }
-
+            user[i].setText(data[0]);
+            point[i].setText(data[1]);
         }
 
 
@@ -205,6 +167,9 @@ public class leaderBoardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        user = new Text[]{user1,user2,user3,user4,user5,user6,user7,user8,user9};
+        point = new Text[]{point1,point2,point3,point4,point5,point6,point7,point8,point9};
         updateLeaderboard();
     }
+
 }

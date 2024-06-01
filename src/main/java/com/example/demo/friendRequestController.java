@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -75,7 +76,7 @@ public class friendRequestController implements Initializable {
 
     String fileName = "src/main/java/Data/friend_requests.csv";
 
-    double contentHeight = 0.0;
+    String viewProfileUsername;
 
     @FXML
     public void friendRequestStartUp(ActionEvent event) throws Exception{
@@ -143,10 +144,6 @@ public class friendRequestController implements Initializable {
             personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
         }
 
-        for (String request : pendingRequest) {
-            System.out.println(request);
-        }
-
         for(VBox box: vbox){
             box.setVisible(false);
         }
@@ -158,8 +155,120 @@ public class friendRequestController implements Initializable {
     }
 
     @FXML
-    void viewProfile(ActionEvent event) {
+    void viewProfile1(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
 
+        setVar(friend1);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile2(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend2);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile3(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend3);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile4(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend4);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile5(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend5);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile6(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend6);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile7(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend7);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile8(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend8);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile9(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend9);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+    @FXML
+    void viewProfile10(ActionEvent event) throws Exception{
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+
+        setVar(friend10);
+        viewProfileYSControllerNoADD.reset();
+    }
+
+
+    private void setVar(Text friend){
+        viewProfileUsername = friend.getText();
+        System.out.println(viewProfileUsername);
+        String line;
+        try(BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                if (userData[0].equals(viewProfileUsername)){
+                    personalProfileYSController.Username = userData[0].trim();
+                    personalProfileYSController.Email = userData[1].trim();
+                    personalProfileYSController.Coordinate = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                    personalProfileYSController.Role = userData[3].trim();
+                    personalProfileYSController.Points = userData[6].trim();
+                    break;
+                }
+            }
+        }catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        System.out.println(personalProfileYSController.Username);
+        System.out.println(personalProfileYSController.Email);
+        System.out.println(personalProfileYSController.Coordinate);
+        System.out.println(personalProfileYSController.Role);
+        System.out.println(personalProfileYSController.Points);
     }
 
     @Override

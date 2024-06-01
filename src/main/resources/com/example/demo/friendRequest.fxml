@@ -170,7 +170,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile1" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -209,7 +209,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile2" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -248,7 +248,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile3" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -287,7 +287,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile4" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -326,7 +326,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile5" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -365,7 +365,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile6" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -404,7 +404,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile7" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -443,7 +443,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile8" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -482,7 +482,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile9" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>
@@ -521,7 +521,7 @@
                               <Font name="Arial Rounded MT Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile10" text="View Profile">
                            <VBox.margin>
                               <Insets left="40.0" top="-22.0" />
                            </VBox.margin>

@@ -15,9 +15,7 @@ import javafx.stage.Stage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -67,9 +65,17 @@ public class viewProfileYSController implements Initializable {
 
     @FXML
     void addFriend(ActionEvent event) throws Exception{
-        storeRequest();
-        sendNotification(personalProfileYSController.Email);
-        friendRequestSent();
+        if (checkSentRequest()){
+            personalProfileYSController.showError("You have already sent " + personalProfileYSController.Username + " a friend request!");
+        } else if (checkPendingRequest()) {
+            personalProfileYSController.showError(personalProfileYSController.Username + " has sent you a friend request! Please accept or reject in the 'Friend Request' page! ");
+        } else if (alreadyFriends()){
+            personalProfileYSController.showError("You are already friends with " + personalProfileYSController.Username + "!");
+        } else {
+            storeRequest();
+            sendNotification(personalProfileYSController.Email);
+            friendRequestSent();
+        }
     }
 
     private void storeRequest(){
@@ -132,5 +138,46 @@ public class viewProfileYSController implements Initializable {
         }
     }
 
-    public
+    public boolean checkSentRequest(){
+        String line;
+        String check = loginController.HostUsername + "," + personalProfileYSController.Username + ",0";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                if (line.equals(check))
+                    return true;
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean checkPendingRequest(){
+        String line;
+        String check = personalProfileYSController.Username + "," + loginController.HostUsername + ",0";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                if (line.equals(check))
+                    return true;
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean alreadyFriends(){
+        String line;
+        String check1 = personalProfileYSController.Username + "," + loginController.HostUsername + ",1";
+        String check2 = loginController.HostUsername + "," + personalProfileYSController.Username + ",1";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                if ( (line.equals(check1)) || (line.equals(check2)))
+                    return true;
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
+    }
 }

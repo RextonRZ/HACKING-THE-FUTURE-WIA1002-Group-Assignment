@@ -319,8 +319,6 @@ public class signUpController {
         alertSU.setTitle("Sign-Up Successful");
         alertSU.setHeaderText(null);
         alertSU.setContentText("Your account has been successfully created!");
-        createFriendListFile(usernameSU);
-
 
         alertSU.showAndWait();
     }
@@ -366,17 +364,4 @@ public class signUpController {
         }
         return hexString.toString();
     }
-    private void createFriendListFile(String username) throws IOException {
-        String filename = "src/main/java/Data/" + username + "_friendList.csv";
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename, false))) {
-            // If you decide later to add headers, uncomment the next line
-            // writer.println("FriendID,FriendName,FriendEmail");
-
-            writer.flush();  // Ensure any buffered output bytes are written out
-        } catch (IOException e) {
-            showError("Error creating friend list file for user: " + e.getMessage());
-            throw e;  // Re-throw the exception to handle it further up if necessary
-        }
-    }
-
 }

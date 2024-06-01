@@ -131,4 +131,6 @@ public class viewProfileYSController implements Initializable {
             System.out.println("Failed to send notification. Error: " + e.getMessage());
         }
     }
+
+    public
 }

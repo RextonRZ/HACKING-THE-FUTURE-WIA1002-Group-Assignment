@@ -132,9 +132,9 @@
       </VBox>
    </left>
    <center>
-      <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="453.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="showPanel" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="453.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox maxWidth="-Infinity" prefHeight="1500.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1200.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;">
                <children>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend Request">
                      <font>

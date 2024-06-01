@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -45,44 +46,36 @@ public class friendRequestController implements Initializable {
     private Text friend8;
     @FXML
     private Text friend9;
-
     @FXML
     private Text[] friends;
-
     @FXML
     private VBox vbox1;
-
     @FXML
     private VBox vbox10;
-
     @FXML
     private VBox vbox2;
-
     @FXML
     private VBox vbox3;
-
     @FXML
     private VBox vbox4;
-
     @FXML
     private VBox vbox5;
-
     @FXML
     private VBox vbox6;
-
     @FXML
     private VBox vbox7;
-
     @FXML
     private VBox vbox8;
-
     @FXML
     private VBox vbox9;
-
     @FXML
     private VBox[] vbox;
+    @FXML
+    private ScrollPane showPanel;
 
     String fileName = "src/main/java/Data/friend_requests.csv";
+
+    double contentHeight = 0.0;
 
     @FXML
     public void friendRequestStartUp(ActionEvent event) throws Exception{
@@ -161,7 +154,6 @@ public class friendRequestController implements Initializable {
         for (int i = 0; i < Math.min(friends.length, pendingRequest.size()); i++) {
                 friends[i].setText(pendingRequest.get(i));
                 vbox[i].setVisible(true);
-
         }
     }
 
@@ -176,4 +168,5 @@ public class friendRequestController implements Initializable {
         vbox = new VBox[]{vbox1,vbox2,vbox3,vbox4,vbox5,vbox6,vbox7,vbox8,vbox9,vbox10};
         printFriendsRequest();
     }
+
 }

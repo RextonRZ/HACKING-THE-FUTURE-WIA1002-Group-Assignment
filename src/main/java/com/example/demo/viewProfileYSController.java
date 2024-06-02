@@ -71,7 +71,9 @@ public class viewProfileYSController implements Initializable {
             personalProfileYSController.showError(personalProfileYSController.Username + " has sent you a friend request! Please accept or reject in the 'Friend Request' page! ");
         } else if (alreadyFriends()){
             personalProfileYSController.showError("You are already friends with " + personalProfileYSController.Username + "!");
-        } else {
+        } else if (overLimit()){
+            personalProfileYSController.showError(personalProfileYSController.Username + " have reached the maximum number of pending requests! Please try again later!");
+        }else {
             storeRequest();
             sendNotification(personalProfileYSController.Email);
             friendRequestSent();
@@ -179,5 +181,28 @@ public class viewProfileYSController implements Initializable {
             personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
         }
         return false;
+    }
+
+    public boolean overLimit(){
+        String line;
+        System.out.println(personalProfileYSController.Username);
+        int pending = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                byte status = Byte.parseByte(userData[2]);
+                if ((userData[1].equals(personalProfileYSController.Username)) && (status == 0)){
+                    pending ++;
+                }
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+
+        if (pending < 10){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

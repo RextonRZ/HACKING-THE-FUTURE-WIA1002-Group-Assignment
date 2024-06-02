@@ -277,239 +277,245 @@ public class FriendListViewController implements Initializable {
     void viewProfile1(ActionEvent event) throws Exception{
         setVar(friend1);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile2(ActionEvent event) throws Exception{
         setVar(friend2);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile3(ActionEvent event) throws Exception{
         setVar(friend3);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile4(ActionEvent event) throws Exception{
         setVar(friend4);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile5(ActionEvent event) throws Exception{
         setVar(friend5);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile6(ActionEvent event) throws Exception{
         setVar(friend6);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile7(ActionEvent event) throws Exception{
         setVar(friend7);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile8(ActionEvent event) throws Exception{
         setVar(friend8);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile9(ActionEvent event) throws Exception{
         setVar(friend9);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile10(ActionEvent event) throws Exception{
         setVar(friend10);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile11(ActionEvent event) throws Exception{
         setVar(friend11);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile12(ActionEvent event) throws Exception{
         setVar(friend12);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile13(ActionEvent event) throws Exception{
         setVar(friend13);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile14(ActionEvent event) throws Exception{
         setVar(friend14);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile15(ActionEvent event) throws Exception{
         setVar(friend15);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile16(ActionEvent event) throws Exception{
         setVar(friend16);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile17(ActionEvent event) throws Exception{
         setVar(friend17);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile18(ActionEvent event) throws Exception{
         setVar(friend18);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile19(ActionEvent event) throws Exception{
         setVar(friend19);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile20(ActionEvent event) throws Exception{
         setVar(friend20);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile21(ActionEvent event) throws Exception{
         setVar(friend21);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile22(ActionEvent event) throws Exception{
         setVar(friend22);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile23(ActionEvent event) throws Exception{
         setVar(friend23);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile24(ActionEvent event) throws Exception{
         setVar(friend24);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile25(ActionEvent event) throws Exception{
         setVar(friend25);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile26(ActionEvent event) throws Exception{
         setVar(friend26);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile27(ActionEvent event) throws Exception{
         setVar(friend27);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile28(ActionEvent event) throws Exception{
         setVar(friend28);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile29(ActionEvent event) throws Exception{
         setVar(friend29);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
     }
 
     @FXML
     void viewProfile30(ActionEvent event) throws Exception{
         setVar(friend30);
 
-        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
-        viewProfileYSControllerNoADD.profileStartUp(event);
+        viewProfileYSControllerWDelete viewProfileYSControllerWDelete = new viewProfileYSControllerWDelete();
+        viewProfileYSControllerWDelete.profileStartUp(event);
+    }
+
+    @FXML
+    void refresh(ActionEvent event) throws Exception{
+        FriendListViewController friendListViewController = new FriendListViewController();
+        friendListViewController.friendListStartUp(event);
     }
 }

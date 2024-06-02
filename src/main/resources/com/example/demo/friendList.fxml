@@ -99,7 +99,7 @@
          <children>
             <SplitPane dividerPositions="0.34042553191489366, 0.6994680851063831" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="152.0" prefWidth="222.0" style="-fx-background-color: transparent;">
                <items>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffdde6;">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffdde6; -fx-background-radius: 20;">
                      <children>
                         <Button layoutX="-3.0" layoutY="-0.6666666666666666" mnemonicParsing="false" onAction="#profileButton" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Profile" AnchorPane.topAnchor="-1.0">
                            <font>
@@ -125,7 +125,7 @@
                   </AnchorPane>
                </items>
                <VBox.margin>
-                  <Insets left="50.0" right="20.0" top="115.0" />
+                  <Insets left="50.0" right="20.0" top="76.0" />
                </VBox.margin>
             </SplitPane>
          </children>
@@ -136,12 +136,20 @@
          <content>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="2300.0" prefWidth="1500.0" style="-fx-background-color: ffdde6;">
                <children>
+                  <Button mnemonicParsing="false" onAction="#refresh" style="-fx-background-color: #87ceeb; -fx-background-radius: 20;" text="Refresh" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="650.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Button>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="My Friend">
                      <font>
                         <Font name="Showcard Gothic" size="26.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="295.0" />
+                        <Insets left="295.0" top="-25.0" />
                      </VBox.margin>
                   </Text>
                   <VBox fx:id="box1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="62.0" prefWidth="775.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">

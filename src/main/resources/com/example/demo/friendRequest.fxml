@@ -125,7 +125,7 @@
                   </AnchorPane>
                </items>
                <VBox.margin>
-                  <Insets left="50.0" right="20.0" top="120.0" />
+                  <Insets left="50.0" right="20.0" top="76.0" />
                </VBox.margin>
             </SplitPane>
          </children>

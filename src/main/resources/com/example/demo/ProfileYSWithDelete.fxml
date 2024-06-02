@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.viewProfileYSController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" style="-fx-background-color: #FFE5B6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.viewProfileYSControllerWDelete">
    <center>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" style="-fx-background-color: ffdde6;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -100,9 +100,9 @@
                   </Label>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#addFriend" style="-fx-background-radius: 20; -fx-background-color: f6adc6;" text="Add Friend" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#deleteFriend" style="-fx-background-radius: 20; -fx-background-color: dc143c;" text="Delete Friend" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="248.0" top="10.0" />
+                  <Insets left="239.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />

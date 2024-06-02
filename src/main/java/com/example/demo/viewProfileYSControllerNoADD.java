@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,12 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.*;
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class viewProfileYSControllerNoADD implements Initializable{
@@ -53,11 +47,11 @@ public class viewProfileYSControllerNoADD implements Initializable{
     }
 
     public void reset(){
-        usernameTitle.setText(personalProfileYSController.Username);
-        username.setText(personalProfileYSController.Username);
-        email.setText(personalProfileYSController.Email);
-        coords.setText(personalProfileYSController.Coordinate);
-        point.setText(personalProfileYSController.Points);
-        role.setText(personalProfileYSController.Role);
+        usernameTitle.setText(friendRequestController.UsernamePU);
+        username.setText(friendRequestController.UsernamePU);
+        email.setText(friendRequestController.EmailPU);
+        coords.setText(friendRequestController.CoordinatePU);
+        point.setText(friendRequestController.PointsPU);
+        role.setText(friendRequestController.RolePU);
     }
 }

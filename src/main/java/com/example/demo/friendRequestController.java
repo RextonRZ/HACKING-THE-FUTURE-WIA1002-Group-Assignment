@@ -455,11 +455,17 @@ public class friendRequestController implements Initializable {
 
     public void changeStatus(Text friend){
         String line;
+        int noOfFriends = 0;
         StringBuilder entries = new StringBuilder();
         viewProfileUsername = friend.getText();
         String check = viewProfileUsername + "," + loginController.HostUsername + ",0";
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                if ((userData[0].equals(loginController.HostUsername)) || userData[1].equals(loginController.HostUsername)){
+                    noOfFriends++;
+                }
+
                 if (line.equals(check)){
                     entries.append("");
                 }else{
@@ -473,9 +479,15 @@ public class friendRequestController implements Initializable {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, false))) {
             String entry = entries.toString();
             writer.print(entry);
-            writer.print(viewProfileUsername + "," + loginController.HostUsername + ",1");
-            writer.flush();
-            showAddSuccess();
+            if (noOfFriends <= 30){
+                writer.print(viewProfileUsername + "," + loginController.HostUsername + ",1");
+                writer.flush();
+                showAddSuccess();
+            }else{
+                writer.print(viewProfileUsername + "," + loginController.HostUsername + ",0");
+                writer.flush();
+                personalProfileYSController.showError("You have reached the maximum number of friends!");
+            }
         }catch (IOException e) {
             personalProfileYSController.showError("Error appending new event data to file: " + e.getMessage());
         } catch (Exception e) {

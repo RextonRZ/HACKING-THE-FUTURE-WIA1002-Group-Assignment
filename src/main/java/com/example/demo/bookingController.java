@@ -174,7 +174,6 @@ public class bookingController implements Initializable {
                 while ((s = read.readLine()) != null) {
                     String[] userData = s.split(",");
                     String user = userData[0].trim();
-                    System.out.println(user);
 
                     if (user.equals(childChoiceBox.getValue())) {
                         String date = userData[2].substring(0,10);

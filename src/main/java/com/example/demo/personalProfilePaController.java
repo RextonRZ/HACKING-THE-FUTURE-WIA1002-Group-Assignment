@@ -51,6 +51,8 @@ public class personalProfilePaController implements Initializable {
     String usernamelogin = loginController.HostUsername;
     String fileName = "src/main/java/Data/ParentChild.txt";
 
+    ArrayList<String> child = new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String fileName = "src/main/java/Data/user.csv";
@@ -73,32 +75,58 @@ public class personalProfilePaController implements Initializable {
 
                     if (roleSet.equals("Parent")) {
 
-                        String csv = "src/main/java/Data/bookingData.csv";
+                        String csv = "src/main/java/Data/ParentChild.txt";
+                        String csv2 = "src/main/java/Data/bookingData.csv";
 
                         try (BufferedReader read = new BufferedReader(new FileReader(csv))) {
                             String in, user;
-                            String[] bookingSet;
-                            ArrayList<String[]> show = new ArrayList<>();
-                            String bookingShow = "";
+
                             while (( in = read.readLine()) != null) {
                                 String[] data = in.split(",");
                                 user= data[0].trim();
 
                                 if(user.equals(usernamelogin)) {
-                                    bookingSet = new String[]{data[1].trim(), data[3].trim()};
-                                    show.add(bookingSet);
-                                    show.sort(Comparator.comparing(a-> LocalDate.parse(a[1])));
+                                    child.add(data[1].trim());
                                 }
                             }
 
-                            for(int i=0;i<Math.min(show.size(),5);i++){
-                                String [] haha = show.get(i);
-                                bookingShow += haha[0].trim() + "\t" + haha[1].trim() + "\n\n";
-                                booking.setText(bookingShow);
-                                Text text = new Text(bookingShow);
-                                double textHeight = text.getLayoutBounds().getHeight()+20;
-                                vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom()+200);
+                            try (BufferedReader read2 = new BufferedReader(new FileReader(csv2))) {
+                                String in2, user2;
+                                String[] bookingSet;
+                                ArrayList<String[]> show = new ArrayList<>();
+                                String bookingShow = "";
+                                while (( in2 = read2.readLine()) != null) {
+                                    String[] data2 = in2.split(",");
+                                    user2= data2[0].trim();
+
+                                    for(int i=0; i< child.size(); i++) {
+                                        if (user2.equals(child.get(i))) {
+                                            bookingSet = new String[]{data2[0].trim(), data2[1].trim(), data2[3].trim()};
+                                            show.add(bookingSet);
+                                        }
+                                    }
+                                }
+                                show.sort(Comparator.comparing(a -> LocalDate.parse(a[2])));
+                                Collections.reverse(show);
+
+                                for(int i=0;i<Math.min(show.size(),3);i++) {
+                                    String[] pastBooking = show.get(i);
+                                    bookingShow += pastBooking[2].trim() + "\n" +
+                                            String.format("%-20s", pastBooking[0].trim()) +
+                                            String.format("%-50s\n\n", pastBooking[1].trim());                                            ;
+
+                                    booking.setText(bookingShow);
+                                    Text text = new Text(bookingShow);
+                                    double textHeight = text.getLayoutBounds().getHeight()+20;
+                                    vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom() + 200);
+                                }
+
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
                             }
+
                         } catch (FileNotFoundException e) {
                             throw new RuntimeException(e);
                         } catch (IOException e) {
@@ -284,5 +312,10 @@ public class personalProfilePaController implements Initializable {
         alert.setContentText("Children added successfully!");
 
         alert.showAndWait();
+    }
+
+    @FXML
+    void viewProfile1(ActionEvent event){
+
     }
 }

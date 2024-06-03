@@ -44,7 +44,8 @@ public class personalProfileYSController implements Initializable {
 
     String fileName = "src/main/java/Data/user.csv";
     String usernamelogin = loginController.HostUsername;
-    String searchUser, userMail, userRole;
+    public static String searchUser;
+    String userMail, userRole;
     StringBuilder[] errorMessage = {
         new StringBuilder("Oops! Looks like you've entered your own username. Try searching for someone else this time! \uD83D\uDE04"),
         new StringBuilder("Hold up! You're already here! Try searching for another username. \uD83D\uDE04"),

@@ -101,13 +101,7 @@ public class leaderBoardController implements Initializable {
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    private ListView<String> leaderboardListView;
-
-    private List<Student> students;
-
     private ArrayList<String[]> leaderBoard;
-
-    private static final String CSV_FILE = "students.csv";
 
     String line, usernameSet, roleSet, pointSet, pointLastUpdate;
     String[] data;

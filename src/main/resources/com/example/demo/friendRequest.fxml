@@ -125,16 +125,16 @@
                   </AnchorPane>
                </items>
                <VBox.margin>
-                  <Insets left="50.0" right="20.0" top="120.0" />
+                  <Insets left="50.0" right="20.0" top="76.0" />
                </VBox.margin>
             </SplitPane>
          </children>
       </VBox>
    </left>
    <center>
-      <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="453.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="showPanel" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="453.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox maxWidth="-Infinity" prefHeight="1500.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1200.0" prefWidth="1500.0" style="-fx-background-color: FFDDE6;">
                <children>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend Request">
                      <font>
@@ -154,28 +154,28 @@
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject1" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept1" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile1" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -193,28 +193,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject2" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept2" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile2" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -232,28 +232,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject3" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept3" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile3" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -271,28 +271,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject4" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept4" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile4" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -310,28 +310,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject5" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept5" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile5" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -349,28 +349,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject6" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept6" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile6" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -388,28 +388,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject7" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept7" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile7" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -427,28 +427,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject8" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept8" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile8" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -466,28 +466,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject9" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept9" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile9" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -505,28 +505,28 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" text="Reject">
+                        <Button mnemonicParsing="false" onAction="#reject10" style="-fx-background-radius: 20; -fx-background-color: f08080;" text="Reject" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="600.0" top="25.0" />
+                              <Insets left="600.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Accept">
+                        <Button mnemonicParsing="false" onAction="#accept10" style="-fx-background-radius: 20; -fx-background-color: rgb(143,188,143);" text="Accept" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="670.0" top="-25.0" />
+                              <Insets left="670.0" top="-27.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+                        <Button mnemonicParsing="false" onAction="#viewProfile10" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="40.0" top="-22.0" />
+                              <Insets left="40.0" top="-28.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>

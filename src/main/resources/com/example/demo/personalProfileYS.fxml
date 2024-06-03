@@ -178,12 +178,12 @@
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
             </Text>
-            <TextField fx:id="newFriendUsername" maxWidth="-Infinity" prefHeight="25.0" prefWidth="315.0" promptText="Enter the username or email you would like to search ...">
+            <TextField fx:id="newFriendUsername" maxWidth="-Infinity" prefHeight="25.0" prefWidth="315.0" promptText="Enter the username or email you would like to search ..." style="-fx-background-radius: 20; -fx-background-color: rgba(255,255,255,.5);">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#viewProfile" text="View Profile">
+            <Button mnemonicParsing="false" onAction="#viewProfile" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                <VBox.margin>
                   <Insets left="325.0" top="-25.0" />
                </VBox.margin>

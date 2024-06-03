@@ -7,20 +7,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.scene.layout.VBox;
 public class personalProfilePaController implements Initializable {
 
@@ -45,8 +43,13 @@ public class personalProfilePaController implements Initializable {
     @FXML
     private VBox vbox;
 
+    @FXML
+    private TextField findChildren;
+
+    String searchChildren;
 
     String usernamelogin = loginController.HostUsername;
+    String fileName = "src/main/java/Data/ParentChild.txt";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,9 +113,6 @@ public class personalProfilePaController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
-
     }
 
     @FXML
@@ -159,5 +159,130 @@ public class personalProfilePaController implements Initializable {
         homeController homeController = new homeController();
         homeController.logOutButton(event);
 
+    }
+
+    @FXML
+    public void viewProfile(ActionEvent event) throws Exception{
+        searchChildren = findChildren.getText();
+
+        if (searchChildren == null || searchChildren.isEmpty()){
+            personalProfileYSController.showError("Please enter a username!");
+        } else if (!usernameFound()) {
+            personalProfileYSController.showError("User not found!");
+        } else if (!isChildren()) {
+            personalProfileYSController.showError("User is not a 'Young Student'!");
+        } else {
+            viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+            viewProfileYSControllerNoADD.profileStartUp(event);
+        }
+    }
+
+
+
+    public boolean isChildren(){
+        String line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                if (userData[0].equals(searchChildren) && userData[3].equals("Young Student")) {
+                    friendRequestController.UsernamePU = userData[0].trim();
+                    friendRequestController.EmailPU = userData[1].trim();
+                    friendRequestController.CoordinatePU = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                    friendRequestController.RolePU = userData[3].trim();
+                    friendRequestController.PointsPU = userData[6].trim();
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean usernameFound(){
+        String line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                if (userData[0].equals(searchChildren))
+                    return true;
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        return false;
+    }
+
+    @FXML
+    void addChildren(ActionEvent event) throws Exception{
+        searchChildren = findChildren.getText();
+
+        if (searchChildren == null || searchChildren.isEmpty()){
+            personalProfileYSController.showError("Please enter a username!");
+        } else if (!usernameFound()) {
+            personalProfileYSController.showError("User not found!");
+        } else if (!isChildren()) {
+            personalProfileYSController.showError("User is not a 'Young Student'!");
+        } else if (overParents()){
+            personalProfileYSController.showError(searchChildren + " has 2 parents now! One children can only have at most 2 parents!");
+        } else {
+            doubleConfirm(event);
+        }
+
+    }
+
+    public boolean overParents(){
+        String line;
+        int parentNo = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                String[] relationshipData = line.split(",");
+                if (relationshipData[1].equals(searchChildren))
+                    parentNo++;
+                System.out.println(parentNo);
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        if (parentNo >= 2){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void doubleConfirm(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Add Children");
+        alert.setContentText("Are you sure want to add " + searchChildren + " as children?\nThis process is permanent and irreversible!");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isEmpty()) {
+            System.out.println("Alert closed");
+
+        } else if (result.get() == ButtonType.OK) {
+            storeRelation();
+            childrenAdded();
+            personalProfilePaController personalProfilePaController = new personalProfilePaController();
+            personalProfilePaController.personalProfileStartUp(event);
+
+        } else if (result.get() == ButtonType.CANCEL) ;
+    }
+
+    public void storeRelation(){
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))){
+            writer.println(loginController.HostUsername + "," + searchChildren);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void childrenAdded() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Successful");
+        alert.setHeaderText(null);
+        alert.setContentText("Children added successfully!");
+
+        alert.showAndWait();
     }
 }

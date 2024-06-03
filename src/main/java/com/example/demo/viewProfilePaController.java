@@ -20,8 +20,6 @@ public class viewProfilePaController implements Initializable {
     @FXML
     private Label email;
     @FXML
-    private Label point;
-    @FXML
     private Label role;
     @FXML
     private Label username;

@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class viewProfileYSControllerWDelete implements Initializable {
@@ -64,8 +66,7 @@ public class viewProfileYSControllerWDelete implements Initializable {
 
     @FXML
     void deleteFriend(ActionEvent event) throws Exception{
-        deleteEntry();
-
+        doubleConfirm(event);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -107,6 +108,21 @@ public class viewProfileYSControllerWDelete implements Initializable {
         alert.setContentText("Successfully deleted " + viewProfileUsername + " as friend!");
 
         alert.showAndWait();
+    }
+
+    public void doubleConfirm(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Friend");
+        alert.setContentText("Are you sure want to delete " + friendRequestController.UsernamePU + " as friend?\nThis process is permanent and irreversible!");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isEmpty()) {
+            System.out.println("Alert closed");
+
+        } else if (result.get() == ButtonType.OK) {
+            deleteEntry();
+
+        } else if (result.get() == ButtonType.CANCEL) ;
     }
 }
 

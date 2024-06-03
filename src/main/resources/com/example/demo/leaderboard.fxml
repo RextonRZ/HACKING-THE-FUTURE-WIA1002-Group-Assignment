@@ -115,7 +115,7 @@
                   <Insets left="-100.0" top="13.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="user1" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user1" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -124,19 +124,7 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user2" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-                     <VBox.margin>
-                        <Insets left="20.0" top="5.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-               <VBox.margin>
-                  <Insets left="-100.0" top="13.0" />
-               </VBox.margin>
-            </VBox>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-               <children>
-                  <Text fx:id="user3" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user2" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -148,7 +136,7 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user4" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user3" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -160,7 +148,7 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user5" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user4" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -172,7 +160,7 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user6" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user5" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -184,7 +172,7 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user7" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user6" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -196,7 +184,7 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user8" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user7" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -208,7 +196,19 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="user9" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Text fx:id="user8" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets left="-100.0" top="13.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="497.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+               <children>
+                  <Text fx:id="user9" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -262,7 +262,7 @@
                   <Insets left="-50.0" right="150.0" top="13.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="point1" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point1" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -271,19 +271,7 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point2" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
-                     <VBox.margin>
-                        <Insets left="20.0" top="5.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-               <VBox.margin>
-                  <Insets left="-50.0" right="150.0" top="13.0" />
-               </VBox.margin>
-            </VBox>
-            <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-               <children>
-                  <Text fx:id="point3" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point2" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -295,7 +283,7 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point4" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point3" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -307,7 +295,7 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point5" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point4" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -319,7 +307,7 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point6" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point5" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -331,7 +319,7 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point7" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point6" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -343,7 +331,7 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point8" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point7" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>
@@ -355,7 +343,19 @@
             </VBox>
             <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
-                  <Text fx:id="point9" strokeType="OUTSIDE" strokeWidth="0.0" text="Point">
+                  <Text fx:id="point8" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets left="-50.0" right="150.0" top="13.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox prefHeight="31.0" prefWidth="299.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+               <children>
+                  <Text fx:id="point9" strokeType="OUTSIDE" strokeWidth="0.0">
                      <VBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </VBox.margin>

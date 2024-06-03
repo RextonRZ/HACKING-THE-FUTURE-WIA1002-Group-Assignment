@@ -155,7 +155,7 @@ public class bookingController implements Initializable {
                     String[] userData = line.split(",");
                     String user = userData[0].trim();
 
-                    if (user.equals(usernamelogin)) {
+                    if (user.equals(childChoiceBox.getValue())) {
                         String date = userData[3].trim();
                         prebook.add(date);
                     }
@@ -176,7 +176,7 @@ public class bookingController implements Initializable {
                     String user = userData[0].trim();
                     System.out.println(user);
 
-                    if (user.equals(usernamelogin)) {
+                    if (user.equals(childChoiceBox.getValue())) {
                         String date = userData[2].substring(0,10);
                         prebook.add(date);
                     }

@@ -85,38 +85,23 @@ public class personalProfilePaController implements Initializable {
                     email.setText(emailSet);
 
                     if (roleSet.equals("Parent")) {
-
-                        String csv = "src/main/java/Data/ParentChild.txt";
-                        String csv2 = "src/main/java/Data/bookingData.csv";
+                        String csv = "src/main/java/Data/bookingData.csv";
 
                         try (BufferedReader read = new BufferedReader(new FileReader(csv))) {
                             String in, user;
+                            String[] bookingSet;
+                            ArrayList<String[]> show = new ArrayList<>();
+                            String bookingShow = "";
 
                             while (( in = read.readLine()) != null) {
                                 String[] data = in.split(",");
                                 user= data[0].trim();
 
                                 if(user.equals(usernamelogin)) {
-                                    child.add(data[1].trim());
+                                    bookingSet = new String[]{data[1].trim(), data[2].trim(), data[4].trim()};
+                                    show.add(bookingSet);
                                 }
-                            }
 
-                            try (BufferedReader read2 = new BufferedReader(new FileReader(csv2))) {
-                                String in2, user2;
-                                String[] bookingSet;
-                                ArrayList<String[]> show = new ArrayList<>();
-                                String bookingShow = "";
-                                while (( in2 = read2.readLine()) != null) {
-                                    String[] data2 = in2.split(",");
-                                    user2= data2[0].trim();
-
-                                    for(int i=0; i< child.size(); i++) {
-                                        if (user2.equals(child.get(i))) {
-                                            bookingSet = new String[]{data2[0].trim(), data2[1].trim(), data2[3].trim()};
-                                            show.add(bookingSet);
-                                        }
-                                    }
-                                }
                                 show.sort(Comparator.comparing(a -> LocalDate.parse(a[2])));
                                 Collections.reverse(show);
 
@@ -131,18 +116,13 @@ public class personalProfilePaController implements Initializable {
                                     double textHeight = text.getLayoutBounds().getHeight()+20;
                                     vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom() + 200);
                                 }
+                            }
 
                             } catch (FileNotFoundException e) {
                                 throw new RuntimeException(e);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
                     }
 
                 }

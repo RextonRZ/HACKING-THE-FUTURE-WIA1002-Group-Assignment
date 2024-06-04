@@ -109,7 +109,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="47.0" prefWidth="207.0" style="-fx-background-color: #FFFFCC;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#friendRequestStartUp" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: efbbcc;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request">
+                        <Button mnemonicParsing="false" onAction="#friendRequestStartUp" prefHeight="47.0" prefWidth="219.0" style="-fx-background-color: f38fa9;" styleClass="side" stylesheets="@../../../CssStyle/home.css" text="Request" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font></Button>

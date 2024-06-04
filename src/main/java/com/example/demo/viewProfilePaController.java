@@ -66,12 +66,13 @@ public class viewProfilePaController implements Initializable {
     }
 
     public void reset() {
+        String bookings = setBooking();
         usernameTitle.setText(personalProfileYSController.Username);
         username.setText(personalProfileYSController.Username);
         email.setText(personalProfileYSController.Email);
         coords.setText(personalProfileYSController.Coordinate);
         role.setText(personalProfileYSController.Role);
-        booking.setText(setBooking());
+        booking.setText(bookings);
     }
 
     public String setBooking() {
@@ -111,8 +112,6 @@ public class viewProfilePaController implements Initializable {
                     bookingShow += pastBooking[2].trim() + "\n" +
                             String.format("%-20s", pastBooking[0].trim()) +
                             String.format("%-50s\n\n", pastBooking[1].trim());
-
-                    System.out.println(bookingShow);
 
                     booking.setText(bookingShow);
                     Text text = new Text(bookingShow);

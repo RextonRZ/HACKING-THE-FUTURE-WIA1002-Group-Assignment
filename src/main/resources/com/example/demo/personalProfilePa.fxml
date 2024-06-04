@@ -92,7 +92,7 @@
             </HBox>
          </children>
       </HBox>
-      <VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+      <VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                <font>
@@ -161,36 +161,36 @@
             </Label>
          </children>
          <VBox.margin>
-            <Insets top="35.0" />
+            <Insets top="15.0" />
          </VBox.margin>
       </VBox>
-      <VBox prefHeight="94.0" prefWidth="1050.0">
+      <VBox prefHeight="80.0" prefWidth="1050.0">
          <VBox.margin>
-            <Insets top="30.0" />
+            <Insets top="10.0" />
          </VBox.margin>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Children:">
                <VBox.margin>
-                  <Insets left="362.0" top="10.0" />
+                  <Insets left="362.0" top="5.0" />
                </VBox.margin>
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" onAction="#viewProfile" prefHeight="23.0" prefWidth="90.0" style="-fx-background-color: e7accf; -fx-background-radius: 20;" text="View Profile" textFill="WHITE">
+            <TextField fx:id="findChildren" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="315.0" promptText="Enter your children name here..." style="-fx-background-radius: 20; -fx-background-color: rgba(255,255,255,.5);">
                <VBox.margin>
-                  <Insets left="690.0" top="20.0" />
+                  <Insets left="362.0" top="5.0" />
                </VBox.margin>
+            </TextField>
+            <Button maxHeight="-Infinity" mnemonicParsing="false" onAction="#viewProfile" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: e7accf; -fx-background-radius: 20;" text="View Profile" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
-            </Button>
-            <TextField fx:id="findChildren" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="315.0" promptText="Enter your children name here..." style="-fx-background-radius: 20; -fx-background-color: rgba(255,255,255,.5);">
                <VBox.margin>
-                  <Insets left="362.0" top="-24.0" />
+                  <Insets left="690.0" top="-26.0" />
                </VBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" onAction="#addChildren" style="-fx-background-color: cc3366; -fx-background-radius: 20;" text="Add Children" textFill="WHITE">
+            </Button>
+            <Button maxHeight="-Infinity" mnemonicParsing="false" onAction="#addChildren" prefHeight="25.0" style="-fx-background-color: cc3366; -fx-background-radius: 20;" text="Add Children" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -200,16 +200,16 @@
             </Button>
          </children>
       </VBox>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="815.0" style="-fx-background-color: ffdde6; -fx-background-radius: 20;" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="815.0" style="-fx-background-color: ffdde6; -fx-background-radius: 20;" vbarPolicy="NEVER">
          <VBox.margin>
-            <Insets top="50.0" />
+            <Insets />
          </VBox.margin>
          <content>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="815.0" style="-fx-background-color: ffdde6;">
                <children>
-                  <VBox maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="VBox1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="child1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -227,9 +227,9 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="VBox2" maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="child2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -237,30 +237,7 @@
                               <Insets left="40.0" top="13.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" onAction="#viewProfile1" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="675.0" top="-25.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="40.0" top="13.0" />
-                           </VBox.margin>
-                        </Text>
-                        <Button mnemonicParsing="false" onAction="#viewProfile1" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#viewProfile2" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
@@ -273,9 +250,9 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="VBox3" maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="child3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -283,7 +260,7 @@
                               <Insets left="40.0" top="13.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" onAction="#viewProfile1" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#viewProfile3" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
@@ -296,9 +273,9 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="VBox4" maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="child4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -306,7 +283,30 @@
                               <Insets left="40.0" top="13.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" onAction="#viewProfile1" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#viewProfile4" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="675.0" top="-25.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="VBox5" maxWidth="-Infinity" prefHeight="50.0" prefWidth="795.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="child5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="13.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Button mnemonicParsing="false" onAction="#viewProfile5" style="-fx-background-radius: 20; -fx-background-color: e7accf;" text="View Profile" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>

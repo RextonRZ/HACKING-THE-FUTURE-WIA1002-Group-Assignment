@@ -229,7 +229,7 @@ public class bookingController implements Initializable {
         }
         String fileName = "src/main/java/Data/bookingData.csv";
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
-            writer.print(childChoiceBox.getValue() + "," + destinationChoiceBox.getValue().toString().replace("\n", ",") + "," + timeSlotBooking.getValue().toString().substring(4).trim() + "\n");
+            writer.print(usernamelogin+ ","+childChoiceBox.getValue() + "," + destinationChoiceBox.getValue().toString().replace("\n", ",") + "," + timeSlotBooking.getValue().toString().substring(4).trim() + "\n");
             writer.flush();
             showBookingSuccess();
 

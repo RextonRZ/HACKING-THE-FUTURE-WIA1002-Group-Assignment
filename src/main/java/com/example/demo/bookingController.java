@@ -150,10 +150,10 @@ public class bookingController implements Initializable {
 
                 while ((line = reader.readLine()) != null) {
                     String[] userData = line.split(",");
-                    String user = userData[0].trim();
+                    String user = userData[1].trim();
 
                     if (user.equals(childChoiceBox.getValue())) {
-                        String date = userData[3].trim();
+                        String date = userData[4].trim();
                         prebook.add(date);
                     }
                 }
@@ -173,7 +173,7 @@ public class bookingController implements Initializable {
                     String user = userData[0].trim();
 
                     if (user.equals(childChoiceBox.getValue())) {
-                        String date = userData[2].substring(0,10);
+                        String date = userData[2].substring(0, 10);
                         prebook.add(date);
                     }
                 }
@@ -182,30 +182,31 @@ public class bookingController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+            for (int i = 1; i < 8; i++) {
+                allDate.add(currentDate.plusDays(i).toString());
+            }
 
-        for (int i = 1; i < 8; i++) {
-            allDate.add(currentDate.plusDays(i).toString());
-        }
+            for (String date : allDate) {
+                clashing=0;
 
-        for (String date : allDate) {
-            clashing=0;
-
-            for(String filter: prebook) {
-                if (filter.equals(date)) {
-                    clashing ++;
+                for(String filter: prebook) {
+                    if (filter.equals(date)) {
+                        clashing ++;
+                    }
+                }
+                if(clashing==0) {
+                    timeslot.add(date);
                 }
             }
-            if(clashing==0) {
-                timeslot.add(date);
+
+            for(int i=0; i< timeslot.size(); i++){
+                String n = "[" + (i+1) + "] " + timeslot.get(i) + "\n";
+                timeSlotsTextArea.appendText(n);
+                timeSlotBooking.getItems().add(n);
             }
+
         }
 
-        for(int i=0; i< timeslot.size(); i++){
-            String n = "[" + (i+1) + "] " + timeslot.get(i) + "\n";
-            timeSlotsTextArea.appendText(n);
-            timeSlotBooking.getItems().add(n);
-        }
     }
 
 

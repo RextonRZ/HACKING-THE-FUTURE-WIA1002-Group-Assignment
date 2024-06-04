@@ -2,6 +2,7 @@ package com.example.demo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -44,15 +45,15 @@ public class bookingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        childSelection();
         loadBookingDestinations();
         displayBookingDestinations();
-        childSelection();
+        childChoiceBox.setOnAction(this::destinationSelected);
     }
+
 
     public void childSelection(){
         String fileName = "src/main/java/Data/ParentChild.txt";
-
-        ArrayList<String> childList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -133,11 +134,7 @@ public class bookingController implements Initializable {
         }
     }
 
-    public void destinationSelected(MouseEvent event) {
-        timeSlotsTextArea.clear();
-        timeSlotBooking.getItems().clear();
-        timeSlotBooking.getSelectionModel().clearSelection();
-
+    private void destinationSelected(Event event) {
         ArrayList<String> timeslot = new ArrayList<>();
         ArrayList<String> prebook = new ArrayList<>();
         ArrayList<String> allDate = new ArrayList<>();
@@ -145,7 +142,7 @@ public class bookingController implements Initializable {
 
         LocalDate currentDate = LocalDate.now();
 
-        if (destinationChoiceBox.getValue() != null) {
+        if (!childChoiceBox.getSelectionModel().isEmpty()) {
             String fileName = "src/main/java/Data/bookingData.csv";
 
             try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -155,7 +152,7 @@ public class bookingController implements Initializable {
                     String[] userData = line.split(",");
                     String user = userData[0].trim();
 
-                    if (user.equals(usernamelogin)) {
+                    if (user.equals(childChoiceBox.getValue())) {
                         String date = userData[3].trim();
                         prebook.add(date);
                     }
@@ -174,9 +171,8 @@ public class bookingController implements Initializable {
                 while ((s = read.readLine()) != null) {
                     String[] userData = s.split(",");
                     String user = userData[0].trim();
-                    System.out.println(user);
 
-                    if (user.equals(usernamelogin)) {
+                    if (user.equals(childChoiceBox.getValue())) {
                         String date = userData[2].substring(0,10);
                         prebook.add(date);
                     }
@@ -213,8 +209,9 @@ public class bookingController implements Initializable {
     }
 
 
+
     @FXML
-    public void bookDestination(ActionEvent event) {
+    public void bookDestination(ActionEvent event) throws Exception{
         int selectedIndex = destinationChoiceBox.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1) {
             showAlert("Error", "Please select a destination.");
@@ -234,18 +231,13 @@ public class bookingController implements Initializable {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
             writer.print(childChoiceBox.getValue() + "," + destinationChoiceBox.getValue().toString().replace("\n", ",") + "," + timeSlotBooking.getValue().toString().substring(4).trim() + "\n");
             writer.flush();
-            timeSlotBooking.getValue().toString().substring(4).trim();
             showBookingSuccess();
-            destinationChoiceBox.getSelectionModel().clearSelection();
-            timeSlotsTextArea.clear();
-            timeSlotBooking.getItems().clear();
-            timeSlotBooking.getSelectionModel().clearSelection();
-            destinationChoiceBox.setValue("");
-            childChoiceBox.getSelectionModel().clearSelection();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        bookingStartUp(event);
     }
 
     private void showBookingSuccess(){

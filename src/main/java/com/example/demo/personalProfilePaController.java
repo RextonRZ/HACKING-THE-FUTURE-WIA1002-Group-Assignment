@@ -102,23 +102,25 @@ public class personalProfilePaController implements Initializable {
                                     show.add(bookingSet);
                                 }
 
-                                show.sort(Comparator.comparing(a -> LocalDate.parse(a[2])));
-                                Collections.reverse(show);
-
-                                for(int i=0;i<Math.min(show.size(),3);i++) {
-                                    String[] pastBooking = show.get(i);
-                                    bookingShow += pastBooking[2].trim() + "\n" +
-                                            String.format("%-30s", pastBooking[0].trim()) +
-                                            String.format("%-50s\n\n", pastBooking[1].trim());                                            ;
-
-                                    booking.setText(bookingShow);
-                                    Text text = new Text(bookingShow);
-                                    double textHeight = text.getLayoutBounds().getHeight()+20;
-                                    vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom() + 200);
-                                }
                             }
 
-                            } catch (FileNotFoundException e) {
+                            show.sort(Comparator.comparing(a -> LocalDate.parse(a[2])));
+                            Collections.reverse(show);
+
+                            for(int i=0;i<Math.min(show.size(),3);i++) {
+                                String[] pastBooking = show.get(i);
+                                bookingShow += pastBooking[2].trim() + "\n" +
+                                        String.format("%-30s", pastBooking[0].trim()) +
+                                        String.format("%-50s\n\n", pastBooking[1].trim());
+
+                            }
+                            booking.setText(bookingShow);
+                            Text text = new Text(bookingShow);
+                            double textHeight = text.getLayoutBounds().getHeight()+20;
+                            vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom() + 200);
+
+
+                        } catch (FileNotFoundException e) {
                                 throw new RuntimeException(e);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);

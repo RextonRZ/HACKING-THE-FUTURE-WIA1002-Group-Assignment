@@ -46,12 +46,23 @@ public class personalProfilePaController implements Initializable {
     @FXML
     private TextField findChildren;
 
+    @FXML
+    private Text child1, child2, child3, child4, child5;
+
+    @FXML
+    private VBox VBox1, VBox2, VBox3, VBox4, VBox5;
+
     String searchChildren;
 
     String usernamelogin = loginController.HostUsername;
     String fileName = "src/main/java/Data/ParentChild.txt";
 
+    String viewProfileUsername;
+
     ArrayList<String> child = new ArrayList<>();
+
+    private Text[] children;
+    private VBox[] Vbox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,45 +85,30 @@ public class personalProfilePaController implements Initializable {
                     email.setText(emailSet);
 
                     if (roleSet.equals("Parent")) {
-
-                        String csv = "src/main/java/Data/ParentChild.txt";
-                        String csv2 = "src/main/java/Data/bookingData.csv";
+                        String csv = "src/main/java/Data/bookingData.csv";
 
                         try (BufferedReader read = new BufferedReader(new FileReader(csv))) {
                             String in, user;
+                            String[] bookingSet;
+                            ArrayList<String[]> show = new ArrayList<>();
+                            String bookingShow = "";
 
                             while (( in = read.readLine()) != null) {
                                 String[] data = in.split(",");
                                 user= data[0].trim();
 
                                 if(user.equals(usernamelogin)) {
-                                    child.add(data[1].trim());
+                                    bookingSet = new String[]{data[1].trim(), data[2].trim(), data[4].trim()};
+                                    show.add(bookingSet);
                                 }
-                            }
 
-                            try (BufferedReader read2 = new BufferedReader(new FileReader(csv2))) {
-                                String in2, user2;
-                                String[] bookingSet;
-                                ArrayList<String[]> show = new ArrayList<>();
-                                String bookingShow = "";
-                                while (( in2 = read2.readLine()) != null) {
-                                    String[] data2 = in2.split(",");
-                                    user2= data2[0].trim();
-
-                                    for(int i=0; i< child.size(); i++) {
-                                        if (user2.equals(child.get(i))) {
-                                            bookingSet = new String[]{data2[0].trim(), data2[1].trim(), data2[3].trim()};
-                                            show.add(bookingSet);
-                                        }
-                                    }
-                                }
                                 show.sort(Comparator.comparing(a -> LocalDate.parse(a[2])));
                                 Collections.reverse(show);
 
                                 for(int i=0;i<Math.min(show.size(),3);i++) {
                                     String[] pastBooking = show.get(i);
                                     bookingShow += pastBooking[2].trim() + "\n" +
-                                            String.format("%-20s", pastBooking[0].trim()) +
+                                            String.format("%-30s", pastBooking[0].trim()) +
                                             String.format("%-50s\n\n", pastBooking[1].trim());                                            ;
 
                                     booking.setText(bookingShow);
@@ -120,18 +116,13 @@ public class personalProfilePaController implements Initializable {
                                     double textHeight = text.getLayoutBounds().getHeight()+20;
                                     vbox.setPrefHeight(textHeight + vbox.getPadding().getTop() + vbox.getPadding().getBottom() + 200);
                                 }
+                            }
 
                             } catch (FileNotFoundException e) {
                                 throw new RuntimeException(e);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
                     }
 
                 }
@@ -140,6 +131,35 @@ public class personalProfilePaController implements Initializable {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+
+        children = new Text[]{child1, child2, child3, child4, child5};
+        Vbox = new VBox[]{VBox1, VBox2, VBox3, VBox4, VBox5};
+
+        printChildrenList();
+    }
+
+    public void printChildrenList() {
+        String line;
+        ArrayList<String> childrenList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                String[] parentChild = line.split(",");
+                if (parentChild[0].equals(loginController.HostUsername)){
+                    childrenList.add(parentChild[1]);
+                }
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+
+        for(VBox box: Vbox){
+            box.setVisible(false);
+        }
+
+        for (int i = 0; i < childrenList.size(); i++) {
+            children[i].setText(childrenList.get(i));
+            Vbox[i].setVisible(true);
         }
     }
 
@@ -253,6 +273,8 @@ public class personalProfilePaController implements Initializable {
             personalProfileYSController.showError("User is not a 'Young Student'!");
         } else if (overParents()){
             personalProfileYSController.showError(searchChildren + " has 2 parents now! One children can only have at most 2 parents!");
+        } else if (overChildren()) {
+            personalProfileYSController.showError("You can only have 5 children at the same time!");
         } else {
             doubleConfirm(event);
         }
@@ -267,12 +289,30 @@ public class personalProfilePaController implements Initializable {
                 String[] relationshipData = line.split(",");
                 if (relationshipData[1].equals(searchChildren))
                     parentNo++;
-                System.out.println(parentNo);
             }
         } catch (IOException e) {
             personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
         }
         if (parentNo >= 2){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean overChildren(){
+        String line;
+        int childrenNo = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while ((line = reader.readLine()) != null) {
+                String[] relationshipData = line.split(",");
+                if (relationshipData[0].equals(loginController.HostUsername))
+                    childrenNo++;
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+        if (childrenNo >= 5){
             return true;
         }else {
             return false;
@@ -315,7 +355,64 @@ public class personalProfilePaController implements Initializable {
     }
 
     @FXML
-    void viewProfile1(ActionEvent event){
+    void viewProfile1(ActionEvent event)throws Exception{
+        setVar(child1);
 
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
     }
+
+    @FXML
+    void viewProfile2(ActionEvent event) throws Exception{
+        setVar(child2);
+
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+    }
+
+    @FXML
+    void viewProfile3(ActionEvent event) throws Exception{
+        setVar(child3);
+
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+    }
+
+    @FXML
+    void viewProfile4(ActionEvent event) throws Exception{
+        setVar(child4);
+
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+    }
+
+    @FXML
+    void viewProfile5(ActionEvent event) throws Exception{
+        setVar(child5);
+
+        viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
+        viewProfileYSControllerNoADD.profileStartUp(event);
+    }
+
+    private void setVar(Text child){
+        viewProfileUsername = child.getText();
+        String line;
+        try(BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                if (userData[0].equals(viewProfileUsername)){
+                    friendRequestController.UsernamePU = userData[0].trim();
+                    friendRequestController.EmailPU = userData[1].trim();
+                    friendRequestController.CoordinatePU = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                    friendRequestController.RolePU = userData[3].trim();
+                    friendRequestController.PointsPU = userData[6].trim();
+                    break;
+                }
+            }
+        }catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+    }
+
+
 }

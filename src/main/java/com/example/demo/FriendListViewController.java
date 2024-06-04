@@ -254,7 +254,6 @@ public class FriendListViewController implements Initializable {
 
     private void setVar(Text friend){
         viewProfileUsername = friend.getText();
-        System.out.println(viewProfileUsername);
         String line;
         try(BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
             while ((line = reader.readLine()) != null) {

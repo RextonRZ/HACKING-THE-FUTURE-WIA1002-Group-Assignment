@@ -10,12 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -40,11 +43,23 @@ public class personalProfileYSController implements Initializable {
     private Label username;
 
     @FXML
+    private Text parent1;
+
+    @FXML
+    private Text parent2;
+
+    @FXML
+    private VBox parentVB1;
+
+    @FXML
+    private VBox parentVB2;
+
+    @FXML
     private TextField newFriendUsername;
 
+    public static String searchUser;
     String fileName = "src/main/java/Data/user.csv";
     String usernamelogin = loginController.HostUsername;
-    public static String searchUser;
     String userMail, userRole;
     StringBuilder[] errorMessage = {
         new StringBuilder("Oops! Looks like you've entered your own username. Try searching for someone else this time! \uD83D\uDE04"),
@@ -55,10 +70,11 @@ public class personalProfileYSController implements Initializable {
         new StringBuilder("Looks like you're searching for a mirror image! Try searching for a different username to find someone new. 🪞")
     };
 
+    VBox[] vbox;
+    Text[] parentUsername;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String fileName = "src/main/java/Data/user.csv";
-
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line, usernameSet, latitude, longitude, roleSet, emailSet, pointSet;
             while ((line = reader.readLine()) != null) {
@@ -86,6 +102,11 @@ public class personalProfileYSController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        vbox = new VBox[]{parentVB1, parentVB2};
+        parentUsername = new Text[]{parent1,parent2};
+
+        printParentList();
     }
 
     @FXML
@@ -219,5 +240,63 @@ public class personalProfileYSController implements Initializable {
             showError("Error reading user data from file: " + e.getMessage());
         }
         return false;
+    }
+
+    private void printParentList(){
+        String line;
+        ArrayList<String> parents = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/ParentChild.txt"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] parentChild = line.split(",");
+                if (parentChild[1].equals(loginController.HostUsername)){
+                    parents.add(parentChild[0]);
+                }
+            }
+        } catch (IOException e) {
+            personalProfileYSController.showError("Error reading user data from file: " + e.getMessage());
+        }
+
+        for(VBox box: vbox){
+            box.setVisible(false);
+        }
+
+        for (int i = 0; i < Math.min(2,parents.size()); i++) {
+            parentUsername[i].setText(parents.get(i));
+            vbox[i].setVisible(true);
+        }
+    }
+
+    @FXML
+    void viewPaProfile1(ActionEvent event) throws Exception{
+        getParentOnly(parent1);
+
+        viewProfilePaController viewProfilePaController = new viewProfilePaController();
+        viewProfilePaController.profileStartUp(event);
+    }
+
+    @FXML
+    void viewPaProfile2(ActionEvent event) throws Exception{
+        getParentOnly(parent2);
+
+        viewProfilePaController viewProfilePaController = new viewProfilePaController();
+        viewProfilePaController.profileStartUp(event);
+    }
+
+    private void getParentOnly(Text parent){
+        String parentUsername = parent.getText();
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            while ((line = reader.readLine()) != null){
+                String[] userData = line.split(",");
+                if (userData[0].equals(parentUsername)){
+                    Username = userData[0].trim();
+                    Email = userData[1].trim();
+                    Coordinate = "(" + userData[4].trim() + ", " + userData[5].trim() + ")";
+                    Role = userData[3];
+                    searchUser = parentUsername;
+                }
+            }
+        }catch (IOException e) {
+            showError("Error reading user data from file: " + e.getMessage());
+        }
     }
 }

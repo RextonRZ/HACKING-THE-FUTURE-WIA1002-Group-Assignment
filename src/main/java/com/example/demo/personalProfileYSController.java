@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -38,6 +39,12 @@ public class personalProfileYSController implements Initializable {
 
     @FXML
     private Label username;
+
+    @FXML
+    private Text parent1;
+
+    @FXML
+    private Text parent2;
 
     @FXML
     private TextField newFriendUsername;

@@ -16,9 +16,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="994.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.homeController">
    <top>
-      <HBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="846.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="994.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="53.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>

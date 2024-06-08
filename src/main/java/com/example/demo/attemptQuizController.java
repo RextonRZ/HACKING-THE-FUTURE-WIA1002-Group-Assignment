@@ -489,40 +489,42 @@ public class attemptQuizController implements Initializable {
                 quizTitle7, quizTitle8, quizTitle9, quizTitle10, quizTitle11, quizTitle12,
                 quizTitle13, quizTitle14, quizTitle15
         };
-        Button[] attemptButton = {quizAttempt1, quizAttempt2, quizAttempt3,quizAttempt4, quizAttempt5, quizAttempt6, quizAttempt7,
+        Button[] attemptButton = {quizAttempt1, quizAttempt2, quizAttempt3, quizAttempt4, quizAttempt5, quizAttempt6, quizAttempt7,
                 quizAttempt8, quizAttempt9, quizAttempt10, quizAttempt11, quizAttempt12, quizAttempt13, quizAttempt14, quizAttempt15
         };
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to attempt quiz '" + quizTitle + "'? Only one attempt is allowed.");
 
-        ButtonType buttonTypeYes = new ButtonType("Yes");
-        ButtonType buttonTypeNo = new ButtonType("No");
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
 
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 
         Optional<ButtonType> result = alert.showAndWait();
-        String usernamelogin = loginController.usernameID;
 
-        LocalDateTime currentDateTime = LocalDateTime.now();
+        if (result.isEmpty()) {
+            System.out.println("Alert closed");
+        } else if (result.get() == buttonTypeYes) {
+            String usernamelogin = loginController.usernameID;
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = currentDateTime.format(formatter);
+            int updatedPoint = 0;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateTime = currentDateTime.format(formatter);
-
-        int updatedPoint=0;
-        if (result.isPresent() && result.get() == buttonTypeYes) {
             Platform.runLater(() -> {
-                for (int i = 0; i < selectedQuiz.size(); i++) {
-                    if (isDoubleAttemptQuiz(loginController.usernameID,quizTitle)) {
-                        if(quizTitles[i].getText().equals(quizTitle)) {
+                for (int i = 0; i < quizTitles.length; i++) {
+                    if (isDoubleAttemptQuiz(loginController.usernameID, quizTitle)) {
+                        if (quizTitles[i].getText().equals(quizTitle)) {
                             attemptButton[i].setText("Attempted");
-                        }else{
+                        } else {
                             attemptButton[i].setText("Attempt");
                         }
                     }
                 }
             });
+
             try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/java/Data/attemptQuizRecord.csv", true))) {
                 try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
                     String line;
@@ -530,9 +532,7 @@ public class attemptQuizController implements Initializable {
                         String[] userData = line.split(",");
                         String usernameSearch = userData[0];
                         if (usernameSearch.equals(loginController.usernameID)) {
-                            // Update the numEventCreated value for the current user
-                            updatedPoint = Integer.parseInt(userData[6].trim())+2;
-
+                            updatedPoint = Integer.parseInt(userData[6].trim()) + 2;
                         }
                     }
                 } catch (IOException e) {
@@ -545,10 +545,11 @@ public class attemptQuizController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        } else if (result.get() == buttonTypeNo) {
             showError("Attempt Quiz Failed");
         }
-        return false; // Confirmation denied
+
+        return false; // Confirmation denied or alert closed
     }
 
     public boolean isDoubleAttemptQuiz(String username, String quizTitle) {

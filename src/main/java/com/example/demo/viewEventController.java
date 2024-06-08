@@ -227,6 +227,8 @@ public class viewEventController{
     @FXML
     private VBox viewEvent;
 
+    int points;
+
 
     @FXML
     public void viewEventStartUp(ActionEvent event) throws Exception{
@@ -649,26 +651,27 @@ public class viewEventController{
     }
 
 
-    int points;
+
     public void registerConfirmation(String event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to register for event " + event + "?");
 
-        ButtonType buttonTypeYes = new ButtonType("Yes");
-        ButtonType buttonTypeNo = new ButtonType("No");
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
 
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 
         Optional<ButtonType> result = alert.showAndWait();
-        String usernamelogin = loginController.usernameID;
 
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateTime = currentDateTime.format(formatter);
+        if (result.isEmpty()) {
+            System.out.println("Alert closed");
+        } else if (result.get() == buttonTypeYes) {
+            String usernamelogin = loginController.usernameID;
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = currentDateTime.format(formatter);
 
-        if (result.isPresent() && result.get() == buttonTypeYes) {
             Text[] eventTitle = {liveEventTitle1, liveEventTitle2, liveEventTitle3, upEventTitle1, upEventTitle2, upEventTitle3};
             Button[] registerButton = {liveRegister1, liveRegister2, liveRegister3, upEventRegister1, upEventRegister2, upEventRegister3};
 
@@ -704,7 +707,6 @@ public class viewEventController{
                         String[] userData = line.split(",");
                         String usernameSearch = userData[0];
                         if (usernameSearch.equals(loginController.usernameID)) {
-                            // Update the numEventCreated value for the current user
                             points = Integer.parseInt(userData[6].trim()) + 5;
                         }
                     }
@@ -720,9 +722,7 @@ public class viewEventController{
             } catch (IOException e) {
                 showError("Registration Failed: " + e.getMessage());
             }
-        } else if (result.isPresent() && result.get() == buttonTypeNo) {
-            showError("Registration Cancelled");
-        }else {
+        } else if (result.get() == buttonTypeNo) {
             showError("Registration Cancelled");
         }
     }

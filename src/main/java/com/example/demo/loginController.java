@@ -48,6 +48,7 @@ public class loginController {
         }
     }
 
+
     public void restartLogin() throws Exception {
         Parent root2 = FXMLLoader.load(getClass().getResource("login.fxml"));
 

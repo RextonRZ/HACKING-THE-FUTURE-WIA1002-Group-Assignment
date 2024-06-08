@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1282.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.attemptQuizController">
+<BorderPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="888.0" prefWidth="1508.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.attemptQuizController">
    <top>
       <HBox prefHeight="73.0" prefWidth="629.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
          <children>
@@ -96,48 +96,48 @@
       </HBox>
    </top>
    <left>
-      <Pane prefHeight="453.0" prefWidth="231.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="814.0" prefWidth="284.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="10.0" layoutY="84.0" maxWidth="-Infinity" prefHeight="217.0" prefWidth="194.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+            <VBox layoutX="26.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="240.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🔎 Filter : ">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                        <Font name="Arial Rounded MT Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <CheckBox mnemonicParsing="false" text="Science">
+                  <CheckBox fx:id="Science" mnemonicParsing="false" text="🔬 Science">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets left="20.0" top="40.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Technology">
+                  <CheckBox fx:id="Technology" mnemonicParsing="false" text="🌐 Technology">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets left="20.0" top="30.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Engineering">
+                  <CheckBox fx:id="Engineering" mnemonicParsing="false" text="⚙ Engineering">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets left="20.0" top="30.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Mathematics">
+                  <CheckBox fx:id="Mathematics" mnemonicParsing="false" text="🔢 Mathematics">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets left="20.0" top="30.0" />
                      </VBox.margin>
                   </CheckBox>
                </children>
@@ -149,50 +149,557 @@
       </Pane>
    </left>
    <center>
-      <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="453.0" prefWidth="2000.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scroll" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1234.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox maxWidth="-Infinity" prefHeight="728.0" prefWidth="1270.0" style="-fx-background-color: fddde6;">
+            <VBox fx:id="quizzesContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="3822.0" prefWidth="1300.0" style="-fx-background-color: fddde6;">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attempt Quiz">
+                  <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Attempt Quiz">
                      <font>
-                        <Font name="Showcard Gothic" size="30.0" />
+                        <Font name="Showcard Gothic" size="41.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="250.0" top="30.0" />
+                        <Insets left="420.0" top="50.0" />
                      </VBox.margin>
                   </Text>
-                  <VBox maxHeight="-Infinity" prefHeight="210.0" prefWidth="0.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="quiz1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1046.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <VBox.margin>
-                        <Insets left="20.0" right="200.0" top="20.0" />
+                        <Insets left="50.0" right="200.0" top="70.0" />
                      </VBox.margin>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                        <Text fx:id="quizTitle1" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="100.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                        <TextField fx:id="quizTheme1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="486.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
+                              <Insets left="820.0" right="30.0" top="-30.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextArea prefHeight="105.0" prefWidth="858.0" text="Description">
+                        <TextArea fx:id="quizDescription1" editable="false" prefHeight="106.0" prefWidth="603.0" text="Description">
                            <VBox.margin>
-                              <Insets left="20.0" right="30.0" top="10.0" />
+                              <Insets left="20.0" right="30.0" top="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" text="Attempt">
+                        <Button fx:id="quizAttempt1" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="27.0" prefWidth="92.0" text="Attempt">
                            <VBox.margin>
-                              <Insets left="1060.0" top="15.0" />
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                  </VBox>
+                  <VBox fx:id="quiz2" layoutX="30.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1050.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle2" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme2" alignment="CENTER" maxWidth="-Infinity" prefHeight="29.0" prefWidth="197.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-30.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription2" editable="false" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt2" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz3" layoutX="30.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle3" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="342.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription3" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt3" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz4" layoutX="30.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle4" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme4" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="234.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription4" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt4" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz5" layoutX="30.0" layoutY="552.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle5" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme5" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="242.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription5" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt5" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz6" layoutX="30.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle6" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme6" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="222.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription6" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt6" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz7" layoutX="30.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle7" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme7" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="246.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription7" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt7" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz8" layoutX="30.0" layoutY="552.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle8" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme8" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="373.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription8" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt8" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz9" layoutX="30.0" layoutY="782.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle9" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme9" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="345.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription9" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt9" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz10" layoutX="30.0" layoutY="1012.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle10" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme10" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="252.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription10" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt10" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz11" layoutX="30.0" layoutY="1243.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle11" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme11" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="222.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription11" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt11" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz12" layoutX="30.0" layoutY="1473.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle12" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme12" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="246.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription12" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt12" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz13" layoutX="30.0" layoutY="1704.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle13" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme13" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="373.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription13" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt13" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz14" layoutX="30.0" layoutY="1934.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle14" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme14" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="345.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription14" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt14" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="quiz15" layoutX="30.0" layoutY="2164.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1053.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="quizTitle15" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="quizTheme15" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="252.0" style="-fx-background-color: pink; -fx-background-radius: 100;" text="THEME">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="820.0" right="30.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="quizDescription15" prefHeight="105.0" prefWidth="858.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="quizAttempt15" mnemonicParsing="false" onAction="#attemptQuiz" prefHeight="26.0" prefWidth="96.0" text="Attempt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="920.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="200.0" top="40.0" />
+                     </VBox.margin>
                   </VBox>
                </children>
                <padding>

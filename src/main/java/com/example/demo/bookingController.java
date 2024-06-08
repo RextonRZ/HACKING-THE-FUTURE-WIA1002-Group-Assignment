@@ -163,7 +163,7 @@ public class bookingController implements Initializable {
                 throw new RuntimeException(e);
             }
 
-            String file = "src/main/java/Data/registeredEvent.csv";
+            String file = "src/main/java/Data/registerEvent.csv";
 
             try (BufferedReader read = new BufferedReader(new FileReader(file))) {
                 String s;

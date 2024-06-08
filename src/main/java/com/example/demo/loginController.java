@@ -44,7 +44,19 @@ public class loginController {
 
         } else {
             displayLoginError();
+            restartLogin();
         }
+    }
+
+    public void restartLogin() throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("login.fxml"));
+
+        // Get the current stage
+        Stage stage = (Stage) passwordLogin.getScene().getWindow();
+
+        // Set the scene to the new content, maintaining the previous stage size
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
     }
 
     public static String line, username, password, usernameID, HostUsername;

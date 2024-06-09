@@ -190,7 +190,7 @@
                   <Insets left="50.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <Button mnemonicParsing="false" onAction="#refresh" text="Refresh">
+            <Button mnemonicParsing="false" onAction="#refresh" style="-fx-background-radius: 20; -fx-background-color: #87ceeb;" text="Refresh" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
@@ -198,7 +198,7 @@
                   <Insets left="1078.0" top="-30.0" />
                </VBox.margin>
             </Button>
-            <ScrollPane fx:id="discussion" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="245.0" prefWidth="1100.0">
+            <ScrollPane fx:id="discussion" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="245.0" prefWidth="1100.0" style="-fx-background-color: fadadd;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -206,67 +206,97 @@
                   <Insets left="50.0" top="10.0" />
                </VBox.margin>
                <content>
-                  <VBox fx:id="forumVBox" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="1099.0">
+                  <VBox fx:id="forumVBox" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="1099.0" style="-fx-background-color: rgb(255,228,225);">
                      <children>
-                        <TextArea fx:id="forum1" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton1" text="Reply">
+                        <TextArea fx:id="forum1" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton1" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum2" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton2" text="Reply">
+                        <TextArea fx:id="forum2" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton2" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum3" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton3" text="Reply">
+                        <TextArea fx:id="forum3" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton3" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum4" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton4" text="Reply">
+                        <TextArea fx:id="forum4" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton4" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum5" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton5" text="Reply">
+                        <TextArea fx:id="forum5" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton5" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum6" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton6" text="Reply">
+                        <TextArea fx:id="forum6" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton6" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum7" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton7" text="Reply">
+                        <TextArea fx:id="forum7" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton7" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum8" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton8" text="Reply">
+                        <TextArea fx:id="forum8" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton8" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum9" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton9" text="Reply">
+                        <TextArea fx:id="forum9" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton9" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
-                        <TextArea fx:id="forum10" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton10" text="Reply">
+                        <TextArea fx:id="forum10" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="1100.0" style="-fx-background-color: fadadd;" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#replyButton10" prefHeight="0.0" style="-fx-background-radius: 20; -fx-background-color: rgb(252,108,133);" text="Reply" textFill="WHITE">
                            <VBox.margin>
-                              <Insets left="1038.0" />
+                              <Insets bottom="2.0" left="1035.0" top="1.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
@@ -280,7 +310,7 @@
                   <Insets left="50.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <TextArea fx:id="discussionSpace" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#discussionValidation" prefHeight="150.0" prefWidth="1099.0">
+            <TextArea fx:id="discussionSpace" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#discussionValidation" prefHeight="150.0" prefWidth="1099.0" style="-fx-background-color: fadadd; -fx-background-radius: 20;">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -290,7 +320,7 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </Text>
-            <Button mnemonicParsing="false" onAction="#addDiscussion" text="Submit">
+            <Button mnemonicParsing="false" onAction="#addDiscussion" style="-fx-background-radius: 20; -fx-background-color: rgb(231,84,128);" text="Submit" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" left="1082.0" />
                </VBox.margin>

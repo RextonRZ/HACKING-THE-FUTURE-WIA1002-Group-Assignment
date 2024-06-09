@@ -672,6 +672,7 @@ public class viewEventController{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDateTime = currentDateTime.format(formatter);
 
+
             Text[] eventTitle = {liveEventTitle1, liveEventTitle2, liveEventTitle3, upEventTitle1, upEventTitle2, upEventTitle3};
             Button[] registerButton = {liveRegister1, liveRegister2, liveRegister3, upEventRegister1, upEventRegister2, upEventRegister3};
 
@@ -699,6 +700,14 @@ public class viewEventController{
                     }
                 }
             });
+            List<Event> events = getEventsSortedByDate();
+            LocalDate registeredDate = null;
+            for (Event eventCheck : events) {
+                if (eventCheck.getTitle().equals(event)) {
+                    registeredDate = eventCheck.getDate();
+                    break;
+                }
+            }
 
             try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/java/Data/registerEvent.csv", true))) {
                 try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Data/user.csv"))) {
@@ -714,7 +723,7 @@ public class viewEventController{
                     showError("Error reading user data from file: " + e.getMessage());
                 }
                 updatePointsUserCSV();
-                writer.println(usernamelogin + "," + event + "," + formattedDateTime + "," + points);
+                writer.println(usernamelogin + "," + event + "," + formattedDateTime + "," + points+","+registeredDate);
 
                 writer.flush();
                 showRegisterEventSuccess(event);

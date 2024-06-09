@@ -296,7 +296,6 @@ public class homeController implements Initializable {
                 writer.println(usernamelogin + "\n" + currentDateTime + "\n" + discussion.trim() + "\n");
                 writer.flush();
                 showDiscussionSuccess();
-                refresh(event);
 
                 homeController homeController = new homeController();
                 homeController.homeStartUp(event);

@@ -24,7 +24,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Load load = new Load();
         launch();
     }
 }

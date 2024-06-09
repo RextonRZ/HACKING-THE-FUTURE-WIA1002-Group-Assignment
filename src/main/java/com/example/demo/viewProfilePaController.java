@@ -42,10 +42,8 @@ public class viewProfilePaController implements Initializable {
 
     String usernamelogin = loginController.HostUsername;
 
-    ArrayList<String> child = new ArrayList<>();
 
-    String csv = "src/main/java/Data/ParentChild.txt";
-    String csv2 = "src/main/java/Data/bookingData.csv";
+    String csv = "src/main/java/Data/bookingData.csv";
 
     public void profileStartUp(ActionEvent event) throws Exception {
         Parent root3 = FXMLLoader.load(getClass().getResource("ProfilePa.fxml"));
@@ -79,31 +77,18 @@ public class viewProfilePaController implements Initializable {
         String bookingShow = "";
         try (BufferedReader read = new BufferedReader(new FileReader(csv))) {
             String line, user;
+            String[] bookingSet;
+            ArrayList<String[]> show = new ArrayList<>();
 
             while ((line = read.readLine()) != null) {
                 String[] data = line.split(",");
                 user = data[0].trim();
 
                 if (user.equals(personalProfileYSController.searchUser)) {
-                    child.add(data[1].trim());
+                    bookingSet = new String[]{data[1].trim(), data[2].trim(), data[4].trim()};
+                    show.add(bookingSet);
                 }
             }
-
-            try (BufferedReader read2 = new BufferedReader(new FileReader(csv2))) {
-                String in2, user2;
-                String[] bookingSet;
-                ArrayList<String[]> show = new ArrayList<>();
-
-                while ((in2 = read2.readLine()) != null) {
-                    String[] data2 = in2.split(",");
-                    user2 = data2[0].trim();
-                    for (int i = 0; i < child.size(); i++) {
-                        if (user2.equals(child.get(i))) {
-                            bookingSet = new String[]{data2[0].trim(), data2[1].trim(), data2[3].trim()};
-                            show.add(bookingSet);
-                        }
-                    }
-                }
                 show.sort(Comparator.comparing(a -> LocalDate.parse(a[2])));
                 Collections.reverse(show);
 
@@ -124,12 +109,6 @@ public class viewProfilePaController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         return bookingShow;
     }

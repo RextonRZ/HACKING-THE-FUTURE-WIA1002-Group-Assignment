@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1222.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.viewEventController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1430.0" style="-fx-background-color: fddde6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.viewEventController">
    <top>
-      <HBox prefHeight="73.0" prefWidth="1151.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="75.0" prefWidth="1430.0" style="-fx-background-color: ffe4e1;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="53.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
@@ -94,22 +94,22 @@
          </children>
       </HBox>
    </top>
-   <center>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="453.0" prefWidth="1006.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
+   <right>
+      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="802.0" prefWidth="1470.0" style="-fx-background-color: fddde6;" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="CENTER" prefHeight="1111.0" prefWidth="1540.0" style="-fx-background-color: fddde6;">
+            <VBox fx:id="viewEvent" alignment="CENTER" minHeight="-Infinity" prefHeight="1988.0" prefWidth="1476.0" style="-fx-background-color: fddde6;">
                <children>
                   <Text fill="#374a72" strokeType="OUTSIDE" strokeWidth="0.0" text="Event">
                      <font>
                         <Font name="Showcard Gothic" size="41.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="80.0" top="30.0" />
+                        <Insets bottom="100.0" />
                      </VBox.margin>
                   </Text>
                   <ImageView fitHeight="76.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/Live.png" />
+                        <Image url="@../../../CssStyle/Live.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="-55.0" right="800.0" top="-40.0" />
@@ -123,248 +123,598 @@
                         <Insets right="640.0" />
                      </VBox.margin>
                   </Text>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="live1" maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                        <Text fx:id="liveEventTitle1" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                        <Text fx:id="message" fill="#565656" strokeType="OUTSIDE" strokeWidth="0.0" text="There are no live events at the moment. Please check back again tomorrow.">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Footlight MT Light" size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
+                              <Insets left="220.0" top="-20.0" />
                            </VBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                        </Text>
+                        <TextField fx:id="liveEventDate1" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
+                              <Insets bottom="-5.0" left="410.0" right="40.0" top="-20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                        <ImageView fx:id="liveTime1" fitHeight="27.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../clock.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-10.0" left="620.0" top="-25.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="liveEventTimeStart1" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(255, 141, 93, 0.8); -fx-background-radius: 100;" text="TIME START">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
+                              <Insets bottom="-12.0" left="650.0" right="100.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
+                        <TextField fx:id="liveEventTimeEnd1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(248, 151, 51, 0.8); -fx-background-radius: 100;" text="TIME END">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
+                              <Insets bottom="5.0" left="780.0" right="30.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextArea editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                        <ImageView fx:id="liveCalendar1" fitHeight="29.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Calendar.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="380.0" top="-38.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="liveTimeArrow1" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="750.0" top="-33.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextArea fx:id="liveEventDescription1" editable="false" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="863.0" text="Description">
                            <VBox.margin>
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                        <ImageView fx:id="liveLocation1" fitHeight="24.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Location.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-30.0" left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="liveEventVenue1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="330.0" style="-fx-background-color: rgba(255, 120, 178, 0.8); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-35.0" left="50.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="liveRegister1" mnemonicParsing="false" onAction="#registerEvent" prefHeight="46.0" prefWidth="84.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
                            <VBox.margin>
                               <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </Button>
                      </children>
+                  </VBox>
+                  <VBox fx:id="live2" maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="liveEventTitle2" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="liveEventDate2" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-5.0" left="410.0" right="40.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ImageView fx:id="liveTime2" fitHeight="27.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../clock.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-10.0" left="620.0" top="-25.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="liveEventTimeStart2" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(255, 141, 93, 0.8); -fx-background-radius: 100;" text="TIME START">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-12.0" left="650.0" right="100.0" top="-23.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="liveEventTimeEnd2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(248, 151, 51, 0.8); -fx-background-radius: 100;" text="TIME END">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="780.0" right="30.0" top="-23.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ImageView fx:id="liveCalendar2" fitHeight="29.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Calendar.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="380.0" top="-38.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="liveTimeArrow2" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="750.0" top="-33.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextArea fx:id="liveEventDescription2" editable="false" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="863.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <ImageView fx:id="liveLocation2" fitHeight="24.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Location.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-30.0" left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="liveEventVenue2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="330.0" style="-fx-background-color: rgba(255, 120, 178, 0.8); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-35.0" left="50.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="liveRegister2" mnemonicParsing="false" onAction="#registerEvent" prefHeight="46.0" prefWidth="84.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="live3" maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="liveEventTitle3" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="liveEventDate3" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-5.0" left="410.0" right="40.0" top="-20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ImageView fx:id="liveTime3" fitHeight="27.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../clock.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-10.0" left="620.0" top="-25.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="liveEventTimeStart3" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(255, 141, 93, 0.8); -fx-background-radius: 100;" text="TIME START">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-12.0" left="650.0" right="100.0" top="-23.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="liveEventTimeEnd3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(248, 151, 51, 0.8); -fx-background-radius: 100;" text="TIME END">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="780.0" right="30.0" top="-23.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ImageView fx:id="liveCalendar3" fitHeight="29.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Calendar.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="380.0" top="-38.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="liveTimeArrow3" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="750.0" top="-33.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextArea fx:id="liveEventDescription3" editable="false" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="863.0" text="Description">
+                           <VBox.margin>
+                              <Insets left="20.0" right="30.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <ImageView fx:id="liveLocation3" fitHeight="24.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Location.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-30.0" left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="liveEventVenue3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="330.0" style="-fx-background-color: rgba(255, 120, 178, 0.8); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-35.0" left="50.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="liveRegister3" mnemonicParsing="false" onAction="#registerEvent" prefHeight="46.0" prefWidth="84.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </VBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events">
                      <font>
                         <Font name="Arial Narrow Bold" size="28.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="-140.0" right="580.0" top="120.0" />
+                        <Insets bottom="-140.0" right="580.0" top="100.0" />
                      </VBox.margin>
                   </Text>
                   <ImageView fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/Upcoming.png" />
+                        <Image url="@../../../CssStyle/Upcoming.png" />
                      </image>
                      <VBox.margin>
                         <Insets right="830.0" top="100.0" />
                      </VBox.margin>
                   </ImageView>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="event1" maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="upEventTitle1" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                              <Font name="Arial Bold" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="upEventDate1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                        <ImageView fitHeight="29.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Calendar.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-10.0" left="380.0" top="-18.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="27.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../clock.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-15.0" left="620.0" top="-18.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventTimeStart1" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(255, 141, 93, 0.8); -fx-background-radius: 100;" text="TIME START">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
+                              <Insets bottom="-12.0" left="650.0" right="100.0" top="-18.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventTimeStart1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                        <TextField fx:id="upEventTimeEnd1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(248, 151, 51, 0.8); -fx-background-radius: 100;" text="TIME END">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
+                              <Insets left="780.0" right="30.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventTimeEnd1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="750.0" top="-33.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventDate1" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
+                              <Insets left="410.0" right="40.0" top="-35.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventVenue1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea fx:id="upEventDescription1" editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                        <TextArea fx:id="upEventDescription1" editable="false" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="866.0" text="Description">
                            <VBox.margin>
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                        <TextField fx:id="upEventVenue1" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="330.0" style="-fx-background-color: rgba(255, 120, 178, 0.8); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
                            <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
+                              <Insets bottom="-45.0" left="50.0" right="40.0" top="20.0" />
                            </VBox.margin>
+                        </TextField>
+                        <ImageView fitHeight="24.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Location.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-30.0" left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Button fx:id="upEventRegister1" mnemonicParsing="false" onAction="#registerEvent" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </Button>
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" top="30.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="event2" maxWidth="-Infinity" prefHeight="0.0" prefWidth="914.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="upEventTitle2" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="upEventDate2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                        <ImageView fitHeight="27.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../clock.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="-10.0" left="620.0" top="-18.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventTimeEnd2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(248, 151, 51, 0.8); -fx-background-radius: 100;" text="TIME END">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
+                              <Insets left="780.0" right="30.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventTimeStart2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="750.0" top="-33.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventTimeStart2" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(255, 141, 93, 0.8); -fx-background-radius: 100;" text="TIME START">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
+                              <Insets left="650.0" right="100.0" top="-33.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventTimeEnd2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                        <TextField fx:id="upEventDate2" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
+                              <Insets left="410.0" right="40.0" top="-37.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventVenue2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
+                        <ImageView fitHeight="29.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Calendar.png" />
+                           </image>
                            <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
+                              <Insets left="380.0" top="-30.0" />
                            </VBox.margin>
-                        </TextField>
-                        <TextArea fx:id="upEventDescription2" editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                        </ImageView>
+                        <TextArea fx:id="upEventDescription2" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="866.0" text="Description">
                            <VBox.margin>
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                        <ImageView fitHeight="24.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Location.png" />
+                           </image>
                            <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
+                              <Insets bottom="-30.0" left="20.0" top="20.0" />
                            </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventVenue2" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="330.0" style="-fx-background-color: rgba(255, 120, 178, 0.8); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-30.0" left="50.0" right="40.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="upEventRegister2" mnemonicParsing="false" onAction="#registerEvent" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </Button>
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox maxWidth="-Infinity" prefHeight="143.0" prefWidth="913.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
+                  <VBox fx:id="event3" maxWidth="-Infinity" prefHeight="168.0" prefWidth="909.0" style="-fx-background-color: rgba(255,255,255,.5); -fx-background-radius: 20;">
                      <children>
                         <Text fx:id="upEventTitle3" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                              <Font name="Arial Rounded MT Bold" size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="upEventDate3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="84.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
+                        <TextField fx:id="upEventTimeEnd3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(248, 151, 51, 0.8); -fx-background-radius: 100;" text="TIME END">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="60.0" right="750.0" top="-20.0" />
+                              <Insets bottom="5.0" left="780.0" right="30.0" top="-23.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventTimeStart3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: rgba(255,0,0,.5); -fx-background-radius: 100;" text="TIME START">
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="750.0" top="-35.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventTimeStart3" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: rgba(255, 141, 93, 0.8); -fx-background-radius: 100;" text="TIME START">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="150.0" right="650.0" top="-23.0" />
+                              <Insets bottom="5.0" left="650.0" right="100.0" top="-45.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventTimeEnd3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="91.0" style="-fx-background-color: #fff49b; -fx-background-radius: 100;" text="TIME END">
+                        <ImageView fitHeight="27.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../clock.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="620.0" top="-35.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="29.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Calendar.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="380.0" top="-40.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventDate3" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: rgba(201, 242, 155, .5); -fx-background-radius: 100;" text="DATE">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="250.0" right="550.0" top="-23.0" />
+                              <Insets left="410.0" right="40.0" top="-37.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="upEventVenue3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: rgba(0,0,255,.5); -fx-background-radius: 100;" text="VENUE">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="350.0" right="450.0" top="-24.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextArea fx:id="upEventDescription3" editable="false" maxWidth="-Infinity" prefHeight="39.0" prefWidth="866.0" text="Description">
+                        <TextArea fx:id="upEventDescription3" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="866.0" text="Description">
                            <VBox.margin>
                               <Insets left="20.0" right="30.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Dubai Light" size="15.0" />
+                           </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                        <ImageView fitHeight="24.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Location.png" />
+                           </image>
                            <VBox.margin>
-                              <Insets bottom="10.0" left="800.0" right="30.0" top="15.0" />
+                              <Insets bottom="-30.0" left="20.0" top="20.0" />
                            </VBox.margin>
+                        </ImageView>
+                        <TextField fx:id="upEventVenue3" alignment="CENTER" maxWidth="-Infinity" prefHeight="23.0" prefWidth="330.0" style="-fx-background-color: rgba(255, 120, 178, 0.8); -fx-background-radius: 100;" text="VENUE">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-30.0" left="50.0" right="40.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="upEventRegister3" mnemonicParsing="false" onAction="#registerEvent" prefHeight="26.0" prefWidth="145.0" style="-fx-background-color: rgba(200,210,255,1); -fx-background-radius: 20;" text="Register" textFill="#250486">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="800.0" right="30.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="50.0" top="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
                </children>
@@ -374,5 +724,5 @@
             <Insets />
          </BorderPane.margin>
       </ScrollPane>
-   </center>
+   </right>
 </BorderPane>

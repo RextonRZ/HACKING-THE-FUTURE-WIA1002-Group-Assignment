@@ -1,26 +1,29 @@
 package com.example.demo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import java.util.Optional;
-import java.sql.PreparedStatement;
-import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
+import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class createEventController {
     @FXML
@@ -70,6 +73,8 @@ public class createEventController {
     private LocalTime startTime;
     private LocalTime endTime;
 
+    public int eventCreated;
+
 
     String Title, Description, Venue;
 
@@ -108,7 +113,7 @@ public class createEventController {
         }
     }
 
-    public void eventDateValidation() {
+    public void eventDateValidation(ActionEvent event) {
         String dateString = eventDate.getEditor().getText();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -223,13 +228,9 @@ public class createEventController {
 
     @FXML
     public void createEvent(ActionEvent event) throws Exception {
-
-        eventTitleValidation();
-        eventDescriptionValidation();
-        eventVenueValidation();
-        eventDateValidation();
-        eventStartTimeValidation();
-        eventEndTimeValidation();
+        Title = eventTitle.getText();
+        Description = eventDescription.getText();
+        Venue = eventVenue.getText();
 
         if (!titleValid || !descriptionValid || !venueValid || !dateValid || !timeStartValid || !timeEndValid) {
             showError("Please make sure you correct all the fields stated.");
@@ -241,6 +242,7 @@ public class createEventController {
             if (endTime == null) eventEndTimeErrorMessage.setText("Event end time should not be empty");
 
         } else {
+            // store event or proceed further
             addEventToDatabase(Title, Description, Venue, date, startTime, endTime);
         }
     }
@@ -253,44 +255,34 @@ public class createEventController {
         stage.setScene(homeScene);
     }
 
-    public void quizButton(ActionEvent event) throws Exception {
-        attemptQuizController attemptQuizController = new attemptQuizController();
-        attemptQuizController.attemptQuizStartUp(event);
+    public void quizButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.quizButton(event);
     }
 
-    public void eventButton(ActionEvent event) throws Exception {
-        viewEventController viewEventController = new viewEventController();
-        viewEventController.viewEventStartUp(event);
+    public void eventButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.eventButton(event);
     }
 
-    public void bookingButton(ActionEvent event) throws Exception {
-        bookingController bookingController = new bookingController();
-        bookingController.bookingStartUp(event);
+    public void bookingButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.bookingButton(event);
     }
-    public void leaderBoardButton(ActionEvent event) throws Exception {
+
+    public void leaderBoardButton(ActionEvent event) throws Exception{
         leaderBoardController leaderBoardController = new leaderBoardController();
         leaderBoardController.leaderBoardStartUp(event);
     }
 
-    public void profileButton(ActionEvent event) throws Exception {
-        personalProfileEduController personalProfileEduController = new personalProfileEduController();
-        personalProfileEduController.personalProfileStartUp(event);
+    public void profileButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.profileButton(event);
     }
 
-    public void logOutButton(ActionEvent event) throws Exception {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log Out");
-        alert.setContentText("Are you sure want to log out?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isEmpty()) {
-            System.out.println("Alert closed");
-
-        } else if (result.get() == ButtonType.OK) {
-            loginController loginController = new loginController();
-            loginController.loginStartUp(event);
-
-        } else if (result.get() == ButtonType.CANCEL) ;
+    public void logOutButton(ActionEvent event) throws Exception{
+        homeController homeController = new homeController();
+        homeController.logOutButton(event);
 
     }
 
@@ -299,7 +291,7 @@ public class createEventController {
         alertSU.setTitle("Successful");
         alertSU.setHeaderText(null);
         alertSU.setContentText("Event " + Title + " successfully created.");
-
+        eventCreated++;
         alertSU.showAndWait();
 
         try {
@@ -307,7 +299,6 @@ public class createEventController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -321,17 +312,11 @@ public class createEventController {
     }
 
 
-    public void addEventToDatabase(String eventTitle, String eventDescription, String eventVenue, LocalDate eventDate, LocalTime eventStartTime, LocalTime eventEndTime) throws ClassNotFoundException {
-        // Load the MySQL JDBC driver
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        String DB_URL = "jdbc:mysql://localhost:3306/eventhtf";
-        String USERNAME = "root";
-        String PASSWORD = "HackingTheFuture!5"; // Replace with your actual password
-
+    public void addEventToDatabase(String eventTitle, String eventDescription, String eventVenue, LocalDate eventDate, LocalTime eventStartTime, LocalTime eventEndTime) throws SQLException {
+        String DB_URL = "jdbc:sqlite:HackingTheFuture.db";
         String insertSQL = "INSERT INTO events (title, description, venue, date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
 
             pstmt.setString(1, eventTitle);
@@ -344,8 +329,75 @@ public class createEventController {
             pstmt.executeUpdate();
 
             showCreateEventSuccess();
+
+            String fileName = "src/main/java/Data/user.csv";
+            String username = loginController.usernameID;
+
+            List<String> lines = new ArrayList<>();
+
+            // Read the file
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] userData = line.split(",");
+                    String usernameSearch = userData[0];
+                    if (usernameSearch.equals(username)) {
+                        // Update the numEventCreated value for the current user
+                        eventCreated = Integer.parseInt(userData[6].trim());
+                        // Reconstruct the line with updated data
+                        line = String.join(",", userData);
+                    }
+                    lines.add(line);
+                }
+            } catch (IOException e) {
+                showError("Error reading user data from file: " + e.getMessage());
+                return;
+            }
+            eventCreated++;
+            updateEventCreatedCSV();
         } catch (SQLException e) {
-            showError("Error storing new event data: " + e.getMessage());
+            if (e.getMessage().contains("no such table: events")) {
+                Load load = new Load();
+                load.createTables();
+                showError(e.getMessage());
+            } else {
+                showError("Error storing new event data: " + e.getMessage());
+            }
+        }
+    }
+
+    public void updateEventCreatedCSV() {
+        String fileName = "src/main/java/Data/user.csv";
+        String username = loginController.usernameID;
+
+        List<String> lines = new ArrayList<>();
+
+        // Read the file
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                String usernameSearch = userData[0];
+                if (usernameSearch.equals(username)) {
+                    // Update the numEventCreated value for the current user
+                        userData[6] = String.valueOf(eventCreated);
+                    // Reconstruct the line with updated data
+                    line = String.join(",", userData);
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            showError("Error reading user data from file: " + e.getMessage());
+            return;
+        }
+
+        //rewrite
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (String updatedLine : lines) {
+                writer.println(updatedLine);
+            }
+        } catch (IOException e) {
+            showError("Error writing updated data to file: " + e.getMessage());
         }
     }
 

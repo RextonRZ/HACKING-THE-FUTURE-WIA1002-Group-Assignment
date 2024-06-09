@@ -7,23 +7,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Optional;
-import java.net.URL;
-import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class createQuizController {
     private Stage stage;
@@ -55,6 +55,7 @@ public class createQuizController {
     private boolean titleValid = false, descriptionValid = false, themeValid = false, contentValid = false;
     private String title, description, theme, content;
 
+    public int quizCreated;
     @FXML
     public void initialize() {
         MenuItem science = new MenuItem("Science");
@@ -239,18 +240,11 @@ public class createQuizController {
         alertError.showAndWait();
     }
 
-
-    public void addQuizToDatabase(String quizTitle, String quizDescription, String quizTheme,  String quizContent) throws ClassNotFoundException {
-        // Load the MySQL JDBC driver
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        String DB_URL = "jdbc:mysql://localhost:3306/eventhtf";
-        String USERNAME = "root";
-        String PASSWORD = "HackingTheFuture!5"; // Replace with your actual password
-
+    public void addQuizToDatabase(String quizTitle, String quizDescription, String quizTheme, String quizContent) throws SQLException {
+        String DB_URL = "jdbc:sqlite:HackingTheFuture.db";
         String insertSQL = "INSERT INTO quiz (title, description, theme, content) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
 
             pstmt.setString(1, quizTitle);
@@ -261,8 +255,67 @@ public class createQuizController {
             pstmt.executeUpdate();
 
             showCreateQuizSuccess();
+
+            String fileName = "src/main/java/Data/user.csv";
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] userData = line.split(",");
+                    String usernameSearch = userData[0];
+                    if (usernameSearch.equals(loginController.usernameID)) {
+                        // Update the numEventCreated value for the current user
+                        quizCreated = Integer.parseInt(userData[7].trim());
+                    }
+                }
+            } catch (IOException e) {
+                showError("Error reading user data from file: " + e.getMessage());
+                return;
+            }
+            quizCreated++;
+            updateQuizCreatedCSV();
         } catch (SQLException e) {
-            showError("Error storing new quiz data: " + e.getMessage());
+            if (e.getMessage().contains("no such table: quiz")) {
+                Load load = new Load();
+                load.createTables();
+                showError(e.getMessage());
+            } else {
+                showError("Error storing new quiz data: " + e.getMessage());
+            }
+        }
+    }
+
+    public void updateQuizCreatedCSV() {
+        String fileName = "src/main/java/Data/user.csv";
+        String username = loginController.usernameID;
+
+        List<String> lines = new ArrayList<>();
+
+        // Read the file
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                String usernameSearch = userData[0];
+                if (usernameSearch.equals(username)) {
+                    // Update the numEventCreated value for the current user
+                    userData[7] = String.valueOf(quizCreated);
+                    // Reconstruct the line with updated data
+                    line = String.join(",", userData);
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            showError("Error reading user data from file: " + e.getMessage());
+            return;
+        }
+
+        //rewrite
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (String updatedLine : lines) {
+                writer.println(updatedLine);
+            }
+        } catch (IOException e) {
+            showError("Error writing updated data to file: " + e.getMessage());
         }
     }
 }

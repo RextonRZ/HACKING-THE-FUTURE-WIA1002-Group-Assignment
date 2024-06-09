@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import java.util.Optional;
 
 public class chooseEventController {
     @FXML
@@ -19,9 +16,21 @@ public class chooseEventController {
     public void chooseEventStartUp(ActionEvent event) throws Exception{
         Parent root2 = FXMLLoader.load(getClass().getResource("chooseEvent.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
-        stage.setScene(homeScene);
+        Scene scene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(scene);
     }
+
+    public void createButton(ActionEvent event) throws Exception {
+        createEventController createEventController = new createEventController();
+        createEventController.createEventStartUp(event);
+    }
+
+    public void viewButton(ActionEvent event) throws Exception {
+        viewEventController viewEventController = new viewEventController();
+        viewEventController.viewEventStartUp(event);
+    }
+
+
 
     @FXML
     public void homeButton(ActionEvent event) throws Exception{
@@ -59,4 +68,5 @@ public class chooseEventController {
         homeController.logOutButton(event);
 
     }
+
 }

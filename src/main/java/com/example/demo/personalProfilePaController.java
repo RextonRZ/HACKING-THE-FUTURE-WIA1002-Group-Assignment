@@ -141,6 +141,17 @@ public class personalProfilePaController implements Initializable {
         printChildrenList();
     }
 
+    public void restartProfile() throws Exception {
+        Parent root2 = FXMLLoader.load(getClass().getResource("personalProfilePa.fxml"));
+
+        // Get the current stage
+        Stage stage = (Stage) findChildren.getScene().getWindow();
+
+        // Set the scene to the new content, maintaining the previous stage size
+        Scene homeScene = new Scene(root2, stage.getScene().getWidth(), stage.getScene().getHeight());
+        stage.setScene(homeScene);
+    }
+
     public void printChildrenList() {
         String line;
         ArrayList<String> childrenList = new ArrayList<>();
@@ -333,8 +344,7 @@ public class personalProfilePaController implements Initializable {
         } else if (result.get() == ButtonType.OK) {
             storeRelation();
             childrenAdded();
-            personalProfilePaController personalProfilePaController = new personalProfilePaController();
-            personalProfilePaController.personalProfileStartUp(event);
+            restartProfile();
 
         } else if (result.get() == ButtonType.CANCEL) ;
     }

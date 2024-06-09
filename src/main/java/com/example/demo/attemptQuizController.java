@@ -120,33 +120,6 @@ public class attemptQuizController implements Initializable {
 
     private static final String DB_URL = "jdbc:sqlite:HackingTheFuture.db";
 
-    public List<Quiz> getAllQuizDetails() {
-        List<Quiz> quizzes = new ArrayList<>();
-
-        String selectSQL = "SELECT * FROM quiz";
-
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(selectSQL)) {
-
-            // Process the result set
-            while (rs.next()) {
-                // Retrieve quiz data from the result set
-                String title = rs.getString("title");
-                String description = rs.getString("description");
-                String theme = rs.getString("theme");
-                String link = rs.getString("content");
-
-                // Create Quiz object and add it to the list
-                Quiz quiz = new Quiz(title, description, theme, link);
-                quizzes.add(quiz);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving quizzes: " + e.getMessage());
-        }
-
-        return quizzes;
-    }
 
     public List<Quiz> getQuizByTheme(String theme) {
         List<Quiz> quizzes = new ArrayList<>();

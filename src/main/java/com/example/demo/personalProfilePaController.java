@@ -228,10 +228,13 @@ public class personalProfilePaController implements Initializable {
 
         if (searchChildren == null || searchChildren.isEmpty()){
             personalProfileYSController.showError("Please enter a username!");
+            restartProfile();
         } else if (!usernameFound()) {
             personalProfileYSController.showError("User not found!");
+            restartProfile();
         } else if (!isChildren()) {
             personalProfileYSController.showError("User is not a 'Young Student'!");
+            restartProfile();
         } else {
             viewProfileYSControllerNoADD viewProfileYSControllerNoADD = new viewProfileYSControllerNoADD();
             viewProfileYSControllerNoADD.profileStartUp(event);
@@ -280,14 +283,19 @@ public class personalProfilePaController implements Initializable {
 
         if (searchChildren == null || searchChildren.isEmpty()){
             personalProfileYSController.showError("Please enter a username!");
+            restartProfile();
         } else if (!usernameFound()) {
             personalProfileYSController.showError("User not found!");
+            restartProfile();
         } else if (!isChildren()) {
             personalProfileYSController.showError("User is not a 'Young Student'!");
+            restartProfile();
         } else if (overParents()){
             personalProfileYSController.showError(searchChildren + " has 2 parents now! One children can only have at most 2 parents!");
+            restartProfile();
         } else if (overChildren()) {
             personalProfileYSController.showError("You can only have 5 children at the same time!");
+            restartProfile();
         } else {
             doubleConfirm(event);
         }

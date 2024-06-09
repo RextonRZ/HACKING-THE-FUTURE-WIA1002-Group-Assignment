@@ -218,29 +218,54 @@ public class attemptQuizController implements Initializable {
             for (int i = 0; i < selectedQuiz.size(); i++) {
                 if (isDoubleAttemptQuiz(loginController.usernameID,quizTitle[i].getText())) {
                     quizLink[i].setText("Attempted");
+                    quizLink[i].setStyle("-fx-background-color: #DBFFD4;" + "-fx-background-radius: 100;");
                 }else{
-                    quizLink[i].setText("Attempt");
+                    if (quizTheme[i].getText().equals("Science")) {
+                        frame[i].setStyle("-fx-background-color: #E9D7FF;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #C193FF;" + "-fx-background-radius: 100;");
+                        quizLink[i].setStyle("-fx-background-color: #C1B2D6;" + "-fx-background-radius: 100;");
+                        quizLink[i].setText("Attempt");
+                    }
+                    if (quizTheme[i].getText().equals("Technology")) {
+                        frame[i].setStyle("-fx-background-color: #DEEAFF;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #B3CFFF;" + "-fx-background-radius: 100;");
+                        quizLink[i].setStyle("-fx-background-color: #B0BBD0;" + "-fx-background-radius: 100;");
+                        quizLink[i].setText("Attempt");
+                    }
+                    if (quizTheme[i].getText().equals("Engineering")) {
+                        frame[i].setStyle("-fx-background-color: #E8F8FF;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #C3EEFF;" + "-fx-background-radius: 100;");
+                        quizLink[i].setStyle("-fx-background-color: #6DC0E0;" + "-fx-background-radius: 100;");
+                        quizLink[i].setText("Attempt");
+                    }
+
+                    if (quizTheme[i].getText().equals("Mathematics")) {
+                        frame[i].setStyle("-fx-background-color: #E4FFF3;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #9AFFD2;" + "-fx-background-radius: 100;");
+                        quizLink[i].setStyle("-fx-background-color: #07FF8B;" + "-fx-background-radius: 100;");
+                        quizLink[i].setText("Attempt");
+                    }
                 }
             }
-                    for(int i=0;i<selectedQuiz.size();i++) {
-                        if (quizTheme[i].getText().equals("Science")) {
-                            frame[i].setStyle("-fx-background-color: #E9D7FF;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #C193FF;" + "-fx-background-radius: 100;");
-                        }
-                        if (quizTheme[i].getText().equals("Technology")) {
-                            frame[i].setStyle("-fx-background-color: #DEEAFF;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #B3CFFF;" + "-fx-background-radius: 100;");
-                        }
-                        if (quizTheme[i].getText().equals("Engineering")) {
-                            frame[i].setStyle("-fx-background-color: #E8F8FF;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #C3EEFF;" + "-fx-background-radius: 100;");
-                        }
+            for(int i=0;i<selectedQuiz.size();i++) {
+                if (quizTheme[i].getText().equals("Science")) {
+                    frame[i].setStyle("-fx-background-color: #E9D7FF;" + "-fx-background-radius: 20;");
+                    quizTheme[i].setStyle("-fx-background-color: #C193FF;" + "-fx-background-radius: 100;");
+                }
+                if (quizTheme[i].getText().equals("Technology")) {
+                    frame[i].setStyle("-fx-background-color: #DEEAFF;" + "-fx-background-radius: 20;");
+                    quizTheme[i].setStyle("-fx-background-color: #B3CFFF;" + "-fx-background-radius: 100;");
+                }
+                if (quizTheme[i].getText().equals("Engineering")) {
+                    frame[i].setStyle("-fx-background-color: #E8F8FF;" + "-fx-background-radius: 20;");
+                    quizTheme[i].setStyle("-fx-background-color: #C3EEFF;" + "-fx-background-radius: 100;");
+                }
 
-                        if (quizTheme[i].getText().equals("Mathematics")) {
-                            frame[i].setStyle("-fx-background-color: #E4FFF3;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #9AFFD2;" + "-fx-background-radius: 100;");
-                        }
-                    }
+                if (quizTheme[i].getText().equals("Mathematics")) {
+                    frame[i].setStyle("-fx-background-color: #E4FFF3;" + "-fx-background-radius: 20;");
+                    quizTheme[i].setStyle("-fx-background-color: #9AFFD2;" + "-fx-background-radius: 100;");
+                }
+            }
         });
         selectedQuiz.clear();
 
@@ -329,38 +354,38 @@ public class attemptQuizController implements Initializable {
         checkThemeSelected();
 
         Platform.runLater(() -> {
-                    for (int i = 0; i < selectedQuiz.size(); i++) {
-                        if (isDoubleAttemptQuiz(loginController.usernameID,quizTitle[i].getText())) {
-                            attemptButton[i].setText("Attempted");
-                        }else{
-                            attemptButton[i].setText("Attempt");
-                        }
+            for (int i = 0; i < selectedQuiz.size(); i++) {
+                if (isDoubleAttemptQuiz(loginController.usernameID, quizTitle[i].getText())) {
+                    attemptButton[i].setText("Attempted");
+                    attemptButton[i].setStyle("-fx-background-color: #DBFFD4;" + "-fx-background-radius: 100;");
+                } else {
+                    if (quizTheme[i].getText().equals("Science")) {
+                        frame[i].setStyle("-fx-background-color: #E9D7FF;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #C193FF;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setStyle("-fx-background-color: #C1B2D6;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setText("Attempt");
+                    }
+                    if (quizTheme[i].getText().equals("Technology")) {
+                        frame[i].setStyle("-fx-background-color: #DEEAFF;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #B3CFFF;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setStyle("-fx-background-color: #B0BBD0;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setText("Attempt");
+                    }
+                    if (quizTheme[i].getText().equals("Engineering")) {
+                        frame[i].setStyle("-fx-background-color: #E8F8FF;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #C3EEFF;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setStyle("-fx-background-color: #6DC0E0;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setText("Attempt");
                     }
 
-                    for(int i=0;i<selectedQuiz.size();i++){
-                        if (quizTheme[i].getText().equals("Science")) {
-                            frame[i].setStyle("-fx-background-color: #E9D7FF;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #C193FF;" + "-fx-background-radius: 100;");
-                            attemptButton[i].setStyle("-fx-background-color: #C1B2D6;" + "-fx-background-radius: 100;");
-                        }
-                        if (quizTheme[i].getText().equals("Technology")) {
-                            frame[i].setStyle("-fx-background-color: #DEEAFF;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #B3CFFF;" + "-fx-background-radius: 100;");
-                            attemptButton[i].setStyle("-fx-background-color: #B0BBD0;" + "-fx-background-radius: 100;");
-                        }
-                        if (quizTheme[i].getText().equals("Engineering")) {
-                            frame[i].setStyle("-fx-background-color: #E8F8FF;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #C3EEFF;" + "-fx-background-radius: 100;");
-                            attemptButton[i].setStyle("-fx-background-color: #6DC0E0;" + "-fx-background-radius: 100;");
-                        }
-
-                        if (quizTheme[i].getText().equals("Mathematics")) {
-                            frame[i].setStyle("-fx-background-color: #E4FFF3;" + "-fx-background-radius: 20;");
-                            quizTheme[i].setStyle("-fx-background-color: #9AFFD2;" + "-fx-background-radius: 100;");
-                            attemptButton[i].setStyle("-fx-background-color: #07FF8B;" + "-fx-background-radius: 100;");
-                        }
-
+                    if (quizTheme[i].getText().equals("Mathematics")) {
+                        frame[i].setStyle("-fx-background-color: #E4FFF3;" + "-fx-background-radius: 20;");
+                        quizTheme[i].setStyle("-fx-background-color: #9AFFD2;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setStyle("-fx-background-color: #07FF8B;" + "-fx-background-radius: 100;");
+                        attemptButton[i].setText("Attempt");
                     }
+                }
+            }
         });
         scroll.setFitToHeight(true);
     }
@@ -523,6 +548,7 @@ public class attemptQuizController implements Initializable {
                     if (isDoubleAttemptQuiz(loginController.usernameID, quizTitle)) {
                         if (quizTitles[i].getText().equals(quizTitle)) {
                             attemptButton[i].setText("Attempted");
+                            attemptButton[i].setStyle("-fx-background-color: #DBFFD4;" + "-fx-background-radius: 100;");
                         } else {
                             attemptButton[i].setText("Attempt");
                         }

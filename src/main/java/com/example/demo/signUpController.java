@@ -98,9 +98,8 @@ public class signUpController {
         //Check username format
         for(int i = 0; i < usernameSU.length(); i++) {
             char unChar = usernameSU.charAt(i);
-            if (usernameSU.toLowerCase().contains("admin"))
-                usernameErrorMessage.setText("Admin is a reserved id");
-            else if (usernameSU.length() < 8)
+
+            if (usernameSU.length() < 8)
                 usernameErrorMessage.setText("Username should contain at least 8 characters");
             else if (usernameSU.length() > 15)
                 usernameErrorMessage.setText("Username should contain not more than 15 characters");

@@ -135,6 +135,9 @@ public class bookingController implements Initializable {
     }
 
     private void destinationSelected(Event event) {
+        timeSlotsTextArea.clear();
+        timeSlotBooking.getItems().clear();
+
         ArrayList<String> timeslot = new ArrayList<>();
         ArrayList<String> prebook = new ArrayList<>();
         ArrayList<String> allDate = new ArrayList<>();

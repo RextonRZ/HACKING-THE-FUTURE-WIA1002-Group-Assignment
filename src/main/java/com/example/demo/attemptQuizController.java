@@ -327,6 +327,7 @@ public class attemptQuizController implements Initializable {
         Mathematics.setOnAction(event -> checkThemeSelected());
 
         checkThemeSelected();
+
         Platform.runLater(() -> {
                     for (int i = 0; i < selectedQuiz.size(); i++) {
                         if (isDoubleAttemptQuiz(loginController.usernameID,quizTitle[i].getText())) {
@@ -340,19 +341,23 @@ public class attemptQuizController implements Initializable {
                         if (quizTheme[i].getText().equals("Science")) {
                             frame[i].setStyle("-fx-background-color: #E9D7FF;" + "-fx-background-radius: 20;");
                             quizTheme[i].setStyle("-fx-background-color: #C193FF;" + "-fx-background-radius: 100;");
+                            attemptButton[i].setStyle("-fx-background-color: #C1B2D6;" + "-fx-background-radius: 100;");
                         }
                         if (quizTheme[i].getText().equals("Technology")) {
                             frame[i].setStyle("-fx-background-color: #DEEAFF;" + "-fx-background-radius: 20;");
                             quizTheme[i].setStyle("-fx-background-color: #B3CFFF;" + "-fx-background-radius: 100;");
+                            attemptButton[i].setStyle("-fx-background-color: #B0BBD0;" + "-fx-background-radius: 100;");
                         }
                         if (quizTheme[i].getText().equals("Engineering")) {
                             frame[i].setStyle("-fx-background-color: #E8F8FF;" + "-fx-background-radius: 20;");
                             quizTheme[i].setStyle("-fx-background-color: #C3EEFF;" + "-fx-background-radius: 100;");
+                            attemptButton[i].setStyle("-fx-background-color: #6DC0E0;" + "-fx-background-radius: 100;");
                         }
 
                         if (quizTheme[i].getText().equals("Mathematics")) {
                             frame[i].setStyle("-fx-background-color: #E4FFF3;" + "-fx-background-radius: 20;");
                             quizTheme[i].setStyle("-fx-background-color: #9AFFD2;" + "-fx-background-radius: 100;");
+                            attemptButton[i].setStyle("-fx-background-color: #07FF8B;" + "-fx-background-radius: 100;");
                         }
 
                     }

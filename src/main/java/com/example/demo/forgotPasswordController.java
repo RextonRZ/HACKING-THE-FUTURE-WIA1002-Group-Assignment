@@ -218,9 +218,22 @@ public class forgotPasswordController {
                     userFound = true; // User found
                 }
 
-                // Append user data to fileContent
-                fileContent.append(username).append(",").append(userEmail).append(",").append(password)
-                        .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
+                if (role.equals("Young Student")){
+                    String point = userData[6].trim();
+                    String time = userData[7].trim();
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append(role).append(",").append(latitude).append(",").append(longitude).
+                            append(",").append(point).append(",").append(time).append("\n");
+                } else if (role.equals("Educator")){
+                    String event = userData[6].trim();
+                    String quiz = userData[7].trim();
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append(role).append(",").append(latitude).append(",").append(longitude).
+                            append(",").append(event).append(",").append(quiz).append("\n");
+                } else {
+                    fileContent.append(username).append(",").append(userEmail).append(",").append(password)
+                            .append(",").append(role).append(",").append(latitude).append(",").append(longitude).append("\n");
+                }
             }
 
                 if(!userFound){

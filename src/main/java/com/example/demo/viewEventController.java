@@ -448,7 +448,7 @@ public class viewEventController{
                 for (int i = 0; i < eventTitle.length; i++) {
                     if (!registerButton[i].getText().equals("Registered")) {
                         try {
-                            if (checkRegisterEventClash(loginController.usernameID, eventTitle[i].getText())) {
+                            if (checkRegisterEventClash(loginController.usernameID, eventTitle[i].getText())|| isEventClashBooking(eventTitle[i].getText())) {
                                 registerButton[i].setText("N/A");
                                 registerButton[i].setStyle("-fx-background-color: #E2A6BC;" + "-fx-background-radius: 20;");
                             }
@@ -743,66 +743,104 @@ public class viewEventController{
         if (!isYoungStudent()){
             showError("Only Young Students are allowed to register events.");
         }else{
-            if (clickedButton == liveRegister1) {
-                if (liveEvents.get(0).getStartTime().isBefore(currentTime)) {
-                    showError("The event is in progress; you're not allowed to register now.");
-                } else if (isDoubleRegistration(loginController.usernameID, liveEvents.get(0).getTitle())) {
-                    showError("You have already registered '" + liveEvents.get(0).getTitle() + "'");
-                }else if (checkRegisterEventClash(loginController.usernameID,liveEvents.get(0).getTitle())){
-                    showError("You are not allowed to register the event because event clashes with another event registered.");
-                }else{
-                    registerConfirmation(liveEvents.get(0).getTitle());
+            Platform.runLater(() -> {
+                if (clickedButton == liveRegister1) {
+                    if (liveEvents.get(0).getStartTime().isBefore(currentTime)) {
+                        showError("The event is in progress; you're not allowed to register now.");
+                    } else if (isDoubleRegistration(loginController.usernameID, liveEvents.get(0).getTitle())) {
+                        showError("You have already registered '" + liveEvents.get(0).getTitle() + "'");
+                    } else {
+                        try {
+                            if (checkRegisterEventClash(loginController.usernameID, liveEvents.get(0).getTitle()) || isEventClashBooking(liveEvents.get(0).getTitle())) {
+                                showError("You are not allowed to register the event because event clashes with another event registered.");
+                            } else {
+                                registerConfirmation(liveEvents.get(0).getTitle());
+                            }
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-            }
-            if (clickedButton == liveRegister2) {
-                if (liveEvents.get(1).getStartTime().isBefore(currentTime)) {
-                    showError("The event is in progress; you're not allowed to register now.");
-                }else if(isDoubleRegistration(loginController.usernameID,liveEvents.get(1).getTitle())) {
-                    showError("You have already registered '" + liveEvents.get(1).getTitle() + "'");
-                }else if (checkRegisterEventClash(loginController.usernameID,liveEvents.get(1).getTitle())){
-                    showError("You are not allowed to register the event because event clashes with another event registered.");
-                }else{
-                    registerConfirmation(liveEvents.get(1).getTitle());
+                if (clickedButton == liveRegister2) {
+                    if (liveEvents.get(1).getStartTime().isBefore(currentTime)) {
+                        showError("The event is in progress; you're not allowed to register now.");
+                    } else if (isDoubleRegistration(loginController.usernameID, liveEvents.get(1).getTitle())) {
+                        showError("You have already registered '" + liveEvents.get(1).getTitle() + "'");
+                    } else {
+                        try {
+                            if (checkRegisterEventClash(loginController.usernameID, liveEvents.get(1).getTitle())|| isEventClashBooking(liveEvents.get(1).getTitle())) {
+                                showError("You are not allowed to register the event because event clashes with another event registered.");
+                            } else {
+                                registerConfirmation(liveEvents.get(1).getTitle());
+                            }
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-            }
-            if (clickedButton == liveRegister3) {
-                if (liveEvents.get(2).getStartTime().isBefore(currentTime)) {
-                    showError("The event is in progress; you're not allowed to register now.");
-                }else if(isDoubleRegistration(loginController.usernameID,liveEvents.get(2).getTitle())) {
-                    showError("You have already registered '" + liveEvents.get(2).getTitle() + "'");
-                }else if (checkRegisterEventClash(loginController.usernameID,liveEvents.get(2).getTitle())){
-                    showError("You are not allowed to register the event because event clashes with another event registered.");
-                }else{
-                    registerConfirmation(liveEvents.get(2).getTitle());
+                if (clickedButton == liveRegister3) {
+                    if (liveEvents.get(2).getStartTime().isBefore(currentTime)) {
+                        showError("The event is in progress; you're not allowed to register now.");
+                    } else if (isDoubleRegistration(loginController.usernameID, liveEvents.get(2).getTitle())) {
+                        showError("You have already registered '" + liveEvents.get(2).getTitle() + "'");
+                    } else {
+                        try {
+                            if (checkRegisterEventClash(loginController.usernameID, liveEvents.get(2).getTitle())|| isEventClashBooking(liveEvents.get(2).getTitle())) {
+                                showError("You are not allowed to register the event because event clashes with another event registered.");
+                            } else {
+                                registerConfirmation(liveEvents.get(2).getTitle());
+                            }
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-            }
-            if (clickedButton == upEventRegister1) {
-                if(isDoubleRegistration(loginController.usernameID,upcomingEvents.get(0).getTitle())) {
-                    showError("You have already registered '" + upcomingEvents.get(0).getTitle() + "'");
-                }else if (checkRegisterEventClash(loginController.usernameID,upcomingEvents.get(0).getTitle())){
-                    showError("You are not allowed to register the event because event clashes with another event registered.");
-                }else {
-                    registerConfirmation(upcomingEvents.get(0).getTitle());
+                if (clickedButton == upEventRegister1) {
+                    if (isDoubleRegistration(loginController.usernameID, upcomingEvents.get(0).getTitle())) {
+                        showError("You have already registered '" + upcomingEvents.get(0).getTitle() + "'");
+                    } else {
+                        try {
+                            if (checkRegisterEventClash(loginController.usernameID, upcomingEvents.get(0).getTitle())|| isEventClashBooking(upcomingEvents.get(0).getTitle())) {
+                                showError("You are not allowed to register the event because event clashes with another event registered.");
+                            } else {
+                                registerConfirmation(upcomingEvents.get(0).getTitle());
+                            }
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-            }
-            if (clickedButton == upEventRegister2) {
-                if(isDoubleRegistration(loginController.usernameID,upcomingEvents.get(1).getTitle())) {
-                    showError("You have already registered '" + upcomingEvents.get(1).getTitle() + "'");
-                }else if (checkRegisterEventClash(loginController.usernameID,upcomingEvents.get(1).getTitle())){
-                    showError("You are not allowed to register the event because event clashes with another event registered.");
-                }else{
-                    registerConfirmation(upcomingEvents.get(1).getTitle());
+                if (clickedButton == upEventRegister2) {
+                    if (isDoubleRegistration(loginController.usernameID, upcomingEvents.get(1).getTitle())) {
+                        showError("You have already registered '" + upcomingEvents.get(1).getTitle() + "'");
+                    } else {
+                        try {
+                            if (checkRegisterEventClash(loginController.usernameID, upcomingEvents.get(1).getTitle())|| isEventClashBooking(upcomingEvents.get(1).getTitle())) {
+                                showError("You are not allowed to register the event because event clashes with another event registered.");
+                            } else {
+                                registerConfirmation(upcomingEvents.get(1).getTitle());
+                            }
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-            }
-            if (clickedButton == upEventRegister3) {
-                if(isDoubleRegistration(loginController.usernameID,upcomingEvents.get(2).getTitle())) {
-                    showError("You have already registered '" + upcomingEvents.get(2).getTitle() + "'");
-                }else if (checkRegisterEventClash(loginController.usernameID,upcomingEvents.get(2).getTitle())){
-                    showError("You are not allowed to register the event because event clashes with another event registered.");
-                }else{
-                    registerConfirmation(upcomingEvents.get(2).getTitle());
+                if (clickedButton == upEventRegister3) {
+                    if (isDoubleRegistration(loginController.usernameID, upcomingEvents.get(2).getTitle())) {
+                        showError("You have already registered '" + upcomingEvents.get(2).getTitle() + "'");
+                    } else {
+                        try {
+                            if (checkRegisterEventClash(loginController.usernameID, upcomingEvents.get(2).getTitle())|| isEventClashBooking(upcomingEvents.get(2).getTitle())) {
+                                showError("You are not allowed to register the event because event clashes with another event registered.");
+                            } else {
+                                registerConfirmation(upcomingEvents.get(2).getTitle());
+                            }
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-            }
+            });
         }
 
     }
@@ -832,6 +870,7 @@ public class viewEventController{
     }
 
     public boolean checkRegisterEventClash(String username, String eventToRegister) throws ClassNotFoundException {
+
         String File = "src/main/java/Data/registerEvent.csv";
         String line;
         LocalDate currentDate = LocalDate.now();
@@ -861,9 +900,11 @@ public class viewEventController{
         }
         // No clash found
         return false;
+
     }
 
-    private boolean isEventClash(String registeredEvent, String eventToRegister) throws ClassNotFoundException {
+
+    public boolean isEventClash(String registeredEvent, String eventToRegister) throws ClassNotFoundException {
         List<Event> events = getEventsSortedByDate();
 
         LocalTime registeredEventStartTime = null;
@@ -903,7 +944,50 @@ public class viewEventController{
                 (eventToRegisterStartTime.isBefore(registeredEventStartTime) && eventToRegisterEndTime.isAfter(registeredEventEndTime))) {
             return true; // Clash found
         }
+
         return false; // No clash found
+    }
+
+    public boolean isEventClashBooking(String eventToRegister) {
+            List<Event> events = getEventsSortedByDate();
+
+            LocalDate eventToRegisterDate = null;
+            for (Event event : events) {
+                if (event.getTitle().equals(eventToRegister)) {
+                    eventToRegisterDate = event.getDate();
+                    break;
+                }
+            }
+
+            if (eventToRegisterDate == null) {
+                return false; // Event to register is not found
+            }
+
+            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/Data/bookingData.csv"))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] columns = line.split(",");
+                    String username = columns[1];
+                    LocalDate csvDate = LocalDate.parse(columns[4]);
+                    System.out.println("EventToRegister:" + eventToRegisterDate);
+
+                    // Print the CSV date for debugging
+                    System.out.println("CSV Date: " + csvDate);
+
+                        if (username.equals(loginController.usernameID)) {
+                            if (eventToRegisterDate.equals(csvDate)) {
+                                System.out.println("Clash found in CSV for user: " + username);
+                                return true; // Clash found
+                            }
+                        }
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            return false; // No clash found
     }
 
     public boolean isYoungStudent(){
